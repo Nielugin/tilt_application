@@ -15,10 +15,15 @@ import android.support.v7.widget.Toolbar;
 
 /**
  * Main tilt application launcher.
+ * The app compat activity allow to use compatibility mode reaching 100% of the android devices.
  */
 public class MainTiltActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    /**
+     * Method called on application creation.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,15 +88,14 @@ public class MainTiltActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.weekly_readings) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.what_is_gdm) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.what_is_gdc) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.who_pray_for) {
 
         } else if (id == R.id.nav_send) {
 

@@ -3,24 +3,24 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/weekly_readings"
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/weekly_readings" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/who_pray_for"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="@string/who_pray_for" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/what_is_gdc"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="@string/what_is_gdc" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/what_is_gdm"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="@string/what_is_gdm" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/communicate">
         <menu>
             <item
                 android:id="@+id/nav_share"
