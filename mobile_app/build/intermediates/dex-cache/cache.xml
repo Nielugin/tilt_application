@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="D:\Users\jboucher\Mes_Projets\android\tilt_application\mobile_app\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\jars\libs\internal_impl-24.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="f78c2f395cb096f9dc1dc07e729922b8fcd3c4f5">
+        <dex dex="D:\Users\jboucher\Mes_Projets\android\tilt_application\mobile_app\app\build\intermediates\pre-dexed\debug\internal_impl-24.1.1_cc88a921623e83ce93d0596cf2ecd533a67f0e3f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Users\jboucher\Mes_Projets\android\tilt_application\mobile_app\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="6d7d803871e3203465f71a163e7af104f807b446">
+        <dex dex="D:\Users\jboucher\Mes_Projets\android\tilt_application\mobile_app\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-24.1.1_2d40f371bb1e294f2e84abacf4757819a05924c4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Users\jboucher\Mes_Projets\android\tilt_application\mobile_app\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="f62e763609f65e47dc6c498760a4accf02776788">
+        <dex dex="D:\Users\jboucher\Mes_Projets\android\tilt_application\mobile_app\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-24.1.1_6ce7996a973d360acbeace6e48f084982e33311d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Users\jboucher\Mes_Projets\android\tilt_application\mobile_app\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="787871951412550519b0222aba3c9df4cea49875">
+        <dex dex="D:\Users\jboucher\Mes_Projets\android\tilt_application\mobile_app\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-24.1.1_d1266178ba24a078f7f4a1ff1a511b400af9b573.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Users\jboucher\Mes_Projets\android\tilt_application\mobile_app\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="1256c10604bb098490eab070d76754ac5ceab35c">
+        <dex dex="D:\Users\jboucher\Mes_Projets\android\tilt_application\mobile_app\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-24.1.1_400f46cf2c3f10c555f9b909932b754a67bcc807.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Users\jboucher\Outils\android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.1.1\support-annotations-24.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="3af19f153122737b372622fa6c81dd11a1c6b999">
+        <dex dex="D:\Users\jboucher\Mes_Projets\android\tilt_application\mobile_app\app\build\intermediates\pre-dexed\debug\support-annotations-24.1.1_2f856cfb30541093258ed80094041d923a7fed9e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Users\jboucher\Mes_Projets\android\tilt_application\mobile_app\app\build\intermediates\exploded-aar\com.android.support\design\24.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="e195bd694d5389acfba27ff4fdfa64c4c65b2c05">
+        <dex dex="D:\Users\jboucher\Mes_Projets\android\tilt_application\mobile_app\app\build\intermediates\pre-dexed\debug\com.android.support-design-24.1.1_1852afcbda622e0931d505e14098ee276549ab1d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Users\jboucher\Mes_Projets\android\tilt_application\mobile_app\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.1"
+        sha1="c936c1bd42f0c018c18920c7bec619ef056b24f8">
+        <dex dex="D:\Users\jboucher\Mes_Projets\android\tilt_application\mobile_app\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-24.1.1_a1b186b780c2deea80b14d0068d562d992d334cb.jar" />
+    </item>
+
+</items>
