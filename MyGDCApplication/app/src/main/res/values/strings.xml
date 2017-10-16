@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MyGDCApplication</string>
+
+    <string name="title_activity_prayer">PrayerActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="prayer_text">\"Priez les uns pour les autres\". Il est très encourageant d\'entendre une personne prier pour soi. Mais le GDC est également ouvert aux autres. Chaque rencontres se termine par un moment de prière pour trois personnes autour de moi qui ont besoin de la présence de Dieu.Ainsi, la prière change mon regard sur eux, me rends plus disponible, et fait de moi un témoin de Jésus pour eux.</string>
+    <string name="prayer_title">Prier l\'un pour l\'autre</string>
+    <string name="sharing_title">Partage authentique</string>
+    <string name="sharing_text">Les questions tournent autour de trois axes : ma relation à Dieu, aux autres, et à moi même.  Elles ne sont pas là pour condamner ou juger, mais pour se positionner, évoquer les luttes ou les souffrances, prendre conscience des victoires et du chemin parcouru, voir l\'action de Dieu dans sa vie, imaginer cette action dans la vie des autres.   Ces questions sont un excellent moyen pour apprendre le \"lâcher prise\".</string>
+    <string name="bible_reading_title">Lecture</string>
+    <string name="bible_reading_text">Nous avons pris l\'habitude d\'étudier la Bible, de lire les commentaires ou des livres annexes et cela est important. Mais il est aussi bon d\'apprendre à lire la Bible en lecture simple, laissant l\'Esprit faire le reste. Cela passe par une lecture soutenue et régulière. A chacun d\'adapter son rythme. Certains lisent jusqu\'à 30 chapitres par semaine !  L\'important est de rechercher quel rythme me permet d\'être enraciné dans ma relation avec Dieu.</string>
+</resources>

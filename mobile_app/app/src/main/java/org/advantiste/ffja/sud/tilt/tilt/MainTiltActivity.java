@@ -1,5 +1,6 @@
 package org.advantiste.ffja.sud.tilt.tilt;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -87,20 +88,25 @@ public class MainTiltActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Intent intent =  null;
 
         if (id == R.id.weekly_readings) {
             // Handle the camera action
-
+            intent =  new Intent(this,ReadingsActivity.class);
         } else if (id == R.id.what_is_gdm) {
+            intent =  new Intent(this,GDCActivity.class);
 
         } else if (id == R.id.what_is_gdc) {
+            intent =  new Intent(this,GDCActivity.class);
 
         } else if (id == R.id.who_pray_for) {
-
-        } else if (id == R.id.nav_send) {
+            intent =  new Intent(this,PrayerActivity.class);
 
         }
-
+        if(intent!=null){
+            startActivity(intent);
+            finish();
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
