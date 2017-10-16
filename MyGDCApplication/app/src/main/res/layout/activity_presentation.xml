@@ -10,61 +10,110 @@
     <RelativeLayout
         android:layout_width="368dp"
         android:layout_height="551dp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="8dp">
+        android:layout_marginBottom="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="8dp">
+
+        <TextView
+            android:id="@+id/editText3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView5"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Le GroupeDe Croissance"
+            tools:layout_editor_absoluteX="99dp"
+            tools:layout_editor_absoluteY="-41dp" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="189dp"
+            android:layout_height="72dp"
+            android:layout_alignEnd="@+id/prayImage"
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/prayImage"
+            app:srcCompat="@drawable/gdc"
+            tools:layout_editor_absoluteX="98dp"
+            tools:layout_editor_absoluteY="52dp" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/prayImage"
+            android:layout_alignStart="@+id/prayImage"
+            android:layout_below="@+id/prayImage"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Prier"
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="99dp"
+            tools:layout_editor_absoluteY="-41dp" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/sharingImage"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Partager"
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="99dp"
+            tools:layout_editor_absoluteY="-41dp" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/readingBibleImage"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignStart="@+id/readingBibleImage"
+            android:layout_below="@+id/readingBibleImage"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Lire"
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="99dp"
+            tools:layout_editor_absoluteY="-41dp" />
 
         <ImageView
             android:id="@+id/readingBibleImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/imageView6"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="60dp"
-            android:layout_marginLeft="240dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginTop="500dp"
-            app:srcCompat="@drawable/bible"
+            android:layout_alignBottom="@+id/sharingImage"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            app:srcCompat="@drawable/bible2"
             tools:layout_editor_absoluteX="31dp"
             tools:layout_editor_absoluteY="261dp" />
-
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="60dp"
-            android:layout_marginLeft="120dp"
-            android:layout_marginRight="120dp"
-            android:adjustViewBounds="true"
-            app:srcCompat="@drawable/dispatch12"
-            tools:layout_editor_absoluteX="148dp"
-            tools:layout_editor_absoluteY="292dp" />
-
-        <ImageView
-            android:id="@+id/sharingImage"
-            android:layout_width="136dp"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/partage"
-            tools:layout_editor_absoluteX="257dp"
-            tools:layout_editor_absoluteY="272dp"
-            android:layout_below="@+id/readingBibleImage"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
 
         <ImageView
             android:id="@+id/prayImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/editText3"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="31dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/pray"
+            app:srcCompat="@drawable/pray2"
             tools:layout_editor_absoluteX="141dp"
-            tools:layout_editor_absoluteY="96dp"
-            android:layout_marginTop="10dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            tools:layout_editor_absoluteY="96dp" />
+
+        <ImageView
+            android:id="@+id/sharingImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/prayImage"
+            android:layout_marginTop="19dp"
+            app:srcCompat="@drawable/share2" />
+
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
