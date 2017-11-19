@@ -18,4 +18,14 @@
     <string name="gdc">GDC</string>
     <string name="open_bible">An opened bible</string>
     <string name="gdc_long">Le Groupe De Croissance</string>
+    <string name="sharing_questions">Exemples de questions</string>
+    <string name="sharing_question_1">- Comment Dieu s\'est-il manifesté dans ta vie cette semaine ?</string>
+    <string name="sharing_question_2">- Qu\'est-il en train de t\'enseigner ?</string>
+    <string name="sharing_question_3">- Comment réponds-tu à son encouragement ?</string>
+    <string name="sharing_question_4">- Que voudrais tu changer ?</string>
+    <string name="sharing_question_5">- Y a-t-il un obstacle dans ta progression spirituelle ?</string>
+    <string name="sharing_question_6">- Veux tu en parler ?</string>
+    <string name="sharing_question_7">- Veux tu que l\'on prie pour cela ?</string>
+    <string name="sharing_question_8">- Pour qui veux tu prier ?</string>
+    <string name="sharing_question_9">- Qu\'as tu pensé de ce que tu as lu cette semaine ?</string>
 </resources>
