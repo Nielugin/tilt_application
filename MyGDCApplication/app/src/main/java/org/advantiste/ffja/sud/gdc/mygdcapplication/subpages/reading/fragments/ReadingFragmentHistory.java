@@ -13,6 +13,12 @@ import android.widget.TableLayout;
 import android.widget.Toast;
 
 import org.advantiste.ffja.sud.gdc.mygdcapplication.R;
+import org.advantiste.ffja.sud.gdc.mygdcapplication.controller.ReadingController;
+import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.BibleBook;
+import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.WeeklyReading;
+import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading.fragments.model.HistoryRowItem;
+
+import java.util.List;
 
 
 /**
@@ -37,18 +43,12 @@ public class ReadingFragmentHistory extends Fragment {
         ImageView picture = (ImageView)rootView.findViewById(R.id.reading_image_2);
         TableLayout tableLayout = (TableLayout) rootView.findViewById(R.id.reading_list_history);
         picture.setImageResource(R.drawable.bible);
-       /* add_reading= (ImageButton) rootView.findViewById(R.id.add_reading);
-        add_reading.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Context context = ReadingFragmentHistory.this.getContext();
-                CharSequence text = "Whouuuhhhhooo!";
-                int duration = Toast.LENGTH_SHORT;
 
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-            }
-        });*/
+        ReadingController readingController = ReadingController.getInstance();
+        List<WeeklyReading> readings = readingController.getReadings();
+        for (WeeklyReading reading: readings) {
+            tableLayout.addView(new HistoryRowItem(this.getContext(),reading));
+        }
         return rootView;
     }
 }
