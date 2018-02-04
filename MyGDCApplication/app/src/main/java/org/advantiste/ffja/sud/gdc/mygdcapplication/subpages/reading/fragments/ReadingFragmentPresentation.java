@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.advantiste.ffja.sud.gdc.mygdcapplication.R;
 
@@ -25,8 +26,11 @@ public class ReadingFragmentPresentation extends Fragment {
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 fragment_reading_presentation, container, false);
-        ImageView picture = (ImageView)rootView.findViewById(R.id.reading_image_1);
-        picture.setImageResource(R.drawable.bible);
+
+        TextView textViewPresentation = (TextView) rootView.findViewById(R.id.reading_text);
+        textViewPresentation.setText(R.string.bible_reading_text);
+
+
         return rootView;
     }
 }

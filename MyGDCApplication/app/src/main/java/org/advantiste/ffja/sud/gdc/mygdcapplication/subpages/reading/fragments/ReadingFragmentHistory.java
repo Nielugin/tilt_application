@@ -40,9 +40,7 @@ public class ReadingFragmentHistory extends Fragment {
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_reading_history, container, false);
-        ImageView picture = (ImageView)rootView.findViewById(R.id.reading_image_2);
         TableLayout tableLayout = (TableLayout) rootView.findViewById(R.id.reading_list_history);
-        picture.setImageResource(R.drawable.bible);
 
         ReadingController readingController = ReadingController.getInstance();
         List<WeeklyReading> readings = readingController.getReadings();
