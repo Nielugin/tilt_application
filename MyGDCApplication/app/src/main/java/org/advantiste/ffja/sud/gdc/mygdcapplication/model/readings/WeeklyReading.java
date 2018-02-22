@@ -18,6 +18,12 @@ public class WeeklyReading extends AbstractReading{
     /**
      *
      */
+    private long id;
+
+
+    /**
+     *
+     */
     private Map<BibleBook,List<Integer>> readingDetails;
 
     /**
@@ -31,6 +37,14 @@ public class WeeklyReading extends AbstractReading{
         super(beginDate, endDate, comment);
         this.readingDetails = readingDetails;
         this.weekNumber = weekNumber;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public int getWeekNumber() {

@@ -39,8 +39,6 @@ public class HistoryRowItem extends TableRow {
 
         this.chapterCount = new TextView(this.getContext());
         this.addView(chapterCount);
-
-        int count=0;
         BibleBook book;
         Map<BibleBook, List<Integer>> weekRead = model.getReadingDetails();
         Iterator<BibleBook> itBooks = weekRead.keySet().iterator();
@@ -57,12 +55,6 @@ public class HistoryRowItem extends TableRow {
         } else {
             this.chapterCount.setText(" Aucune lecture ");
         }
-//        Collection<List<Integer>> values = weekRead.values();
-//        for (List<Integer> value: values ) {
-//            count+=value.size();
-//        }
-//
-//        this.chapterCount.setText(String.valueOf(count)+" ");
 
         this.readingDate = new TextView(this.getContext());
         this.addView(readingDate);

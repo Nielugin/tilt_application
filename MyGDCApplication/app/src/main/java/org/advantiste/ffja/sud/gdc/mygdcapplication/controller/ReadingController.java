@@ -42,7 +42,6 @@ public class ReadingController {
         calendar.setTimeInMillis(beginDate+oneWeek);
         long endDate =  calendar.getTimeInMillis();
 
-
         BibleBookChapterAssociation bbca = new BibleBookChapterAssociation();
         HashMap<BibleBook, Integer> bookChapterNumber = bbca.getBibleIntegerEnumMap();
         BibleBook[] values = BibleBook.values();

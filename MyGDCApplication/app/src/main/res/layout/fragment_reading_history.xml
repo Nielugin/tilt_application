@@ -35,6 +35,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reading_image_2" />
 
+
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:text="+"
+        app:layout_constraintEnd_toEndOf="@+id/reading_history_title"
+        app:layout_constraintTop_toBottomOf="@+id/reading_image_2" />
+
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
@@ -70,5 +82,6 @@
             </TableLayout>
         </LinearLayout>
     </ScrollView>
+
 
 </android.support.constraint.ConstraintLayout>
