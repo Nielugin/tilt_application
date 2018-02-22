@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by jean- on 29/12/2017.
@@ -42,11 +43,26 @@ public class ReadingController {
         long endDate =  calendar.getTimeInMillis();
 
 
+        BibleBookChapterAssociation bbca = new BibleBookChapterAssociation();
+        HashMap<BibleBook, Integer> bookChapterNumber = bbca.getBibleIntegerEnumMap();
         BibleBook[] values = BibleBook.values();
         for (int i = 0; i < 10; i++) {
             BibleBookChapterAssociation bibleBookChapterAssociation = new BibleBookChapterAssociation();
             Integer actCount = bibleBookChapterAssociation.getBibleIntegerEnumMap().get(values[i]);
-            WeeklyReading weeklyReading = new WeeklyReading(beginDate, endDate,"", i, new HashMap<BibleBook, List<Integer>>());
+            Map<BibleBook, List<Integer>> weekRead = new HashMap<BibleBook, List<Integer>>();
+            BibleBook book = values[(int) (Math.round(Math.random()*values.length))];
+            List<Integer> listChapters = new ArrayList<>();
+            for (int j = 1; j <= bookChapterNumber.get(book); ++j)
+                listChapters.add(j);
+            weekRead.put(book, listChapters);
+            if (listChapters.size() < 15){
+                book = values[(int) (Math.round(Math.random()*values.length))];
+                listChapters = new ArrayList<>();
+                for (int j = 1; j <= bookChapterNumber.get(book); ++j)
+                    listChapters.add(j);
+                weekRead.put(book, listChapters);
+            }
+            WeeklyReading weeklyReading = new WeeklyReading(beginDate, endDate,"", i, weekRead);
             readings.add(weeklyReading);
         }
 
