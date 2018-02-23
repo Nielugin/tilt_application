@@ -8,6 +8,7 @@ import android.content.ContentValues;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
@@ -70,6 +71,33 @@ public class WeeklyReadingDataSource {
         Log.w(WeeklyReadingDataSource.class.getName(),"WeeklyReading deleted with id: " + id);
         database.delete(SQLiteWeeklyReading.TABLE_WEEKLY_READING, SQLiteWeeklyReading.COLUMN_ID
             + " = " + id, null);
+    }
+
+    public WeeklyReading getThisWeekReading() {
+        WeeklyReading weekReading;
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR,0);
+        calendar.set(Calendar.MINUTE,0);
+        calendar.set(Calendar.SECOND,0);
+        calendar.set(Calendar.MILLISECOND,0);
+        long currentDate = calendar.getTimeInMillis();
+
+        Cursor cursor = database.query(SQLiteWeeklyReading.TABLE_WEEKLY_READING,
+                allColumns, "beginDate<=? and endDate>=?",
+                new String[] { String.valueOf(currentDate), String.valueOf(currentDate) },
+                null, null, null);
+
+
+        if (cursor!=null && cursor.getCount()>0) {
+            cursor.moveToFirst();
+            weekReading = cursorToWeeklyReading(cursor);
+        } else
+            weekReading = null;
+        // assurez-vous de la fermeture du curseur
+        cursor.close();
+        return weekReading;
     }
 
     public List<WeeklyReading> getAllWeeklyReading() {

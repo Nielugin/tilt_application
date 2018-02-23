@@ -15,8 +15,10 @@ import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.BibleBook;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.WeeklyReading;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.WeeklyReadingDataSource;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading.fragments.model.HistoryRowItem;
+import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading.fragments.model.HistoryRowItemBook;
 
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -44,10 +46,6 @@ public class ReadingFragmentHistory extends Fragment {
                 R.layout.fragment_reading_history, container, false);
         TableLayout tableLayout = (TableLayout) rootView.findViewById(R.id.reading_list_history);
 
-        Log.w(ReadingFragmentHistory.class.getName()," - TableLayout OK !");
-
-
-
         Button addReading = (Button) rootView.findViewById(R.id.btnAdd);
         addReading.setOnClickListener(new View.OnClickListener() {
               @Override
@@ -68,6 +66,7 @@ public class ReadingFragmentHistory extends Fragment {
 
                   BibleBook book = BibleBook.values()[(int) (Math.random()*BibleBook.values().length)];
                   String readingDetails = book.name()+",1,2,3,4,5,6,7,8,9,10";
+
 
                   Log.w(ReadingFragmentHistory.class.getName(),
                           "Details de lecture : "+readingDetails);
@@ -98,6 +97,12 @@ public class ReadingFragmentHistory extends Fragment {
 
         for (WeeklyReading reading: readings) {
             tableLayout.addView(new HistoryRowItem(this.getContext(),reading));
+            Iterator<BibleBook> kBook = reading.getReadingDetails().keySet().iterator();
+            while (kBook.hasNext()) {
+                BibleBook book = kBook.next();
+                tableLayout.addView(new HistoryRowItemBook(this.getContext(),reading, book));
+            }
+
         }
         return rootView;
     }

@@ -10,6 +10,7 @@
     <string name="sharing_text">Les questions tournent autour de trois axes : ma relation à Dieu, aux autres, et à moi même.  Elles ne sont pas là pour condamner ou juger, mais pour se positionner, évoquer les luttes ou les souffrances, prendre conscience des victoires et du chemin parcouru, voir l\'action de Dieu dans sa vie, imaginer cette action dans la vie des autres.   Ces questions sont un excellent moyen pour apprendre le \"lâcher prise\".</string>
     <string name="bible_reading_title">Lecture</string>
     <string name="bible_reading_text">Nous avons pris l\'habitude d\'étudier la Bible, de lire les commentaires ou des livres annexes et cela est important. Mais il est aussi bon d\'apprendre à lire la Bible en lecture simple, laissant l\'Esprit faire le reste. Cela passe par une lecture soutenue et régulière. A chacun d\'adapter son rythme. Certains lisent jusqu\'à 30 chapitres par semaine !  L\'important est de rechercher quel rythme me permet d\'être enraciné dans ma relation avec Dieu.</string>
+    <string name="bible_reading_current">Lecture de la semaine </string>
     <string name="share_title">Partager</string>
     <string name="pray_title">Prier</string>
     <string name="read_title">Lire</string>
