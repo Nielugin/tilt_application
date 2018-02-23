@@ -20,8 +20,6 @@ public class HistoryRowItemBook extends TableRow {
 
     private TextView bookChaptersR;
 
-    private TextView chaptersR;
-
     private TextView blank;
 
 

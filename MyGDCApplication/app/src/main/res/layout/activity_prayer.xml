@@ -3,30 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PrayerActivity">
+    tools:context=".subpages.praying.PrayingActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
-
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="@string/man_who_prays"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/pray"
-        tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -35,43 +16,54 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        app:layout_constraintRight_toRightOf="parent">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/editText2"
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:contentDescription="@string/man_who_prays"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/pray"
+                tools:layout_constraintBottom_creator="1"
+                tools:layout_constraintLeft_creator="1"
+                tools:layout_constraintRight_creator="1"
+                tools:layout_constraintTop_creator="1" />
+
+            <fragment
+                android:id="@+id/praying_presentation_fragment"
+                class="org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.praying.fragments.PrayingFragmentPresentation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:ems="20"
-                android:text="@string/prayer_title"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-            <TextView
-                android:id="@+id/editText4"
+            <fragment
+                android:id="@+id/praying_list_fragment"
+                class="org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.praying.fragments.PrayingFragmentList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
-                android:ems="10"
-                android:text="@string/prayer_text"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText2" />
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/praying_presentation_fragment" />
         </LinearLayout>
     </ScrollView>
 
