@@ -5,7 +5,7 @@
 <item>TITI</item>
 <item>TTATA</item>
 </string-array>
-    <string-array name="pref_syncConnectionTypes_values">
+    <string-array name="test_values">
         <item>TOTO_val</item>
         <item>TITI_val</item>
         <item>TTATA_val</item>

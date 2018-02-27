@@ -21,7 +21,11 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_prayer" />
         <activity android:name=".subpages.sharing.SharingActivity" />
-        <activity android:name=".subpages.reading.BibleReadingActivity"></activity>
+        <activity android:name=".subpages.reading.BibleReadingActivity" />
+        <activity
+            android:name=".subpages.reading.AddHistoryActivity"
+            android:label="@string/title_activity_add_history"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
 </manifest>
