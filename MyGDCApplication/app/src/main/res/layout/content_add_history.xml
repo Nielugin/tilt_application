@@ -13,6 +13,7 @@
         android:layout_height="wrap_content">
 
 
+
         <EditText
             android:id="@+id/endDate"
             android:layout_width="0dp"
@@ -50,7 +51,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_weight="2"
-                    android:entries="@array/test_values"
+                    android:entries="@array/book_values"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
