@@ -15,6 +15,7 @@ import android.widget.ImageView;
 
 import org.advantiste.ffja.sud.gdc.mygdcapplication.Presentation;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.R;
+import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.BibleBook;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading.fragments.ReadingFragmentHistory;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading.fragments.ReadingFragmentPresentation;
 
@@ -38,6 +39,8 @@ public class BibleReadingActivity  extends FragmentActivity {
     private PagerAdapter mPagerAdapter;
 
 
+    static final int ADD_READING_REQUEST = 1;  // The request code
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,9 +54,28 @@ public class BibleReadingActivity  extends FragmentActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BibleReadingActivity.this.getApplicationContext(), AddHistoryActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, ADD_READING_REQUEST);
             }
 
         });
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Dans le cas de retour de l'ajout de lecture
+        if (requestCode == ADD_READING_REQUEST) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                BibleBook book = BibleBook.valueOf(data.getStringExtra("readBook"));
+                int chapterBegin = Integer.parseInt(data.getStringExtra("readChapterBegin"));
+                int chapterEnd = Integer.parseInt(data.getStringExtra("readChapterEnd"));
+                String dateBegin = data.getStringExtra("readBeginDate");
+                String dateEnd = data.getStringExtra("readEndDate");
+
+                System.out.println("************ \n Du "+dateBegin+" au "+dateEnd+", la lecture est "+book+"."+chapterBegin+"-"+chapterEnd);
+            }
+        }
+    }
+
 }
