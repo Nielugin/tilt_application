@@ -46,6 +46,7 @@ public class ReadingFragmentHistory extends Fragment {
                 R.layout.fragment_reading_history, container, false);
         TableLayout tableLayout = (TableLayout) rootView.findViewById(R.id.reading_list_history);
 
+        /*
         Button addReading = (Button) rootView.findViewById(R.id.btnAdd);
         addReading.setOnClickListener(new View.OnClickListener() {
               @Override
@@ -87,7 +88,7 @@ public class ReadingFragmentHistory extends Fragment {
 
               }
         });
-
+        */
 
         dataSource = new WeeklyReadingDataSource(this.getContext());
         dataSource.open();
