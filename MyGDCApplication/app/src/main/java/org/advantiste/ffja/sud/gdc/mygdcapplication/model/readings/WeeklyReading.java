@@ -31,7 +31,7 @@ public class WeeklyReading extends AbstractReading{
      * @param beginDate
      * @param endDate
      * @param weekNumber
-     * @param readingDetails
+     * @param readingDetails : Pour chaque chapitre à lire, on donne le chapitre de début et de fin
      */
     public WeeklyReading(long beginDate, long endDate, String comment,int weekNumber, Map<BibleBook,List<Integer>> readingDetails) {
         super(beginDate, endDate, comment);

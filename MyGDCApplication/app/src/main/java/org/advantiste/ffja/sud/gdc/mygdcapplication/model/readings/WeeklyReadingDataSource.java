@@ -87,7 +87,7 @@ public class WeeklyReadingDataSource {
         Cursor cursor = database.query(SQLiteWeeklyReading.TABLE_WEEKLY_READING,
                 allColumns, "beginDate<=? and endDate>=?",
                 new String[] { String.valueOf(currentDate), String.valueOf(currentDate) },
-                null, null, null);
+                null, null, SQLiteWeeklyReading.COLUMN_WEEK_NUMBER+" DESC");
 
 
         if (cursor!=null && cursor.getCount()>0) {
@@ -126,9 +126,11 @@ public class WeeklyReadingDataSource {
             String[] chapters = bc.split(",");
             BibleBook book = BibleBook.valueOf(chapters[0]);
             List<Integer> listChapters = new ArrayList<Integer>();
-            for (int i = 1; i < chapters.length; i++) {
-                listChapters.add(Integer.parseInt(chapters[i]));
-            }
+            listChapters.add(Integer.parseInt(chapters[1]));
+            listChapters.add(Integer.parseInt(chapters[2]));
+//            for (int i = 1; i < chapters.length; i++) {
+//                listChapters.add(Integer.parseInt(chapters[i]));
+//            }
             readingDetails.put(book, listChapters);
         }
 

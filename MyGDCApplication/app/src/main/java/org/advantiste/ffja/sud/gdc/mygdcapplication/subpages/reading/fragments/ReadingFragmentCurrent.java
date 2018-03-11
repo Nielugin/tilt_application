@@ -25,12 +25,9 @@ import java.util.Map;
 public class ReadingFragmentCurrent extends Fragment {
 
     private WeeklyReadingDataSource dataSource;
+    private TextView textViewPresentation;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup) inflater.inflate(
-                fragment_reading_current, container, false);
+    public void populateCurrent() {
 
         dataSource = new WeeklyReadingDataSource(this.getContext());
         dataSource.open();
@@ -42,20 +39,30 @@ public class ReadingFragmentCurrent extends Fragment {
             BibleBook book = itBook.next();
             List<Integer> chapters = reading.get(book);
             txtCurrentReading = book.name()+"."+String.valueOf(chapters.get(0)) + "-"
-                    + String.valueOf(chapters.get(chapters.size() - 1));
+                    + String.valueOf(chapters.get(1));
             while (itBook.hasNext()) {
                 book = itBook.next();
                 chapters = reading.get(book);
                 txtCurrentReading += "; "+book.name()+"."+String.valueOf(chapters.get(0)) + "-"
-                        + String.valueOf(chapters.get(chapters.size() - 1));
+                        + String.valueOf(chapters.get(1));
             }
         } else {
             txtCurrentReading = "Aucune lecture";
         }
-        TextView textViewPresentation = (TextView) rootView.findViewById(R.id.reading_current_book);
         textViewPresentation.setText(txtCurrentReading);
 
         dataSource.close();
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        ViewGroup rootView = (ViewGroup) inflater.inflate(
+                fragment_reading_current, container, false);
+        textViewPresentation = (TextView) rootView.findViewById(R.id.reading_current_book);
+
+        populateCurrent();
 
         return rootView;
     }

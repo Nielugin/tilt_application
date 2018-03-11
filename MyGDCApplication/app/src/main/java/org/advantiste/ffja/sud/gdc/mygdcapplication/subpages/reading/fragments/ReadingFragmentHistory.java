@@ -36,15 +36,35 @@ public class ReadingFragmentHistory extends Fragment {
     private ImageButton add_reading;
 
     private WeeklyReadingDataSource dataSource;
+    private TableLayout tableLayout;
 
 
+    public void populateHistory() {
+        // Supprimer toutes les données du tableau afin de recréer tout proprement
+        tableLayout.removeAllViews();
+
+        dataSource = new WeeklyReadingDataSource(this.getContext());
+        dataSource.open();
+        //dataSource.deleteAllWeeklyReading();
+
+        List<WeeklyReading> readings = dataSource.getAllWeeklyReading();
+
+        for (WeeklyReading reading: readings) {
+            tableLayout.addView(new HistoryRowItem(this.getContext(),reading));
+            Iterator<BibleBook> kBook = reading.getReadingDetails().keySet().iterator();
+            while (kBook.hasNext()) {
+                BibleBook book = kBook.next();
+                tableLayout.addView(new HistoryRowItemBook(this.getContext(),reading, book));
+            }
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_reading_history, container, false);
-        TableLayout tableLayout = (TableLayout) rootView.findViewById(R.id.reading_list_history);
+        tableLayout = (TableLayout) rootView.findViewById(R.id.reading_list_history);
 
         /*
         Button addReading = (Button) rootView.findViewById(R.id.btnAdd);
@@ -90,21 +110,13 @@ public class ReadingFragmentHistory extends Fragment {
         });
         */
 
+        populateHistory();
+
+        /* *** TODO : Remet à vide le SQLite de LECTURE
         dataSource = new WeeklyReadingDataSource(this.getContext());
         dataSource.open();
-        //dataSource.deleteAllWeeklyReading();
-
-        List<WeeklyReading> readings = dataSource.getAllWeeklyReading();
-
-        for (WeeklyReading reading: readings) {
-            tableLayout.addView(new HistoryRowItem(this.getContext(),reading));
-            Iterator<BibleBook> kBook = reading.getReadingDetails().keySet().iterator();
-            while (kBook.hasNext()) {
-                BibleBook book = kBook.next();
-                tableLayout.addView(new HistoryRowItemBook(this.getContext(),reading, book));
-            }
-
-        }
+        dataSource.deleteAllWeeklyReading();
+        /**/
         return rootView;
     }
 
