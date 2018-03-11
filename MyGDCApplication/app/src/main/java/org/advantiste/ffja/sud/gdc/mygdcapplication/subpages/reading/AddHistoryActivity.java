@@ -176,8 +176,17 @@ public class AddHistoryActivity extends AppCompatActivity {
 
         // Prepare data intent
         Intent data = new Intent();
-        data.putExtra("readEndDate", dateEnd.getText().toString());
+
         data.putExtra("readBeginDate", mDay+"/"+(mMonth+1)+"/"+mYear);
+        if (dateEnd.getText().toString().isEmpty()) {
+            c.setTimeInMillis(c.getTimeInMillis()+604800000); //oneWeek);
+            mYear = c.get(Calendar.YEAR); // current year
+            mMonth = c.get(Calendar.MONTH); // current month
+            mDay = c.get(Calendar.DAY_OF_MONTH); // current day
+            data.putExtra("readEndDate",mDay+"/"+(mMonth+1)+"/"+mYear);
+        } else {
+            data.putExtra("readEndDate", dateEnd.getText().toString());
+        }
         data.putExtra("readBook_0",bookSpinner.getSelectedItem().toString());
         data.putExtra("readChapterBegin_0", bookBegin.getSelectedItem().toString());
         data.putExtra("readChapterEnd_0", bookEnd.getSelectedItem().toString());
