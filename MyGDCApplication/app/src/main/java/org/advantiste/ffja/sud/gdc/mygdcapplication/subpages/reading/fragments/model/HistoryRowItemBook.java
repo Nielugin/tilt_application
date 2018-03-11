@@ -39,7 +39,7 @@ public class HistoryRowItemBook extends TableRow {
         this.addView(bookChaptersR);
         List<Integer> chapters = model.getReadingDetails().get(book);
         this.bookChaptersR.setText(book.name()+"."+String.valueOf(chapters.get(0)) + "-"
-                + String.valueOf(chapters.get(chapters.size() - 1)));
+                + String.valueOf(chapters.get(1)));
 
         this.setMinimumHeight(45);
     }

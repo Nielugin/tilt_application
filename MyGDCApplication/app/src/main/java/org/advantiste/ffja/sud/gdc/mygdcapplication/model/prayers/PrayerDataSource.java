@@ -57,8 +57,13 @@ public class PrayerDataSource {
     }
 
     public void deleteAllPrayers() {
-        Log.w(PrayerDataSource.class.getName()," All WeeklyReading deleted ");
+        Log.w(PrayerDataSource.class.getName()," All Prayers deleted ");
         database.delete(SQLitePrayer.TABLE_PRAYER, null, null);
+    }
+
+    public void deletePrayerById(long id) {
+        Log.w(PrayerDataSource.class.getName()," Prayer "+id+" is deleted ");
+        database.delete(SQLitePrayer.TABLE_PRAYER, SQLitePrayer.COLUMN_ID+" = "+id, null);
     }
 
     public List<Prayer> getAllPrayers() {

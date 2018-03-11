@@ -119,13 +119,9 @@ public class AddHistoryActivity extends AppCompatActivity {
 
         // Prepare data intent
         Intent data = new Intent();
-        data.putExtra("readEndDate", dateEnd.getText().toString());
+
         data.putExtra("readBeginDate", mDay+"/"+(mMonth+1)+"/"+mYear);
-        formatReadings ( new ArrayList<String> (  ), data);
-
-
-        //        data.putExtra("readBook",bookSpinner.getSelectedItem().toString());
-//        data.putExtra("readChapterBegin", bookBegin.getSelectedItem().toString());
+        data.putExtra("totalReadingCount", 1);
 //        data.putExtra("readChapterEnd", bookEnd.getSelectedItem().toString());
         // Activity finished ok, return the data
         setResult(RESULT_OK, data);
