@@ -124,4 +124,7 @@
     <string name="notes_hint">Notes</string>
     <string name="notes_text">Write your notes here</string>
     <string name="end_date_text">Date de fin de lecture</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

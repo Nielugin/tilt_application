@@ -1,0 +1,42 @@
+<TableRow
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/benco"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    android:weightSum="3"
+    tools:context=".subpages.reading.fragments.BookRow">
+
+    >
+
+    <Spinner
+        android:id="@+id/bookSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+
+        android:entries="@array/book_values" />
+
+    <Spinner
+        android:id="@+id/bookBegin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <Spinner
+        android:id="@+id/bookEnd"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/background_light"
+        android:src="@android:drawable/ic_menu_close_clear_cancel" />
+
+</TableRow>
+

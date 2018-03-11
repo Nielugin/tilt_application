@@ -1,8 +1,11 @@
 package org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading;
 
 import android.app.DatePickerDialog;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.inputmethodservice.Keyboard;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -24,23 +27,18 @@ import android.widget.AdapterView;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.R;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.BibleBook;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.BibleBookChapterAssociation;
+import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading.fragments.BookRow;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class AddHistoryActivity extends AppCompatActivity {
 
-    private ArrayAdapter<String> m_adapterForSpinner;
-    private ArrayAdapter<Integer> m_adapterForSpinnerBegin;
-    private ArrayAdapter<Integer> m_adapterForSpinnerEnd;
-    private Spinner bookSpinner;
-    private Spinner bookBegin;
-    private Spinner bookEnd;
-    private String[] mBookArray;
-    private int maxChapter;
-    private Context context;
+
     private EditText dateEnd;
     DatePickerDialog datePickerDialog;
 
@@ -51,9 +49,9 @@ public class AddHistoryActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //final TableLayout readingList = (TableLayout) findViewById(R.id.readingList);
+        final TableLayout readingList = (TableLayout) findViewById(R.id.readingList);
 
-        context =this;
+
 
 
         /* *************** Gestion de la date de fin
@@ -87,66 +85,7 @@ public class AddHistoryActivity extends AppCompatActivity {
             }
         });
 
-        /* ************** Gestion des Spinner */
-        bookSpinner = (Spinner) findViewById(R.id.bookSpinner);
-        mBookArray = getResources().getStringArray(R.array.book_values);
-        ////////////////////////////////////////////////////////////////
-        //create an arrayAdapter an assign it to the spinner
-        m_adapterForSpinner = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mBookArray);
-        m_adapterForSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        bookSpinner.setAdapter(m_adapterForSpinner);
-        bookSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                BibleBook book = BibleBook.valueOf(parentView.getItemAtPosition(position).toString());
-                Log.w(AddHistoryActivity.class.getName(),
-                        "Selected book : "+book);
 
-                BibleBookChapterAssociation bbca = new BibleBookChapterAssociation();
-                maxChapter = bbca.getBibleIntegerEnumMap().get(book);
-
-                bookBegin = (Spinner) findViewById(R.id.bookBegin);
-                bookEnd = (Spinner) findViewById(R.id.bookEnd);
-
-                m_adapterForSpinnerBegin = new ArrayAdapter<Integer>(context, android.R.layout.simple_spinner_item);
-                m_adapterForSpinnerBegin.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                bookBegin.setAdapter(m_adapterForSpinnerBegin);
-                m_adapterForSpinnerEnd = new ArrayAdapter<Integer>(context, android.R.layout.simple_spinner_item);
-                m_adapterForSpinnerEnd.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                bookEnd.setAdapter(m_adapterForSpinnerEnd);
-
-                for (int chap=1; chap <= maxChapter; chap++){
-                    m_adapterForSpinnerBegin.add(chap);
-                    m_adapterForSpinnerEnd.add(chap);
-                }
-
-                bookEnd.setSelection(m_adapterForSpinnerEnd.getCount());
-
-                bookBegin.setOnItemSelectedListener(new OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-
-                        int chapBeginSelected = Integer.parseInt(parentView.getItemAtPosition(position).toString());
-                        m_adapterForSpinnerEnd.clear();
-                        for (int chap=chapBeginSelected; chap <= maxChapter; chap++){
-                            m_adapterForSpinnerEnd.add(chap);
-                        }
-                        bookEnd.setSelection(m_adapterForSpinnerEnd.getCount());
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parentView) {
-                        // your code here
-                    }
-
-                });
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // your code here
-            }
-        });
 
         /* ************** Gestion du boutton pour l'ajout */
         final ImageButton addReadingButton = (ImageButton) findViewById(R.id.addBookButton);
@@ -156,18 +95,22 @@ public class AddHistoryActivity extends AppCompatActivity {
                 Snackbar.make(v, "Lecture ajoutée", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
+                FragmentTransaction fragmentTransaction = getFragmentManager ( ).beginTransaction ( );
+                fragmentTransaction.add(R.id.readingList,(Fragment ) BookRow.newInstance());
+                fragmentTransaction.commit ();
+
+                //save();
 
             }
         });
 
-      
+
 
 
     }
 
 
-    @Override
-    public void finish() {
+    private void save(){
         // calender class's instance and get current date , month and year from calender
         final Calendar c = Calendar.getInstance();
         int mYear = c.get(Calendar.YEAR); // current year
@@ -178,11 +121,30 @@ public class AddHistoryActivity extends AppCompatActivity {
         Intent data = new Intent();
         data.putExtra("readEndDate", dateEnd.getText().toString());
         data.putExtra("readBeginDate", mDay+"/"+(mMonth+1)+"/"+mYear);
-        data.putExtra("readBook",bookSpinner.getSelectedItem().toString());
-        data.putExtra("readChapterBegin", bookBegin.getSelectedItem().toString());
-        data.putExtra("readChapterEnd", bookEnd.getSelectedItem().toString());
+        formatReadings ( new ArrayList<String> (  ), data);
+
+
+        //        data.putExtra("readBook",bookSpinner.getSelectedItem().toString());
+//        data.putExtra("readChapterBegin", bookBegin.getSelectedItem().toString());
+//        data.putExtra("readChapterEnd", bookEnd.getSelectedItem().toString());
         // Activity finished ok, return the data
         setResult(RESULT_OK, data);
+        finish ();
+    }
+
+    private void formatReadings(List<String> strings, Intent intent){
+        intent.putExtra("totalReadingCount", String.valueOf ( strings.size () ));
+        for (int i=0; i< strings.size (); i++) {
+  //          intent.putExtra("readBook_"+i,bookSpinner.getSelectedItem().toString());
+    //        intent.putExtra("readChapterBegin_"+i, bookBegin.getSelectedItem().toString());
+      //      intent.putExtra("readChapterEnd_"+i, bookEnd.getSelectedItem().toString());
+        }
+    }
+
+
+    @Override
+    public void finish() {
+
         super.finish();
     }
 }
