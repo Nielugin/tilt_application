@@ -24,22 +24,43 @@ public class PrayingFragmentList extends Fragment {
 
 
     private PrayerDataSource dataSource;
+    private TableLayout tableLayout;
+
+    public void populateListPrayer() {
+        tableLayout.removeAllViews();
+        dataSource = new PrayerDataSource(this.getContext());
+        dataSource.open();
+        List<Prayer> prayers = dataSource.getAllPrayers();
+        int cpt = 0;
+
+        for (Prayer prayer: prayers) {
+            tableLayout.addView(new ListRowItem(this.getContext(), prayer, cpt, new ListRowItem.ListRowListener() {
+                @Override
+                public void updateList() {
+                    PrayingFragmentList.this.populateListPrayer();
+                }
+            }));
+            cpt ++;
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_praying_list, container, false);
-        TableLayout tableLayout = (TableLayout) rootView.findViewById(R.id.praying_list_topics);
+        tableLayout = (TableLayout) rootView.findViewById(R.id.praying_list_topics);
 
+        /* Remove all prayers
         dataSource = new PrayerDataSource(this.getContext());
         dataSource.open();
-        //dataSource.deleteAllWeeklyReading();
+        dataSource.deleteAllPrayers();
+        dataSource.close();
+        /* */
 
         //TODO : ajouter le bouton qui va avec
 
         /*
-        dataSource.deleteAllPrayers();
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
@@ -59,13 +80,7 @@ public class PrayingFragmentList extends Fragment {
         dataSource.createPrayer(beginDate, -1, "Assemblée en ARLES",null);
         */
 
-        List<Prayer> prayers = dataSource.getAllPrayers();
-        int cpt = 0;
-
-        for (Prayer prayer: prayers) {
-            tableLayout.addView(new ListRowItem(this.getContext(),prayer, cpt));
-            cpt ++;
-        }
+        populateListPrayer();
         return rootView;
     }
 
