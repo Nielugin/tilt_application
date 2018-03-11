@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -148,16 +149,20 @@ public class AddHistoryActivity extends AppCompatActivity {
         });
 
         /* ************** Gestion du boutton pour l'ajout */
-        final Button addReadingButton = (Button) findViewById(R.id.addBookButton);
+        final ImageButton addReadingButton = (ImageButton) findViewById(R.id.addBookButton);
         addReadingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Snackbar.make(v, "Lecture ajoutée", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
-                finish();
+
             }
         });
+
+      
+
+
     }
 
 

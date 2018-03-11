@@ -47,7 +47,7 @@ public class BibleReadingActivity  extends FragmentActivity {
         setContentView(R.layout.activity_bible_reading);
         // Instantiate a ViewPager and a PagerAdapter.
         ImageView picture = (ImageView) findViewById(R.id.reading_image_1);
-        picture.setImageResource(R.drawable.bible);
+        picture.setImageResource(R.drawable.book);
 
         FloatingActionButton addButtonAction = (FloatingActionButton) findViewById(R.id.addReadingButton);
         addButtonAction.setOnClickListener(new View.OnClickListener() {
