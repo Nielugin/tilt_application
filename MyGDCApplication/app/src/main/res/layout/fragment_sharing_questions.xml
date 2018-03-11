@@ -6,16 +6,6 @@
     android:layout_height="match_parent">
 
 
-    <ImageView
-        android:id="@+id/sharing_image_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/women_chatting"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/partage" />
-
     <TextView
         android:id="@+id/example_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"

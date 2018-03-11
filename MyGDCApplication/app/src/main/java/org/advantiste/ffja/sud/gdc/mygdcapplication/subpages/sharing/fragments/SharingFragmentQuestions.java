@@ -24,8 +24,6 @@ public class SharingFragmentQuestions extends Fragment {
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_sharing_questions, container, false);
-        ImageView picture = (ImageView)rootView.findViewById(R.id.sharing_image_2);
-        picture.setImageResource(R.drawable.partage);
 
         return rootView;
     }

@@ -10,29 +10,50 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
+        android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
         android:theme="@style/AppBarOverlay">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
+            android:layout_height="wrap_content"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="wrap_content"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/PopupOverlay" />
 
+                app:popupTheme="@style/PopupOverlay">
+
+            </android.support.v7.widget.Toolbar>
+
+            <ImageView
+                android:id="@+id/wood_read_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                app:srcCompat="@drawable/wood_read" />
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_add_history" />
+    <include
+        android:id="@+id/include"
+        layout="@layout/content_add_history" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:tint="@color/colorPrimary"
+        app:backgroundTint="@android:color/background_light"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="right|center"
+        app:rippleColor="@color/colorPrimaryDark"
+        app:srcCompat="@android:drawable/ic_menu_save" />
 
 </android.support.design.widget.CoordinatorLayout>
