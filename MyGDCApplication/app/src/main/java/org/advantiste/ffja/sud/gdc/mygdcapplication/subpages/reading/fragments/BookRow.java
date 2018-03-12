@@ -2,7 +2,6 @@ package org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading.fragments;
 
 import android.app.Fragment;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,12 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import org.advantiste.ffja.sud.gdc.mygdcapplication.R;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.BibleBook;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.BibleBookChapterAssociation;
-import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading.AddHistoryActivity;
+
+import java.util.HashMap;
 
 
 /**
@@ -34,6 +35,20 @@ public class BookRow extends Fragment {
     private String[] mBookArray;
     private int maxChapter;
     private Context context;
+private InteractionInterface interactionInterface;
+
+    private ImageButton closeButton;
+
+    public void setInteractionInterface ( InteractionInterface interactionInterface ) {
+        this.interactionInterface = interactionInterface;
+    }
+
+
+    public interface InteractionInterface{
+
+        void removeAction();
+    }
+
 
 
 
@@ -49,10 +64,16 @@ public class BookRow extends Fragment {
      * @return A new instance of fragment book_row.
      */
     // TODO: Rename and change types and number of parameters
-    public static android.app.Fragment newInstance ( ) {
+    public static BookRow newInstance ( ) {
         BookRow fragment = new BookRow ( );
+
         return fragment;
     }
+
+
+
+
+
 
     @Override
     public void onCreate ( Bundle savedInstanceState ) {
@@ -121,6 +142,16 @@ public class BookRow extends Fragment {
                     }
 
                 });
+
+                closeButton = (ImageButton ) view.findViewById ( R.id.deleteReadingButton );
+
+                closeButton.setOnClickListener ( new View.OnClickListener ( ) {
+                    @Override
+                    public void onClick ( View v ) {
+                        interactionInterface.removeAction ();
+                    }
+                });
+
             }
 
             @Override
@@ -132,6 +163,18 @@ public class BookRow extends Fragment {
         return  view;
     }
 
+
+    public int getBookBeginValue () {
+        return (Integer)bookBegin.getSelectedItem ();
+    }
+
+    public int getBookEndValue () {
+        return (Integer)bookEnd.getSelectedItem ();
+    }
+
+    public String getBook(){
+        return (String) bookSpinner.getSelectedItem ();
+    }
 
 
 }

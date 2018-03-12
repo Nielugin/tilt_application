@@ -1,40 +1,25 @@
-package org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading;
+package org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading.fragments;
 
 import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.Intent;
-import android.inputmethodservice.Keyboard;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Spinner;
 import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.AdapterView;
 
 import org.advantiste.ffja.sud.gdc.mygdcapplication.R;
-import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.BibleBook;
-import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.BibleBookChapterAssociation;
-import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading.fragments.BookRow;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 public class AddHistoryActivity extends AppCompatActivity {
 
@@ -96,7 +81,16 @@ public class AddHistoryActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
 
                 FragmentTransaction fragmentTransaction = getFragmentManager ( ).beginTransaction ( );
-                fragmentTransaction.add(R.id.readingList,(Fragment ) BookRow.newInstance());
+                final BookRow bookRow = BookRow.newInstance ( );
+                bookRow.setInteractionInterface ( new BookRow.InteractionInterface ( ) {
+                                                      @Override
+                                                      public void removeAction () {
+                                                          readingList.removeView ( bookRow.getView () );
+                                                      }
+
+                                                  }
+                );
+                fragmentTransaction.add(R.id.readingList,(Fragment ) bookRow);
                 fragmentTransaction.commit ();
 
                 //save();
@@ -122,7 +116,19 @@ public class AddHistoryActivity extends AppCompatActivity {
 
         data.putExtra("readBeginDate", mDay+"/"+(mMonth+1)+"/"+mYear);
         data.putExtra("totalReadingCount", 1);
-//        data.putExtra("readChapterEnd", bookEnd.getSelectedItem().toString());
+        List<HashMap<String,String>> values= new ArrayList<> (  );
+
+
+    //    List<Fragment> fragments = getFragmentManager ( ).getFragments ( );
+      //  for (Fragment fragement: fragments ) {
+      //  BookRow bookRow = (BookRow) fragement;
+      //      HashMap<String,String> lineParamValues =  new HashMap<> (  );
+     //       lineParamValues.put ( "Book", bookRow.getBook () );
+     //       lineParamValues.put ( "Begin", String.valueOf ( bookRow.getBookBeginValue () ))
+        // lineParamValues.put ( "End", String.valueOf ( bookRow.getBookEndValue () ));
+//            values.add ( lineParamValues );
+  //      }
+
         // Activity finished ok, return the data
         setResult(RESULT_OK, data);
         finish ();

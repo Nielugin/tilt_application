@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".subpages.reading.AddHistoryActivity">
-
+    tools:context=".subpages.reading.fragments.AddHistoryActivity">
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
@@ -34,6 +33,7 @@
             <ImageView
                 android:id="@+id/wood_read_id"
                 android:layout_width="match_parent"
+                android:contentDescription="@string/wood_pantin_reading"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 app:srcCompat="@drawable/wood_read" />
@@ -48,12 +48,10 @@
         android:id="@+id/floatingActionButton2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
         android:tint="@color/colorPrimary"
         app:backgroundTint="@android:color/background_light"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="right|center"
         app:rippleColor="@color/colorPrimaryDark"
         app:srcCompat="@android:drawable/ic_menu_save" />
-
 </android.support.design.widget.CoordinatorLayout>
