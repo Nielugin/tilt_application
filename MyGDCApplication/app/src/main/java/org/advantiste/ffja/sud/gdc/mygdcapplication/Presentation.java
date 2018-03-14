@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 
+import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.praying.PrayingActivity;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading.BibleReadingActivity;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.sharing.SharingActivity;
 
@@ -23,7 +24,7 @@ public class Presentation extends AppCompatActivity {
         prayImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Presentation.this.getApplicationContext(), PrayerActivity.class);
+                Intent intent = new Intent(Presentation.this.getApplicationContext(), PrayingActivity.class);
                 startActivity(intent);
 
             }

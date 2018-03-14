@@ -59,7 +59,7 @@ public class ListRowItem extends TableRow {
         this.addView(comments);
 
         if (model.getComments() != null) {
-            this.comments.setText(" - " + model.getComments());
+            this.comments.setText("  " + model.getComments());
         } else {
             this.comments.setText("  ");
         }
