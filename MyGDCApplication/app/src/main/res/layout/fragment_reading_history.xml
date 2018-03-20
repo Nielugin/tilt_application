@@ -57,6 +57,14 @@
 
 
             </TableLayout>
+
+            <com.baoyz.swipemenulistview.SwipeMenuListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/reading_hitory_listview">
+
+            </com.baoyz.swipemenulistview.SwipeMenuListView>
+
         </LinearLayout>
     </ScrollView>
 
