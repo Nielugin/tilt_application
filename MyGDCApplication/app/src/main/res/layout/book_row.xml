@@ -1,15 +1,14 @@
 <TableRow
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
     android:id="@+id/benco"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-    android:weightSum="3"
+    android:weightSum="6"
     tools:context=".subpages.reading.fragments.BookRow">
 
-    >
+
 
     <Spinner
         android:id="@+id/bookSpinner"
