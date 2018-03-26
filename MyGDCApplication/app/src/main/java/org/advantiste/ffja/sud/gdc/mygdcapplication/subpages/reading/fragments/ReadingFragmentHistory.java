@@ -1,34 +1,23 @@
 package org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading.fragments;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.ExpandableListView;
 import android.widget.ImageButton;
-import android.widget.TableLayout;
-
-import com.baoyz.swipemenulistview.SwipeMenu;
-import com.baoyz.swipemenulistview.SwipeMenuCreator;
-import com.baoyz.swipemenulistview.SwipeMenuItem;
-import com.baoyz.swipemenulistview.SwipeMenuListView;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import org.advantiste.ffja.sud.gdc.mygdcapplication.R;
-import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.BibleBook;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.WeeklyReading;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.WeeklyReadingDataSource;
-import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading.fragments.model.HistoryRowItem;
-import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading.fragments.model.HistoryRowItemBook;
+import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading.adapters.ExpandableListViewAdapter;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Iterator;
-import java.util.List;
 
 
 /**
@@ -45,102 +34,42 @@ public class ReadingFragmentHistory extends Fragment {
     private ImageButton add_reading;
 
     private WeeklyReadingDataSource dataSource;
-    private TableLayout tableLayout;
-    private SwipeMenuListView swipeMenuListView;
 
+    private ExpandableListView historyListView;
+    private ArrayList<WeeklyReading> readings;
+    private AppAdapter mAdapter;
     public void populateHistory() {
         // Supprimer toutes les données du tableau afin de recréer tout proprement
-        tableLayout.removeAllViews();
 
         dataSource = new WeeklyReadingDataSource(this.getContext());
         dataSource.open();
         //dataSource.deleteAllWeeklyReading();
 
-        ArrayList<WeeklyReading> readings = new ArrayList<> ( dataSource.getAllWeeklyReading());
 
-        for (WeeklyReading reading: readings) {
-            tableLayout.addView(new HistoryRowItem(this.getContext(),reading));
-            for (BibleBook book : reading.getReadingDetails ( ).keySet ( )) {
-                tableLayout.addView ( new HistoryRowItemBook ( this.getContext ( ), reading, book ) );
-            }
-        }
+        readings = new ArrayList<> ( dataSource.getAllWeeklyReading());
 
-/** TODO: ça ne fonctionne pas encore
-        ArrayAdapter<WeeklyReading> weeklyReadingArrayAdapter =  new ArrayAdapter<WeeklyReading> ( this.getContext (),R.layout.custom_reading_history_line, readings);
-        swipeMenuListView.setAdapter ( weeklyReadingArrayAdapter );
-        SwipeMenuCreator creator;
-        creator = new SwipeMenuCreator () {
+        historyListView.setAdapter ( new ExpandableListViewAdapter ( getContext (),readings ) );
+        historyListView.setMinimumHeight ( readings.size ()*30 );
 
-            @Override
-            public void create(SwipeMenu menu) {
-                // create "open" item
-                SwipeMenuItem openItem = new SwipeMenuItem(
-                        ReadingFragmentHistory.this.getContext ());
-                // set item background
-                openItem.setBackground(new ColorDrawable ( Color.rgb(0xC9, 0xC9,
-                        0xCE)));
-                // set item width
-                openItem.setWidth(90);
-                // set item title
-                openItem.setTitle("Open");
-                // set item title fontsize
-                openItem.setTitleSize(18);
-                // set item title font color
-                openItem.setTitleColor(Color.WHITE);
-                // add to menu
-                menu.addMenuItem(openItem);
-
-                // create "delete" item
-                SwipeMenuItem deleteItem = new SwipeMenuItem(
-                        ReadingFragmentHistory.this.getContext ());
-                // set item background
-                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
-                        0x3F, 0x25)));
-                // set item width
-                deleteItem.setWidth(90);
-                // set a icon
-                deleteItem.setIcon( R.drawable.ic_delete);
-                // add to menu
-                menu.addMenuItem(deleteItem);
-            }
-        };
-
-// set creator
-        swipeMenuListView.setMenuCreator(creator);
-
-        swipeMenuListView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener () {
-            @Override
-            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
-                switch (index) {
-                    case 0:
-                        // open
-                        Log.d ( "TAF", "lo "+index);
-                        break;
-                    case 1:
-                        // delete
-                        Log.d ( "TAF", "lo "+index);
-                        break;
-                }
-                // false : close the menu; true : not close the menu
-                return false;
-            }
-        });
-
-*/
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup) inflater.inflate(
+       final  ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_reading_history, container, false);
 
+        rootView.post(new Runnable() {
+                      @Override
+                      public void run() {
+                          int height=rootView.getMeasuredHeight(); // for instance
+                            System.out.println (height);
+                      }
+                  });
 
 
 
-
-        tableLayout = (TableLayout) rootView.findViewById(R.id.reading_list_history);
-        swipeMenuListView =  (SwipeMenuListView ) rootView.findViewById(R.id.reading_hitory_listview);
+        historyListView =   rootView.findViewById(R.id.history_list_view);
 
 
 
@@ -167,6 +96,78 @@ public class ReadingFragmentHistory extends Fragment {
         dataSource.close();
         super.onPause();
     }
+    private void open(WeeklyReading item) {
+        // open app
 
+    }
+
+
+
+    class AppAdapter extends BaseSwipListAdapter {
+
+        @Override
+        public int getCount() {
+            return readings.size();
+        }
+
+        @Override
+        public WeeklyReading getItem( int position) {
+            return readings.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if (convertView == null) {
+                convertView = View.inflate(getContext (),
+                        R.layout.item_list_app, null);
+                new ViewHolder(convertView);
+            }
+            ViewHolder holder = (ViewHolder) convertView.getTag();
+            WeeklyReading item = getItem(position);
+
+            holder.tv_name.setText("Semaine "+ item.getWeekNumber ());
+            holder.iv_icon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getContext (), "iv_icon_click", Toast.LENGTH_SHORT).show();
+                }
+            });
+            holder.tv_name.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText( getContext (),"iv_icon_click",Toast.LENGTH_SHORT).show();
+                }
+            });
+            return convertView;
+        }
+
+        class ViewHolder {
+            ImageView iv_icon;
+            TextView tv_name;
+
+            public ViewHolder(View view) {
+                iv_icon = (ImageView) view.findViewById(R.id.iv_icon);
+                tv_name = (TextView) view.findViewById(R.id.tv_name);
+                view.setTag(this);
+            }
+        }
+
+        @Override
+        public boolean getSwipEnableByPosition(int position) {
+            if(position % 2 == 0){
+                return false;
+            }
+            return true;
+        }
+    }
+    private int dp2px(int dp) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
+                getResources().getDisplayMetrics());
+    }
 
 }
