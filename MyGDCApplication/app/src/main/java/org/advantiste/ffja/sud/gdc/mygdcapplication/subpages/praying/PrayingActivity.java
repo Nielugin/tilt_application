@@ -43,7 +43,7 @@ public class PrayingActivity extends FragmentActivity {
         ImageView picture = (ImageView)findViewById(R.id.imageView);
 
         // mise en place de la source de l'image
-        picture.setImageResource(R.drawable.pray);
+        picture.setImageResource(R.drawable.prayer_hands);
 
 
 

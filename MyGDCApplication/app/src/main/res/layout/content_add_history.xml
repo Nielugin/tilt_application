@@ -12,10 +12,6 @@
     tools:showIn="@layout/activity_add_history">
 
 
-
-
-
-
     <EditText
         android:id="@+id/endDate"
         android:layout_width="match_parent"
@@ -24,8 +20,10 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="datetime"
         android:hint="@string/end_date_text"
+        android:inputType="datetime"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

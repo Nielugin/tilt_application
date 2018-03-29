@@ -48,6 +48,7 @@ List<BookRow> bookRows = new ArrayList<> (  );
 
         final TableLayout readingList = (TableLayout) findViewById(R.id.readingList);
 
+        final ImageButton addReadingButton = (ImageButton) findViewById(R.id.addBookButton);
 
 
 
@@ -56,6 +57,7 @@ List<BookRow> bookRows = new ArrayList<> (  );
         * */
 
         dateEnd = (EditText) findViewById(R.id.endDate);
+
         // perform click event on edit text
         dateEnd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +85,7 @@ List<BookRow> bookRows = new ArrayList<> (  );
                 //datePickerDialog.setOnDateSetListener (  );
 
                 datePickerDialog.show();
+                addReadingButton.callOnClick ();
 
             }
         });
@@ -90,7 +93,6 @@ List<BookRow> bookRows = new ArrayList<> (  );
 
 
         /* ************** Gestion du boutton pour l'ajout */
-        final ImageButton addReadingButton = (ImageButton) findViewById(R.id.addBookButton);
 
         addReadingButton.setOnClickListener(new View.OnClickListener() {
             @Override
