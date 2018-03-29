@@ -124,7 +124,7 @@ public class WeeklyReadingDataSource {
         String[] bookAndChapters = readings.split(";");
         for (String bc : bookAndChapters) {
             String[] chapters = bc.split(",");
-            BibleBook book = BibleBook.valueOf(chapters[0]);
+            BibleBook book = BibleBook.fromString (chapters[0]);
             List<Integer> listChapters = new ArrayList<Integer>();
             listChapters.add(Integer.parseInt(chapters[1]));
             listChapters.add(Integer.parseInt(chapters[2]));

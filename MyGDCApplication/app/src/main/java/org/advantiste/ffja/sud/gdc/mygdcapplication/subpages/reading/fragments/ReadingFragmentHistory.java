@@ -37,7 +37,8 @@ public class ReadingFragmentHistory extends Fragment {
 
     private ExpandableListView historyListView;
     private ArrayList<WeeklyReading> readings;
-    private AppAdapter mAdapter;
+
+
     public void populateHistory() {
         // Supprimer toutes les données du tableau afin de recréer tout proprement
 
@@ -96,78 +97,9 @@ public class ReadingFragmentHistory extends Fragment {
         dataSource.close();
         super.onPause();
     }
-    private void open(WeeklyReading item) {
-        // open app
-
-    }
 
 
 
-    class AppAdapter extends BaseSwipListAdapter {
 
-        @Override
-        public int getCount() {
-            return readings.size();
-        }
-
-        @Override
-        public WeeklyReading getItem( int position) {
-            return readings.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            if (convertView == null) {
-                convertView = View.inflate(getContext (),
-                        R.layout.item_list_app, null);
-                new ViewHolder(convertView);
-            }
-            ViewHolder holder = (ViewHolder) convertView.getTag();
-            WeeklyReading item = getItem(position);
-
-            holder.tv_name.setText("Semaine "+ item.getWeekNumber ());
-            holder.iv_icon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(getContext (), "iv_icon_click", Toast.LENGTH_SHORT).show();
-                }
-            });
-            holder.tv_name.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText( getContext (),"iv_icon_click",Toast.LENGTH_SHORT).show();
-                }
-            });
-            return convertView;
-        }
-
-        class ViewHolder {
-            ImageView iv_icon;
-            TextView tv_name;
-
-            public ViewHolder(View view) {
-                iv_icon = (ImageView) view.findViewById(R.id.iv_icon);
-                tv_name = (TextView) view.findViewById(R.id.tv_name);
-                view.setTag(this);
-            }
-        }
-
-        @Override
-        public boolean getSwipEnableByPosition(int position) {
-            if(position % 2 == 0){
-                return false;
-            }
-            return true;
-        }
-    }
-    private int dp2px(int dp) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
-                getResources().getDisplayMetrics());
-    }
 
 }

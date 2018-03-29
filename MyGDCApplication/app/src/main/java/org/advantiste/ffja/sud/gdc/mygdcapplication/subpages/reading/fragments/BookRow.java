@@ -94,26 +94,28 @@ private InteractionInterface interactionInterface;
         mBookArray = getResources().getStringArray(R.array.book_values);
         ////////////////////////////////////////////////////////////////
         //create an arrayAdapter an assign it to the spinner
-        m_adapterForSpinner = new ArrayAdapter<String> (getActivity (), android.R.layout.simple_spinner_item, mBookArray);
+        m_adapterForSpinner = new ArrayAdapter<> (getActivity (), android.R.layout.simple_spinner_item, mBookArray);
         m_adapterForSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         bookSpinner.setAdapter(m_adapterForSpinner);
         bookSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener () {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                BibleBook book = BibleBook.valueOf(parentView.getItemAtPosition(position).toString());
+                String bookName = parentView.getItemAtPosition ( position ).toString ( );
+                System.out.println(bookName);
+                BibleBook book = BibleBook.fromString (bookName);
                 Log.w(AddHistoryActivity.class.getName(),
                         "Selected book : "+book);
 
                 BibleBookChapterAssociation bbca = new BibleBookChapterAssociation();
                 maxChapter = bbca.getBibleIntegerEnumMap().get(book);
 
-                bookBegin = (Spinner) view.findViewById(R.id.bookBegin);
-                bookEnd = (Spinner) view.findViewById(R.id.bookEnd);
+                bookBegin =  view.findViewById(R.id.bookBegin);
+                bookEnd = view.findViewById(R.id.bookEnd);
 
-                m_adapterForSpinnerBegin = new ArrayAdapter<Integer>(context, android.R.layout.simple_spinner_item);
+                m_adapterForSpinnerBegin = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item);
                 m_adapterForSpinnerBegin.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 bookBegin.setAdapter(m_adapterForSpinnerBegin);
-                m_adapterForSpinnerEnd = new ArrayAdapter<Integer>(context, android.R.layout.simple_spinner_item);
+                m_adapterForSpinnerEnd = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item);
                 m_adapterForSpinnerEnd.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 bookEnd.setAdapter(m_adapterForSpinnerEnd);
 

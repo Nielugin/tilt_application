@@ -42,7 +42,6 @@ List<BookRow> bookRows = new ArrayList<> (  );
 
             @Override
             public void onClick ( View v ) {
-                System.out.println ("zefzef" );
                 save ();
             }
         } );
@@ -79,7 +78,12 @@ List<BookRow> bookRows = new ArrayList<> (  );
 
                             }
                         }, mYear, mMonth, mDay);
+
+                // TODO: regader pour fermer le clavier
+                //datePickerDialog.setOnDateSetListener (  );
+
                 datePickerDialog.show();
+
             }
         });
 
@@ -87,11 +91,13 @@ List<BookRow> bookRows = new ArrayList<> (  );
 
         /* ************** Gestion du boutton pour l'ajout */
         final ImageButton addReadingButton = (ImageButton) findViewById(R.id.addBookButton);
+
         addReadingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Snackbar.make(v, "Lecture ajoutée", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+
 
                 FragmentTransaction fragmentTransaction = getFragmentManager ( ).beginTransaction ( );
                 final BookRow bookRow = BookRow.newInstance ( );
@@ -126,8 +132,8 @@ List<BookRow> bookRows = new ArrayList<> (  );
         int mMonth = c.get(Calendar.MONTH); // current month
         int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
 
+        // TODO: véfifier que les champs ne sont pas nuls  : date de fin
         String dateEndText = dateEnd.getText ().toString ();
-System.out.println (dateEndText);
 
         // Prepare data intent
         Intent data = new Intent();
@@ -144,6 +150,8 @@ System.out.println (dateEndText);
 
     private void formatReadings(List<BookRow> bookRows, Intent intent){
         intent.putExtra("totalReadingCount", bookRows.size () );
+
+        // pour chacun des livrre on va ajouter les valeurs saisies
         for (int i=0; i< bookRows.size (); i++) {
             intent.putExtra("readBook_"+i,bookRows.get ( i ).getBook ());
             intent.putExtra("readChapterBegin_"+i, String.valueOf ( bookRows.get ( i ).getBookBeginValue ()));

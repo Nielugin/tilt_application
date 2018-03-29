@@ -11,72 +11,72 @@
         <item>TTATA_val</item>
     </string-array>
     <string-array name="book_values">
-        <item>GENESIS</item>
-        <item>EXODUS</item>
-        <item>LEVITICUS</item>
-        <item>NUMBERS</item>
-        <item>DEUTERONOMY</item>
-        <item>JOSHUA</item>
-        <item>JUDGES</item>
-        <item>RUTH</item>
-        <item>SAMUEL1 </item>
-        <item>SAMUEL2</item>
-        <item>KINGS1</item>
-        <item>KINGS2</item>
-        <item>CHRONICLES1</item>
-        <item>CHRONICLES2</item>
-        <item>EZRA</item>
-        <item>NEHEMIAH</item>
-        <item>ESTHER</item>
-        <item>JOB</item>
-        <item>PSALM</item>
-        <item>PROVERBS</item>
-        <item>ECCLESIASTES</item>
-        <item>SONGOFSOLOMON</item>
-        <item>ISAIAH</item>
-        <item>JEREMIAH</item>
-        <item>LAMENTATIONS</item>
-        <item>EZEKIEL</item>
-        <item>DANIEL</item>
-        <item>HOSEA</item>
-        <item>JOEL</item>
-        <item>AMOS</item>
-        <item>OBADIAH</item>
-        <item>JONAH</item>
-        <item>MICAH</item>
-        <item>NAHUM</item>
-        <item>HABAKKUK</item>
-        <item>ZEPHANIAH</item>
-        <item>HAGGAI</item>
-        <item>ZECHARIAH</item>
-        <item>MALACHI</item>
-        <item>MATTHEW</item>
-        <item>MARK</item>
-        <item>LUKE</item>
-        <item>JOHN</item>
-        <item>ACTS</item>
-        <item>ROMANS</item>
-        <item>CORINTHIANS1</item>
-        <item>CORINTHIANS2</item>
-        <item>GALATIANS</item>
-        <item>EPHESIANS</item>
-        <item>PHILIPPIANS</item>
-        <item>COLOSSIANS</item>
-        <item>THESSALONIANS1</item>
-        <item>THESSALONIANS2</item>
-        <item>TIMOTHY1</item>
-        <item>TIMOTHY2</item>
-        <item>TITUS</item>
-        <item>PHILEMON</item>
-        <item>HEBREWS</item>
-        <item>JAMES</item>
-        <item>PETER1</item>
-        <item>PETER2</item>
-        <item>JOHN1</item>
-        <item>JOHN2</item>
-        <item>JOHN3</item>
-        <item>JUDE</item>
-        <item>REVELATION</item>
+        <item>Gen</item>
+        <item>Ex</item>
+        <item>Le</item>
+        <item>No</item>
+        <item>De</item>
+        <item>Jos</item>
+        <item>Jg</item>
+        <item>Ru</item>
+        <item>1 S</item>
+        <item>2 S</item>
+        <item>1 R</item>
+        <item>2 R</item>
+        <item>1 Ch</item>
+        <item>2 Ch</item>
+        <item>Esd</item>
+        <item>Né</item>
+        <item>Est</item>
+        <item>Job</item>
+        <item>Ps</item>
+        <item>Pr</item>
+        <item>Ec</item>
+        <item>Ca</item>
+        <item>Es</item>
+        <item>Jé</item>
+        <item>La</item>
+        <item>Ez</item>
+        <item>Da</item>
+        <item>Os</item>
+        <item>Joë</item>
+        <item>Am</item>
+        <item>Ab</item>
+        <item>Jon</item>
+        <item>Mi</item>
+        <item>Na</item>
+        <item>Ha</item>
+        <item>So</item>
+        <item>Ag</item>
+        <item>Za</item>
+        <item>Mal</item>
+        <item>Mt</item>
+        <item>Mc</item>
+        <item>Lu</item>
+        <item>Jn</item>
+        <item>Ac</item>
+        <item>Ro</item>
+        <item>1 Co</item>
+        <item>2 Co</item>
+        <item>Ga</item>
+        <item>Ep</item>
+        <item>Ph</item>
+        <item>Col</item>
+        <item>1 Th</item>
+        <item>2 Th</item>
+        <item>1 Ti</item>
+        <item>2 Ti</item>
+        <item>Tit</item>
+        <item>Phm</item>
+        <item>Hé</item>
+        <item>Ja</item>
+        <item>1 Pi</item>
+        <item>2 Pi</item>
+        <item>1 Jn</item>
+        <item>2 Jn</item>
+        <item>3 Jn</item>
+        <item>Jud</item>
+        <item>Ap</item>
     </string-array>
 
 </resources>

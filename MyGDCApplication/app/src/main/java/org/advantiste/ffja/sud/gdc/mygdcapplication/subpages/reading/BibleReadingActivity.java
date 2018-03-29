@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 
 import org.advantiste.ffja.sud.gdc.mygdcapplication.R;
@@ -56,7 +57,7 @@ public class BibleReadingActivity  extends FragmentActivity {
         ImageView picture = (ImageView) findViewById(R.id.reading_image_1);
         picture.setImageResource(R.drawable.book);
 
-        FloatingActionButton addButtonAction = (FloatingActionButton) findViewById(R.id.addReadingButton);
+        TextView addButtonAction = (TextView) findViewById(R.id.addReading);
         addButtonAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,12 +92,12 @@ public class BibleReadingActivity  extends FragmentActivity {
                 Long dateEnd = calendar.getTimeInMillis();
 
                 int totalReadingOfWeek = data.getIntExtra("totalReadingCount",-1);
-                BibleBook book = BibleBook.valueOf(data.getStringExtra("readBook_0"));
+                BibleBook book = BibleBook.fromString (data.getStringExtra("readBook_0"));
                 int chapterBegin = Integer.parseInt(data.getStringExtra("readChapterBegin_0"));
                 int chapterEnd = Integer.parseInt(data.getStringExtra("readChapterEnd_0"));
                 String readingDetails = book+","+chapterBegin+","+chapterEnd;
                 for (int i=1; i<totalReadingOfWeek; i++) {
-                    book = BibleBook.valueOf(data.getStringExtra("readBook_"+i));
+                    book = BibleBook.fromString (data.getStringExtra("readBook_"+i));
                     chapterBegin = Integer.parseInt(data.getStringExtra("readChapterBegin_"+i));
                     chapterEnd = Integer.parseInt(data.getStringExtra("readChapterEnd_"+i));
                     readingDetails += ";"+book+","+chapterBegin+","+chapterEnd;
