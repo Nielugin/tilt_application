@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.advantiste.ffja.sud.gdc.mygdcapplication.R;
+import org.advantiste.ffja.sud.gdc.mygdcapplication.model.sharings.SharingQuestion;
+import org.advantiste.ffja.sud.gdc.mygdcapplication.model.sharings.SharingQuestionDataSource;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -28,8 +30,15 @@ import java.util.zip.Inflater;
  */
 public class SharingFragmentQuestions extends Fragment {
 
-    List<String> questions = new ArrayList<> (  );
+    List<SharingQuestion> questions = new ArrayList<> (  );
 
+    private SharingQuestionDataSource dataSource;
+
+    public void populateSharedQuestions() {
+        dataSource = new SharingQuestionDataSource (this.getContext());
+        dataSource.open();
+        questions = new ArrayList<> ( dataSource.getAllQuestions () );
+    }
 
 
     @Override
@@ -77,7 +86,8 @@ public class SharingFragmentQuestions extends Fragment {
     private void loadQuestions ( final LinearLayout parentView, final LayoutInflater inflater, final View custom_question_block) {
 
         parentView.removeAllViews ();
-        for (final String question:questions) {
+        populateSharedQuestions ();
+        for (final SharingQuestion question:questions) {
 
 
             final LinearLayout inflate = (LinearLayout)inflater.inflate (
@@ -85,6 +95,8 @@ public class SharingFragmentQuestions extends Fragment {
             inflate.setMinimumHeight ( 30 );
             final TextView questionText= inflate.findViewById ( R.id.question_text );
             ImageButton deleteButton= inflate.findViewById ( R.id.delete_question);
+            deleteButton.setImageResource ( R.drawable.ic_delete_black_24dp );
+            deleteButton.setBackgroundColor ( Color.TRANSPARENT );
             deleteButton.setOnClickListener ( new View.OnClickListener ( ) {
                 @Override
                 public void onClick ( View v ) {
@@ -95,7 +107,7 @@ public class SharingFragmentQuestions extends Fragment {
 
                 }
             } );
-            questionText.setText ( question );
+            questionText.setText ("- "+ question.getQuestion () );
             // Todo que faut il faire
             parentView.addView ( inflate );
         }
@@ -113,16 +125,21 @@ public class SharingFragmentQuestions extends Fragment {
     /**
      * Delete the question from db
      */
-    private void delete (String text) {
-        questions.remove ( text );
+    private void delete (SharingQuestion question) {
+        dataSource = new SharingQuestionDataSource (this.getContext());
+        dataSource.open();
+
+        dataSource.deleteQuestionById ( question.getId () );
+        questions.remove (question);
     }
 
     /**
      * Saves the custom question into the database
      */
     private void saveQuestion (String text) {
-
-        // Todo
-        questions.add ( text );
+        dataSource = new SharingQuestionDataSource (this.getContext());
+        dataSource.open();
+        SharingQuestion question = dataSource.createShareQuestion ( text );
+        questions.add ( question );
     }
 }
