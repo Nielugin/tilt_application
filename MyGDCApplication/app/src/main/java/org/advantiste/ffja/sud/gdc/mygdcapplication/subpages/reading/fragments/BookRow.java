@@ -35,7 +35,7 @@ public class BookRow extends Fragment {
     private String[] mBookArray;
     private int maxChapter;
     private Context context;
-private InteractionInterface interactionInterface;
+    private InteractionInterface interactionInterface;
 
     private ImageButton closeButton;
 
@@ -151,6 +151,7 @@ private InteractionInterface interactionInterface;
                     @Override
                     public void onClick ( View v ) {
                         interactionInterface.removeAction ();
+
                     }
                 });
 

@@ -1,124 +1,169 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-
-    <TextView
-        android:id="@+id/example_title"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+    <LinearLayout
+        android:id="@+id/custom_question_block"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:lineSpacingMultiplier="1.2"
-        android:text="@string/sharing_questions"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/sharing_image_2"
-        android:paddingStart="16dp"
-        />
-
-    <ScrollView
-        android:id="@+id/scrollView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/example_title">
+        android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/custom_question_title_block"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/question_1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:text="@string/sharing_question_1" />
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="parent"
+            tools:layout_editor_absoluteX="0dp">
+
+            >
 
             <TextView
-                android:id="@+id/question_2"
-                android:layout_width="match_parent"
+                android:id="@+id/custom_question_title"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:text="@string/sharing_question_2" />
-
-            <TextView
-                android:id="@+id/question_3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:text="@string/sharing_question_3" />
-
-            <TextView
-                android:id="@+id/question_4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:text="@string/sharing_question_4" />
-
-            <TextView
-                android:id="@+id/question_5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:text="@string/sharing_question_5" />
-
-            <TextView
-                android:id="@+id/question_6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:text="@string/sharing_question_6" />
-
-            <TextView
-                android:id="@+id/question_7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:text="@string/sharing_question_7" />
-
-            <TextView
-                android:id="@+id/question_8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:text="@string/sharing_question_8" />
-
-            <TextView
-                android:id="@+id/question_9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:text="@string/sharing_question_9" />
-
-
-
-
-
-
-
-
-
-
-
-
+                android:layout_weight="1"
+                android:lineSpacingMultiplier="1.2"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingStart="16dp"
+                android:text="@string/custom_questions"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
 
         </LinearLayout>
-    </ScrollView>
 
-</android.support.constraint.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/add_question_block"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+
+        <LinearLayout
+            android:id="@+id/list_question_block"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/proposed_question_title_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp">
+
+        >
+
+        <TextView
+            android:id="@+id/example_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:lineSpacingMultiplier="1.2"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingStart="16dp"
+            android:text="@string/sharing_questions"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+        <TextView
+            android:id="@+id/add_question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:layout_weight="1"
+            android:text="@string/ajouter" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/question_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/sharing_question_1" />
+
+        <TextView
+            android:id="@+id/question_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/sharing_question_2" />
+
+        <TextView
+            android:id="@+id/question_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/sharing_question_3" />
+
+        <TextView
+            android:id="@+id/question_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/sharing_question_4" />
+
+        <TextView
+            android:id="@+id/question_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/sharing_question_5" />
+
+        <TextView
+            android:id="@+id/question_6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/sharing_question_6" />
+
+        <TextView
+            android:id="@+id/question_7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/sharing_question_7" />
+
+        <TextView
+            android:id="@+id/question_8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/sharing_question_8" />
+
+        <TextView
+            android:id="@+id/question_9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/sharing_question_9" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

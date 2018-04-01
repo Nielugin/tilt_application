@@ -4,13 +4,13 @@
     <string name="title_activity_prayer">PrayerActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="prayer_text">\"Priez les uns pour les autres\". Il est très encourageant d\'entendre une personne prier pour soi. Mais le GDC est également <u>ouvert aux autres</u>. Chaque rencontres se termine par un moment de prière pour trois personnes autour de moi qui ont besoin de la présence de Dieu.Ainsi, la prière change mon regard sur eux, me rends plus disponible, et <u>fait de moi un témoin de Jésus pour eux</u>.</string>
+    <string name="prayer_text">\"Priez les uns pour les autres\". Il est très encourageant d\'entendre une personne prier pour soi. Mais le GDC est également <b>ouvert aux autres</b>. Chaque rencontres se termine par un moment de prière pour trois personnes autour de moi qui ont besoin de la présence de Dieu. Ainsi, la prière change mon regard sur eux, me rends plus disponible, et <b>fait de moi un témoin de Jésus pour eux</b>.</string>
     <string name="prayer_title">Prier l\'un pour l\'autre</string>
     <string name="praying_list_title">Sujets de prière</string>
     <string name="sharing_title">Partage authentique</string>
-    <string name="sharing_text">Les questions tournent autour de trois axes : <u>ma relation à Dieu, aux autres, et à moi même</u>.  Elles ne sont pas là pour condamner ou juger, mais pour se positionner, évoquer les luttes ou les souffrances, prendre conscience des victoires et du chemin parcouru, voir l\'action de Dieu dans sa vie, imaginer cette action dans la vie des autres.   Ces questions sont un excellent moyen pour apprendre le <u>\"lâcher prise\"</u>.</string>
+    <string name="sharing_text">Les questions tournent autour de trois axes : <b>ma relation à Dieu, aux autres, et à moi même</b>.  Elles ne sont pas là pour condamner ou juger, mais pour se positionner, évoquer les luttes ou les souffrances, prendre conscience des victoires et du chemin parcouru, voir l\'action de Dieu dans sa vie, imaginer cette action dans la vie des autres.   Ces questions sont un excellent moyen pour apprendre le <b>\"lâcher prise\"</b>.</string>
     <string name="bible_reading_title">Lecture</string>
-    <string name="bible_reading_text">Nous avons pris l\'habitude d\'étudier la Bible, de lire les commentaires ou des livres annexes et cela est important. Mais il est aussi bon d\'apprendre à <u>lire la Bible en lecture simple</u>, laissant l\'Esprit faire le reste. Cela passe par une lecture soutenue et régulière. A chacun d\'adapter son rythme. Certains lisent jusqu\'à 30 chapitres par semaine !  L\'important est de rechercher quel rythme me permet d\'<u>être enraciné dans ma relation avec Dieu</u>.</string>
+    <string name="bible_reading_text">Nous avons pris l\'habitude d\'étudier la Bible, de lire les commentaires ou des livres annexes et cela est important. Mais il est aussi bon d\'apprendre à <b>lire la Bible en lecture simple</b>, laissant l\'Esprit faire le reste. Cela passe par une lecture soutenue et régulière. A chacun d\'adapter son rythme. Certains lisent jusqu\'à 30 chapitres par semaine !  L\'important est de rechercher quel rythme me permet d\'<b>être enraciné dans ma relation avec Dieu</b>.</string>
     <string name="bible_reading_current">"Cette semaine "</string>
     <string name="share_title">Partager</string>
     <string name="pray_title">Prier</string>
@@ -20,106 +20,19 @@
     <string name="gdc">GDC</string>
     <string name="open_bible">An opened bible</string>
     <string name="gdc_long">Le Groupe De Croissance</string>
+    <string name="custom_questions">Mes questions</string>
     <string name="sharing_questions">Exemples de questions</string>
     <string name="sharing_question_1">- Comment Dieu s\'est-il manifesté dans ta vie cette semaine ?</string>
     <string name="sharing_question_2">- Qu\'est-il en train de t\'enseigner ?</string>
     <string name="sharing_question_3">- Comment réponds-tu à son encouragement ?</string>
-    <string name="sharing_question_4">- Que voudrais tu changer ?</string>
+    <string name="sharing_question_4">- Que voudrais-tu changer ?</string>
     <string name="sharing_question_5">- Y a-t-il un obstacle dans ta progression spirituelle ?</string>
-    <string name="sharing_question_6">- Veux tu en parler ?</string>
-    <string name="sharing_question_7">- Veux tu que l\'on prie pour cela ?</string>
-    <string name="sharing_question_8">- Pour qui veux tu prier ?</string>
-    <string name="sharing_question_9">- Qu\'as tu pensé de ce que tu as lu cette semaine ?</string>
+    <string name="sharing_question_6">- Veux-tu en parler ?</string>
+    <string name="sharing_question_7">- Veux-tu que l\'on prie pour cela ?</string>
+    <string name="sharing_question_8">- Pour qui veux-tu prier ?</string>
+    <string name="sharing_question_9">- Qu\'as-tu pensé de ce que tu as lu cette semaine ?</string>
     <string name="title_activity_add_history">Ajouter une lecture</string>
-    <string name="large_text">
-        "Material is the metaphor.\n\n"
 
-        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
-        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
-        "technologically advanced and open to imagination and magic.\n"
-        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
-        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
-        "flexibility of the material creates new affordances that supercede those in the physical "
-        "world, without breaking the rules of physics.\n"
-        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
-        "interact, and exist in space and in relation to each other. Realistic lighting shows "
-        "seams, divides space, and indicates moving parts.\n\n"
-
-        "Bold, graphic, intentional.\n\n"
-
-        "The foundational elements of print based design typography, grids, space, scale, color, "
-        "and use of imagery guide visual treatments. These elements do far more than please the "
-        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
-        "imagery, large scale typography, and intentional white space create a bold and graphic "
-        "interface that immerse the user in the experience.\n"
-        "An emphasis on user actions makes core functionality immediately apparent and provides "
-        "waypoints for the user.\n\n"
-
-        "Motion provides meaning.\n\n"
-
-        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
-        "inflection points that initiate motion, transforming the whole design.\n"
-        "All action takes place in a single environment. Objects are presented to the user without "
-        "breaking the continuity of experience even as they transform and reorganize.\n"
-        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
-        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
-
-        "3D world.\n\n"
-
-        "The material environment is a 3D space, which means all objects have x, y, and z "
-        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
-        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
-        "position along the z-axis and has a standard 1dp thickness.\n"
-        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
-        "emulated by manipulating the y-axis.\n\n"
-
-        "Light and shadow.\n\n"
-
-        "Within the material environment, virtual lights illuminate the scene. Key lights create "
-        "directional shadows, while ambient light creates soft shadows from all angles.\n"
-        "Shadows in the material environment are cast by these two light sources. In Android "
-        "development, shadows occur when light sources are blocked by sheets of material at "
-        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
-        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
-
-        "Resting elevation.\n\n"
-
-        "All material objects, regardless of size, have a resting elevation, or default elevation "
-        "that does not change. If an object changes elevation, it should return to its resting "
-        "elevation as soon as possible.\n\n"
-
-        "Component elevations.\n\n"
-
-        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
-        "does not vary from 6dp in one app to 16dp in another app).\n"
-        "Components may have different resting elevations across platforms, depending on the depth "
-        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
-
-        "Responsive elevation and dynamic elevation offsets.\n\n"
-
-        "Some component types have responsive elevation, meaning they change elevation in response "
-        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
-        "changes are consistently implemented using dynamic elevation offsets.\n"
-        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
-        "to the component’s resting state. They ensure that elevation changes are consistent "
-        "across actions and component types. For example, all components that lift on press have "
-        "the same elevation change relative to their resting elevation.\n"
-        "Once the input event is completed or cancelled, the component will return to its resting "
-        "elevation.\n\n"
-
-        "Avoiding elevation interference.\n\n"
-
-        "Components with responsive elevations may encounter other components as they move between "
-        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
-        "through other material, components avoid interfering with one another any number of ways, "
-        "whether on a per component basis or using the entire app layout.\n"
-        "On a component level, components can move or be removed before they cause interference. "
-        "For example, a floating action button (FAB) can disappear or move off screen before a "
-        "user picks up a card, or it can move if a snackbar appears.\n"
-        "On the layout level, design your app layout to minimize opportunities for interference. "
-        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
-        "when a user tries to pick up one of cards.\n\n"
-    </string>
     <string name="action_settings">Settings</string>
     <string name="notes_hint">Notes</string>
     <string name="notes_text">Write your notes here</string>
@@ -130,5 +43,15 @@
     <string name="plus_button">plus button</string>
     <string name="wood_pantin_reading">Wood pantin reading</string>
     <string name="historique">Historique</string>
-    <string name="ajouter"><u>Ajouter</u></string>
+    <string name="ajouter"><b><u>Ajouter</u></b></string>
+    <string name="ajouter_livre"><b><u>Ajouter livre</u></b></string>
+    <string name="title_activity_help">HelpActivity</string>
+    <string name="reponse_trouver_partenaire">Exemple : Seigneur, avec qui pourrais-je grandir dans ma foi ? Avec qui est-ce que je me sens <b>en confiance</b> pour être authentique et désireux d\'aller plus loin avec toi ? Merci parce que tu me montres la voix, tu m\'inspires <b>dans le temps qui est le tiens.</b></string>
+    <string name="prier_pour_partenaire_title">Prier pour que Dieu m\'inspire un partenaire spirituel.</string>
+    <string name="pour_commencer">Pour commencer ?</string>
+    <string name="gdc_c_quoi">C\'est un petit groupe ne dépassant pas trois personnes, dans lequel se vit une communion relationnelle intense entre ces personnes et Dieu.</string>
+    <string name="qu_est_ce_qu_un_gdc">Qu\'est ce qu\'un GDC ?</string>
+    <string name="une_rencontre_par_semaine"><b>Une rencontre par semaine</b></string>
+    <string name="lecture_approfondie_de_la_bible"><b>Lecture approfondie de la Bible</b></string>
+    <string name="vecu">Son but : <b>un vécu authentique de disciples contagieux !</b></string>
 </resources>

@@ -34,8 +34,8 @@
         android:id="@+id/deleteReadingButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/background_light"
-        android:src="@android:drawable/ic_menu_close_clear_cancel" />
+        android:background="@android:color/transparent"
+        android:src="@android:drawable/ic_delete" />
 
 </TableRow>
 

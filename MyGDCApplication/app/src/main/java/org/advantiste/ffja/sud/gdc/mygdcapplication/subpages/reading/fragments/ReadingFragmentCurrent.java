@@ -31,20 +31,26 @@ public class ReadingFragmentCurrent extends Fragment {
 
         dataSource = new WeeklyReadingDataSource(this.getContext());
         dataSource.open();
-        String txtCurrentReading;
+        String txtCurrentReading="";
         WeeklyReading currReading = dataSource.getThisWeekReading();
         if (currReading != null) {
             Map<BibleBook, List<Integer>> reading = currReading.getReadingDetails();
             Iterator<BibleBook> itBook = reading.keySet().iterator();
             BibleBook book = itBook.next();
             List<Integer> chapters = reading.get(book);
-            txtCurrentReading = book.name()+"."+String.valueOf(chapters.get(0)) + "-"
-                    + String.valueOf(chapters.get(1));
-            while (itBook.hasNext()) {
-                book = itBook.next();
-                chapters = reading.get(book);
-                txtCurrentReading += "; "+book.name()+"."+String.valueOf(chapters.get(0)) + "-"
+            if(book!=null && chapters!=null){
+
+                String separator="";
+                txtCurrentReading = book.getLongName ()+" du chapitre "+String.valueOf(chapters.get(0)) + " à  "
                         + String.valueOf(chapters.get(1));
+                while (itBook.hasNext()) {
+                    separator = "\n\n";
+                    book = itBook.next();
+                    chapters = reading.get(book);
+                    txtCurrentReading += separator+book.getLongName ()+" du chapitre "+String.valueOf(chapters.get(0)) + " à  "
+                            + String.valueOf(chapters.get(1));
+                }
+
             }
         } else {
             txtCurrentReading = "Aucune lecture";

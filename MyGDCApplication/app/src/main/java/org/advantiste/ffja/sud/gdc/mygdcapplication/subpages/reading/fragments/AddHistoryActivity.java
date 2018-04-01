@@ -9,18 +9,18 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TableLayout;
+import android.widget.TextView;
 
 import org.advantiste.ffja.sud.gdc.mygdcapplication.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
 
 public class AddHistoryActivity extends AppCompatActivity {
@@ -29,7 +29,7 @@ public class AddHistoryActivity extends AppCompatActivity {
     private EditText dateEnd;
     DatePickerDialog datePickerDialog;
 
-List<BookRow> bookRows = new ArrayList<> (  );
+    List<BookRow> bookRows = new ArrayList<> (  );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ List<BookRow> bookRows = new ArrayList<> (  );
 
         final TableLayout readingList = (TableLayout) findViewById(R.id.readingList);
 
-        final ImageButton addReadingButton = (ImageButton) findViewById(R.id.addBookButton);
+        final TextView addReadingButton = (TextView) findViewById(R.id.addBookButton);
 
 
 
@@ -85,10 +85,22 @@ List<BookRow> bookRows = new ArrayList<> (  );
                 //datePickerDialog.setOnDateSetListener (  );
 
                 datePickerDialog.show();
-                addReadingButton.callOnClick ();
 
             }
         });
+
+        dateEnd.setOnEditorActionListener ( new TextView.OnEditorActionListener ( ) {
+            @Override
+            public boolean onEditorAction ( TextView v, int actionId, KeyEvent event ) {
+                System.out.println (actionId);
+                if(actionId == EditorInfo.IME_ACTION_DONE){
+
+                    addReadingButton.requestFocus ();
+                }
+
+                return false;
+            }
+        } );
 
 
 
@@ -112,6 +124,7 @@ List<BookRow> bookRows = new ArrayList<> (  );
 
                                                   }
                 );
+
                 fragmentTransaction.add(R.id.readingList,(Fragment ) bookRow);
                 fragmentTransaction.commit ();
                 bookRows.add ( bookRow );
@@ -122,34 +135,43 @@ List<BookRow> bookRows = new ArrayList<> (  );
         });
 
 
-
+        addReadingButton.callOnClick ();
 
     }
 
 
     private void save(){
-        // calender class's instance and get current date , month and year from calender
-        final Calendar c = Calendar.getInstance();
-        int mYear = c.get(Calendar.YEAR); // current year
-        int mMonth = c.get(Calendar.MONTH); // current month
-        int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
 
-        // TODO: véfifier que les champs ne sont pas nuls  : date de fin
         String dateEndText = dateEnd.getText ().toString ();
 
-        // Prepare data intent
-        Intent data = new Intent();
+        if(dateEndText!=null && !dateEndText.isEmpty ()){
 
-        data.putExtra("readBeginDate", mDay+"/"+(mMonth+1)+"/"+mYear);
-        data.putExtra("readEndDate", dateEndText);
 
-        formatReadings ( bookRows, data );
 
-        // Activity finished ok, return the data
-        setResult(RESULT_OK, data);
-        finish ();
+            // calender class's instance and get current date , month and year from calender
+            final Calendar c = Calendar.getInstance();
+            int mYear = c.get(Calendar.YEAR); // current year
+            int mMonth = c.get(Calendar.MONTH); // current month
+            int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
+
+            // TODO: véfifier que les champs ne sont pas nuls  : date de fin
+
+            // Prepare data intent
+            Intent data = new Intent();
+
+            data.putExtra("readBeginDate", mDay+"/"+(mMonth+1)+"/"+mYear);
+            data.putExtra("readEndDate", dateEndText);
+
+            formatReadings ( bookRows, data );
+
+            // Activity finished ok, return the data
+            setResult(RESULT_OK, data);
+            finish ();
+        }
+        else{
+            dateEnd.setError ( "Vous devez remplir la date ! " );
+        }
     }
-
     private void formatReadings(List<BookRow> bookRows, Intent intent){
         intent.putExtra("totalReadingCount", bookRows.size () );
 
@@ -157,9 +179,10 @@ List<BookRow> bookRows = new ArrayList<> (  );
         for (int i=0; i< bookRows.size (); i++) {
             intent.putExtra("readBook_"+i,bookRows.get ( i ).getBook ());
             intent.putExtra("readChapterBegin_"+i, String.valueOf ( bookRows.get ( i ).getBookBeginValue ()));
-          intent.putExtra("readChapterEnd_"+i, String.valueOf ( bookRows.get ( i ).getBookEndValue ()));
+            intent.putExtra("readChapterEnd_"+i, String.valueOf ( bookRows.get ( i ).getBookEndValue ()));
         }
     }
+
 
 
     @Override

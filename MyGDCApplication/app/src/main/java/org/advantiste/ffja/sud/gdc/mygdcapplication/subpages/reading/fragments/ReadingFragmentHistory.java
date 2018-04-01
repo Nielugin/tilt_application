@@ -2,20 +2,16 @@ package org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import org.advantiste.ffja.sud.gdc.mygdcapplication.R;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.WeeklyReading;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.WeeklyReadingDataSource;
-import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading.adapters.ExpandableListViewAdapter;
+import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading.adapters.ExpandableReadingListViewAdapter;
 
 import java.util.ArrayList;
 
@@ -49,7 +45,7 @@ public class ReadingFragmentHistory extends Fragment {
 
         readings = new ArrayList<> ( dataSource.getAllWeeklyReading());
 
-        historyListView.setAdapter ( new ExpandableListViewAdapter ( getContext (),readings ) );
+        historyListView.setAdapter ( new ExpandableReadingListViewAdapter ( getContext (),readings ) );
         historyListView.setMinimumHeight ( readings.size ()*30 );
 
     }

@@ -1,12 +1,14 @@
 package org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.praying.fragments;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -15,13 +17,11 @@ import android.widget.TextView;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.R;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.prayers.Prayer;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.prayers.PrayerDataSource;
-import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.praying.PrayingActivity;
+import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.praying.adapter.ExpandableListViewPrayerAdapter;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.praying.fragments.model.ListRowItem;
 
 import java.util.Calendar;
 import java.util.List;
-
-import static android.R.drawable.ic_input_add;
 
 /**
  * Created by erc on 23/02/18.
@@ -31,32 +31,30 @@ public class PrayingFragmentList extends Fragment {
 
 
     private PrayerDataSource dataSource;
+    private ExpandableListView listView;
     private TableLayout tableLayout;
+    private boolean isOpened;
+
 
     public void populateListPrayer() {
-        tableLayout.removeAllViews();
         dataSource = new PrayerDataSource(this.getContext());
         dataSource.open();
         List<Prayer> prayers = dataSource.getAllPrayers();
-        int cpt = 0;
+        ExpandableListViewPrayerAdapter expandableListViewPrayerAdapter = new ExpandableListViewPrayerAdapter (  this.getContext (),prayers);
+        listView.setAdapter ( expandableListViewPrayerAdapter );
 
-        for (Prayer prayer: prayers) {
-            tableLayout.addView(new ListRowItem(this.getContext(), prayer, cpt, new ListRowItem.ListRowListener() {
-                @Override
-                public void updateList() {
-                    PrayingFragmentList.this.populateListPrayer();
-                }
-            }));
-            cpt ++;
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-      final ViewGroup rootView = (ViewGroup) inflater.inflate(
+        final ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_praying_list, container, false);
-        tableLayout = (TableLayout) rootView.findViewById(R.id.praying_list_topics);
+        listView =  rootView.findViewById(R.id.praying_list);
+        tableLayout =  rootView.findViewById(R.id.praying_list_topics);
+
+
 
         // on recupere le bouton
         TextView addButtonAction = rootView.findViewById(R.id.addPrayerButton);
@@ -65,73 +63,102 @@ public class PrayingFragmentList extends Fragment {
         addButtonAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //create a new row to add
-                TableRow row = new TableRow(getContext ());
-                row.setWeightSum(5);
-                //add Layouts to your new row
+
+                if(!isOpened){
 
 
+                    //create a new row to add
+                    TableRow row = new TableRow(getContext ());
+                    row.setWeightSum(5);
+                    //add Layouts to your new row
 
-                // on crée une nouveau champ éditable
-                final EditText editTopic = new EditText(getContext ());
-                editTopic.setHint("Sujet");
-                final EditText editComment = new EditText(getContext ());
-                editComment.setHint("Description");
 
-                ImageButton addTopic = new ImageButton(getContext ());
-                addTopic.setImageDrawable(getResources().getDrawable(ic_input_add));
+                    // on crée une nouveau champ éditable
+                    final EditText editTopic = new EditText(getContext ());
 
-                addTopic.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Calendar calendar = Calendar.getInstance();
+                    editTopic.setHint("Sujet");
+                    final EditText editComment = new EditText(getContext ());
 
-                        // récupération de la date d'aujourd'hui à 00h00
-                        calendar.setTimeInMillis(System.currentTimeMillis());
-                        calendar.set(Calendar.HOUR,0);
-                        calendar.set(Calendar.MINUTE,0);
-                        calendar.set(Calendar.SECOND,0);
-                        calendar.set(Calendar.MILLISECOND,0);
+                    editComment.setHint("Description");
+                    ImageButton addTopic = new ImageButton(getContext ());
+                    addTopic.getBackground ().setAlpha ( 0 );
+                    Drawable drawable = getResources ( ).getDrawable ( R.drawable.ic_add_circle_black_24dp);
+                    addTopic.setImageDrawable(drawable);
 
-                        // récupération des données depuis la base de données
-                        PrayerDataSource dataSource = new PrayerDataSource(getContext ());
-                        dataSource.open();
-                        //TODO : vérifier les paramètres !!
-                        dataSource.createPrayer(calendar.getTimeInMillis(),-1,editTopic.getText().toString(),editComment.getText().toString());
-                        dataSource.close();
+                    addTopic.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
 
-                        System.out.println(" ############## AJOUTé TO SQLite");
-                        // Mise à jour de l'historique
-                        ListRowItem.ListRowListener lrl = new ListRowItem.ListRowListener() {
-                            @Override
-                            public void updateList() {
-                                //TODO : Doit mettre à jour la liste de sujet :(
-                                populateListPrayer();
-                                System.out.println(" ############## Doit mettre a jour !");
+                            Editable textTopic = editTopic.getText ( );
+                            Editable textTopicComment = editComment.getText ( );
+
+                            if(textTopic!=null && !textTopic.toString ().isEmpty () && textTopicComment!=null && !textTopicComment.toString ().isEmpty ()){
+                                Calendar calendar = Calendar.getInstance();
+
+                                // récupération de la date d'aujourd'hui à 00h00
+                                calendar.setTimeInMillis(System.currentTimeMillis());
+                                calendar.set(Calendar.HOUR,0);
+                                calendar.set(Calendar.MINUTE,0);
+                                calendar.set(Calendar.SECOND,0);
+                                calendar.set(Calendar.MILLISECOND,0);
+
+                                // récupération des données depuis la base de données
+                                PrayerDataSource dataSource = new PrayerDataSource(getContext ());
+                                dataSource.open();
+                                //TODO : vérifier les paramètres !!
+                                dataSource.createPrayer(calendar.getTimeInMillis(),-1,editTopic.getText().toString(),editComment.getText().toString());
+                                dataSource.close();
+
+                                System.out.println(" ############## AJOUTé TO SQLite");
+                                // Mise à jour de l'historique
+                                ListRowItem.ListRowListener lrl = new ListRowItem.ListRowListener() {
+                                    @Override
+                                    public void updateList() {
+                                        //TODO : Doit mettre à jour la liste de sujet :(
+                                        populateListPrayer();
+                                        System.out.println(" ############## Doit mettre a jour !");
+                                    }
+                                };
+                                lrl.updateList();
+                                tableLayout.removeAllViews ();
+                                isOpened = false;
                             }
-                        };
-                        lrl.updateList();
+                            else{
+                                if(!(textTopic!=null && !textTopic.toString ().isEmpty ()) ){
+                                    editTopic.setError ( "Le sujet ne peut  être vide." );
+                                }
+                                if(!(textTopicComment!=null && !textTopicComment.toString ().isEmpty ())){
+                                    editComment.setError ( "Le commentaire ne peut  être vide." );
 
-                    }
-                });
-
-                TableRow.LayoutParams lpT = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 1.5f);
-                editTopic.setLayoutParams(lpT);
-
-
-                TableRow.LayoutParams lpC = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 3f);
-                editComment.setLayoutParams(lpC);
-
-                TableRow.LayoutParams lpTR = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.5f);
-                addTopic.setLayoutParams(lpTR);
+                                }
+                            }
 
 
-                row.addView(editTopic);
-                row.addView(editComment);
-                row.addView(addTopic);
-                //add your new row to the TableLayout:
-                TableLayout table = (TableLayout) rootView.findViewById(R.id.praying_list_topics);
-                table.addView(row);
+
+
+                        }
+                    });
+
+                    TableRow.LayoutParams lpT = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 1f);
+                    editTopic.setLayoutParams(lpT);
+
+
+                    TableRow.LayoutParams lpC = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 3f);
+                    editComment.setLayoutParams(lpC);
+
+                    TableRow.LayoutParams lpTR = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 1f);
+                    addTopic.setLayoutParams(lpTR);
+
+
+                    row.addView(editTopic);
+                    row.addView(editComment);
+                    row.addView(addTopic);
+                    //add your new row to the TableLayout:
+                    tableLayout.addView(row);
+                    System.out.println ("C'est un toucan");
+
+                }
+                isOpened =true;
             }
 
         });

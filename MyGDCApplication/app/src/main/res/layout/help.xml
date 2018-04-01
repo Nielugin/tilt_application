@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="gdc.sud.ffja.advantiste.org.mygdcapplication.HelpActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/qu_est_ce_qu_un_gdc"
+            android:layout_marginTop="10dp"
+            android:padding="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:paddingTop="8dp"
+            android:paddingLeft="8dp"
+            android:layout_height="wrap_content"
+            android:text="@string/gdc_c_quoi" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:paddingTop="8dp"
+            android:paddingLeft="8dp"
+            android:layout_height="wrap_content"
+            android:text="@string/une_rencontre_par_semaine" />
+
+
+        <TextView
+            android:id="@+id/textView10"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lecture_approfondie_de_la_bible" />
+
+
+
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp"
+            android:text="@string/vecu" />
+
+
+        <TextView
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="match_parent"
+            android:padding="8dp"
+            android:layout_height="wrap_content"
+            android:text="@string/pour_commencer" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingLeft="8dp"
+            android:text="@string/prier_pour_partenaire_title" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp"
+            android:text="@string/reponse_trouver_partenaire" />
+
+    </LinearLayout>
+
+
+</ScrollView>

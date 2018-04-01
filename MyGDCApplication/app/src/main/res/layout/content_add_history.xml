@@ -24,6 +24,7 @@
         android:inputType="datetime"
         android:selectAllOnFocus="false"
         android:singleLine="false"
+        android:configChanges="keyboardHidden"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,18 +39,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/endDate"
         tools:layout_editor_absoluteY="68dp"
-        android:layout_width="match_parent" />
+        android:layout_width="match_parent" >
 
-    <ImageButton
+        <TableRow android:weightSum="4" android:layout_width="match_parent">
+            <TextView android:layout_weight="1" android:text="Livre"/>
+            <TextView android:layout_weight="1" android:text="Début"/>
+            <TextView android:layout_weight="1" android:text="Fin"/>
+            <TextView android:layout_weight="1" android:text="Supprimer"/>
+        </TableRow>
+
+    </TableLayout>
+
+    <TextView
         android:id="@+id/addBookButton"
-        style="@style/Widget.AppCompat.ImageButton"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/colorPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/plus_button"
-        android:layout_marginTop="44dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/readingList"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        android:text="@string/ajouter_livre" />
 
     <EditText
         android:id="@+id/notes"
@@ -61,9 +70,6 @@
         android:ems="10"
         android:hint="@string/notes_hint"
         android:inputType="textMultiLine"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addBookButton"
         tools:text="@string/notes_text" />
 
 
