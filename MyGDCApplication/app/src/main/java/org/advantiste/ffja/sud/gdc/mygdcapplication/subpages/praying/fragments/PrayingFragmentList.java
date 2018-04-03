@@ -7,9 +7,11 @@ import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -23,6 +25,10 @@ import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.praying.fragments.m
 import java.util.Calendar;
 import java.util.List;
 
+import static android.text.InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE;
+import static android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE;
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+
 /**
  * Created by erc on 23/02/18.
  */
@@ -33,22 +39,27 @@ public class PrayingFragmentList extends Fragment {
     private PrayerDataSource dataSource;
     private ExpandableListView listView;
     private TableLayout tableLayout;
-    private boolean isOpened;
+    private boolean isOpened=false;
 
 
     public void populateListPrayer() {
         dataSource = new PrayerDataSource(this.getContext());
         dataSource.open();
         List<Prayer> prayers = dataSource.getAllPrayers();
-        ExpandableListViewPrayerAdapter expandableListViewPrayerAdapter = new ExpandableListViewPrayerAdapter (  this.getContext (),prayers);
+        ExpandableListViewPrayerAdapter expandableListViewPrayerAdapter = new ExpandableListViewPrayerAdapter ( this.getContext ( ), prayers, new ExpandableListViewPrayerAdapter.InvalidationListener ( ) {
+            @Override
+            public void onInvalidation () {
+                populateListPrayer ();
+            }
+        } );
         listView.setAdapter ( expandableListViewPrayerAdapter );
 
 
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView( final LayoutInflater inflater, final ViewGroup container,
+                              Bundle savedInstanceState) {
         final ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_praying_list, container, false);
         listView =  rootView.findViewById(R.id.praying_list);
@@ -57,30 +68,30 @@ public class PrayingFragmentList extends Fragment {
 
 
         // on recupere le bouton
-        TextView addButtonAction = rootView.findViewById(R.id.addPrayerButton);
-
+        final TextView addButtonAction = rootView.findViewById(R.id.addPrayerButton);
+        final LinearLayout addPrayerHolder= rootView.findViewById(R.id.add_prayer_holder);
         // et on dit ce qu'il se passe quand on appuie dessus
+
         addButtonAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if(!isOpened){
-
-
-                    //create a new row to add
-                    TableRow row = new TableRow(getContext ());
-                    row.setWeightSum(5);
-                    //add Layouts to your new row
+                    LinearLayout ajouterPriereBlock = (LinearLayout ) inflater.inflate ( R.layout.add_prayer_view, container, false );
 
 
                     // on crée une nouveau champ éditable
-                    final EditText editTopic = new EditText(getContext ());
+                    final EditText editTopic = (EditText)ajouterPriereBlock.findViewById ( R.id.prayer_topic );
+                    editTopic .setHint("Sujet");
 
-                    editTopic.setHint("Sujet");
-                    final EditText editComment = new EditText(getContext ());
+                    final EditText editComment = (EditText)ajouterPriereBlock.findViewById ( R.id.prayer_description);
 
                     editComment.setHint("Description");
-                    ImageButton addTopic = new ImageButton(getContext ());
+
+
+
+
+                    ImageButton addTopic = (ImageButton)ajouterPriereBlock.findViewById ( R.id.add_prayer_button);
                     addTopic.getBackground ().setAlpha ( 0 );
                     Drawable drawable = getResources ( ).getDrawable ( R.drawable.ic_add_circle_black_24dp);
                     addTopic.setImageDrawable(drawable);
@@ -120,8 +131,12 @@ public class PrayingFragmentList extends Fragment {
                                     }
                                 };
                                 lrl.updateList();
-                                tableLayout.removeAllViews ();
+
                                 isOpened = false;
+                                addPrayerHolder.removeAllViews ();
+                                addButtonAction.setText ( R.string.ajouter );
+                                isOpened =!isOpened;
+
                             }
                             else{
                                 if(!(textTopic!=null && !textTopic.toString ().isEmpty ()) ){
@@ -139,26 +154,17 @@ public class PrayingFragmentList extends Fragment {
                         }
                     });
 
-                    TableRow.LayoutParams lpT = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 1f);
-                    editTopic.setLayoutParams(lpT);
 
 
-                    TableRow.LayoutParams lpC = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 3f);
-                    editComment.setLayoutParams(lpC);
+                    addPrayerHolder.addView ( ajouterPriereBlock );
+                    isOpened =!isOpened;
 
-                    TableRow.LayoutParams lpTR = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 1f);
-                    addTopic.setLayoutParams(lpTR);
-
-
-                    row.addView(editTopic);
-                    row.addView(editComment);
-                    row.addView(addTopic);
-                    //add your new row to the TableLayout:
-                    tableLayout.addView(row);
-                    System.out.println ("C'est un toucan");
+                    addButtonAction.setText ( R.string.annuler );
 
                 }
-                isOpened =true;
+                else{
+                    finishEdit ( addPrayerHolder, addButtonAction );
+                }
             }
 
         });
@@ -197,6 +203,12 @@ public class PrayingFragmentList extends Fragment {
 
         populateListPrayer();
         return rootView;
+    }
+
+    private void finishEdit ( LinearLayout addPrayerHolder, TextView addButtonAction ) {
+        addPrayerHolder.removeAllViews ();
+        addButtonAction.setText ( R.string.ajouter );
+        isOpened =!isOpened;
     }
 
     @Override

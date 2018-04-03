@@ -1,14 +1,17 @@
 package org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.praying.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Icon;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import org.advantiste.ffja.sud.gdc.mygdcapplication.R;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.prayers.Prayer;
+import org.advantiste.ffja.sud.gdc.mygdcapplication.model.prayers.PrayerDataSource;
 
 import java.util.List;
 
@@ -19,25 +22,29 @@ import java.util.List;
 public class ExpandableListViewPrayerAdapter extends BaseExpandableListAdapter {
 
 
+    private final InvalidationListener invalidator;
     // application context
     private Context context;
 
     //weekly reading list
     private List<Prayer> listOfPray;
 
-    public ExpandableListViewPrayerAdapter(Context context, List<Prayer> listOfPray){
+    public ExpandableListViewPrayerAdapter(Context context, List<Prayer> listOfPray, InvalidationListener invalidationListener){
         this.context= context;
         this.listOfPray = listOfPray;
+        this.invalidator = invalidationListener;
 
     }
 
     class PrayingDetail {
         private String subject;
+        private long id;
         private String comments;
 
-        public PrayingDetail(String subj, String coms) {
-            subject = subj;
-            comments = coms;
+        public PrayingDetail(Prayer prayer) {
+            subject = prayer.getTopic ();
+            comments = prayer.getComments ();
+            id =  prayer.getId ();
         }
 
 
@@ -55,6 +62,10 @@ public class ExpandableListViewPrayerAdapter extends BaseExpandableListAdapter {
 
         public void setComments ( String comments ) {
             this.comments = comments;
+        }
+
+        public long getId () {
+            return id;
         }
     }
 
@@ -76,7 +87,7 @@ public class ExpandableListViewPrayerAdapter extends BaseExpandableListAdapter {
     @Override
     public PrayingDetail getChild ( int groupPosition, int childPosition ) {
         Prayer p = listOfPray.get(groupPosition);
-        PrayingDetail prayerDetail = new PrayingDetail (p.getTopic (), p.getComments () );
+        PrayingDetail prayerDetail = new PrayingDetail (p);
         return prayerDetail;
     }
 
@@ -100,7 +111,7 @@ public class ExpandableListViewPrayerAdapter extends BaseExpandableListAdapter {
         String groupTitle = getGroup ( groupPosition ).getTopic ();
         if (convertView==null){
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService ( Context.LAYOUT_INFLATER_SERVICE );
-            convertView=layoutInflater.inflate ( R.layout.list_group ,null);
+            convertView=layoutInflater.inflate ( R.layout.list_group,null);
         }
         TextView prayerHeader = convertView.findViewById ( R.id.labelReadingHeader );
         prayerHeader.setText ( groupTitle );
@@ -113,17 +124,47 @@ public class ExpandableListViewPrayerAdapter extends BaseExpandableListAdapter {
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService ( Context.LAYOUT_INFLATER_SERVICE );
             convertView=layoutInflater.inflate ( R.layout.prayer_list_item,null);
         }
-        PrayingDetail child = getChild ( groupPosition, childPosition );
+        final PrayingDetail child = getChild ( groupPosition, childPosition );
 
         TextView prayerComments =convertView.findViewById ( R.id.item_description );
-        if( child!=null && child.getComments ()!=null){
-            prayerComments.setText ( child.getComments () );
+        ImageButton imageButton = convertView.findViewById ( R.id.delete_prayer );
+
+        if(isLastChild) {
+            imageButton.setVisibility (  View.VISIBLE);
+            imageButton.setImageResource ( R.drawable.ic_delete_black_24dp );
+            imageButton.setBackgroundColor (  convertView.getResources ().getColor ( R.color.transparent ));
+            imageButton.setMinimumHeight ( 30 );
+            imageButton.setOnClickListener ( new View.OnClickListener ( ) {
+                @Override
+                public void onClick ( View v ) {
+                    PrayerDataSource source = new PrayerDataSource ( context );
+                    source.open ();
+                    source.deletePrayerById ( child.getId () );
+                    source.close ();
+                    invalidator.onInvalidation ();
+                }
+            } );
+
         }
+        else {
+            imageButton.setVisibility (  View.INVISIBLE);
+
+        }
+
+            if( child!=null && child.getComments ()!=null){
+                prayerComments.setText ( child.getComments () );
+            }
         return convertView;
     }
 
     @Override
     public boolean isChildSelectable ( int groupPosition, int childPosition ) {
         return false;
+    }
+
+    public interface InvalidationListener {
+
+        void onInvalidation();
+
     }
 }

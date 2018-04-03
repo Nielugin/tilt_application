@@ -1,37 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".subpages.praying.PrayingActivity">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-    <TextView
-        android:id="@+id/praying_list_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        android:layout_marginLeft="8dp"
-        android:text="@string/praying_list_title"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        />
+        <TextView
+            android:id="@+id/praying_list_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="8dp"
+            android:text="@string/praying_list_title"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
         <TextView
             android:id="@+id/addPrayerButton"
-            android:text="@string/ajouter"
-            android:layout_marginLeft="8dp"
-            android:textColor="@color/colorPrimary"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="@string/ajouter"
+            android:textColor="@color/colorPrimary" />
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/add_prayer_holder"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content" />
+
     <ScrollView
         android:id="@+id/scrollViewPL"
         android:layout_width="match_parent"
@@ -41,33 +48,29 @@
         android:layout_marginStart="8dp">
 
 
-            <LinearLayout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TableLayout
+                android:id="@+id/praying_list_topics"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp" />
 
 
-                <TableLayout
-                    android:id="@+id/praying_list_topics"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="8dp"
-                    />
+            <ExpandableListView
+                android:id="@+id/praying_list"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:isScrollContainer="true" />
 
 
-                <ExpandableListView
-                    android:isScrollContainer="true"
-                    android:layout_width="match_parent"
-                    android:id="@+id/praying_list"
-                    android:layout_height="300dp" />
-
-
-
-
-
-            </LinearLayout>
-        </ScrollView>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
