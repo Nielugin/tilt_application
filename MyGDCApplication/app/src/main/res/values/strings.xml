@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyGDCApplication</string>
+    <string name="app_name">Mon GDC</string>
 
     <string name="title_activity_prayer">PrayerActivity</string>
     <string name="dummy_button">Dummy Button</string>
