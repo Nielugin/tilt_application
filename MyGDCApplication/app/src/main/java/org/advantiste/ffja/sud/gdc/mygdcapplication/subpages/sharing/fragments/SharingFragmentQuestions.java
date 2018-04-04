@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -30,14 +31,22 @@ import java.util.zip.Inflater;
  */
 public class SharingFragmentQuestions extends Fragment {
 
+    /**
+     * The list of the custom questions
+     */
     List<SharingQuestion> questions = new ArrayList<> (  );
 
+    /**
+     * The question data source.
+     */
     private SharingQuestionDataSource dataSource;
+
 
     public void populateSharedQuestions() {
         dataSource = new SharingQuestionDataSource (this.getContext());
         dataSource.open();
         questions = new ArrayList<> ( dataSource.getAllQuestions () );
+        dataSource.close ();
     }
 
 
@@ -48,35 +57,45 @@ public class SharingFragmentQuestions extends Fragment {
                 R.layout.fragment_sharing_questions, container, false);
 
         final TextView addQuestion = rootView.findViewById ( R.id.add_question );
-
         final LinearLayout custom_question_block = rootView.findViewById ( R.id.custom_question_block);
         final LinearLayout list_question_block = rootView.findViewById ( R.id.list_question_block);
+
         loadQuestions ( list_question_block, inflater,custom_question_block );
         addQuestion.setOnClickListener ( new View.OnClickListener ( ) {
             @Override
             public void onClick ( View v ) {
+
+                addQuestion.setVisibility ( View.INVISIBLE );
                 custom_question_block.setVisibility ( View.VISIBLE);
                 final LinearLayout inflate = (LinearLayout)inflater.inflate (
                         R.layout.add_question, container, false );
                 final LinearLayout addQuestionBlock = rootView.findViewById ( R.id.add_question_block );
-                final  TextView questionTextView = (TextView ) inflate.findViewById ( R.id.question_text_field);
-                ImageButton saveQuestionButton = (ImageButton) inflate.findViewById ( R.id.save_question );
+                final  TextView questionTextView = inflate.findViewById ( R.id.question_text_field);
+                ImageButton saveQuestionButton =  inflate.findViewById ( R.id.save_question );
                 saveQuestionButton.setImageResource ( R.drawable.ic_add_circle_black_24dp );
                 saveQuestionButton.setBackgroundColor ( Color.TRANSPARENT );
                 saveQuestionButton.setOnClickListener ( new View.OnClickListener ( ) {
                     @Override
                     public void onClick ( View v ) {
+                        String newQuestion = questionTextView.getText ( ).toString ( );
+                        if(!newQuestion.isEmpty ()){
+
                         addQuestionBlock.removeView ( inflate );
-                        saveQuestion(questionTextView.getText ().toString ());
+                        saveQuestion( newQuestion );
                         loadQuestions (list_question_block,inflater,custom_question_block);
+                        addQuestion.setVisibility ( View.VISIBLE );
+                        }
+                        else{
+                            questionTextView.setError ( "Le champ ne peut être vide" );
+                        }
 
                     }
                 } );
 
+
                 addQuestionBlock.addView ( inflate );
             }
         } );
-
         return rootView;
     }
 
@@ -107,8 +126,7 @@ public class SharingFragmentQuestions extends Fragment {
 
                 }
             } );
-            questionText.setText ("- "+ question.getQuestion () );
-            // Todo que faut il faire
+            questionText.setText ( new StringBuilder ( ).append ( "- " ).append ( question.getQuestion ( ) ).toString ( ) );
             parentView.addView ( inflate );
         }
         manageCustomBlockVisibility ( custom_question_block );
@@ -126,10 +144,10 @@ public class SharingFragmentQuestions extends Fragment {
      * Delete the question from db
      */
     private void delete (SharingQuestion question) {
-        dataSource = new SharingQuestionDataSource (this.getContext());
         dataSource.open();
 
         dataSource.deleteQuestionById ( question.getId () );
+        dataSource.close ();
         questions.remove (question);
     }
 
@@ -140,6 +158,7 @@ public class SharingFragmentQuestions extends Fragment {
         dataSource = new SharingQuestionDataSource (this.getContext());
         dataSource.open();
         SharingQuestion question = dataSource.createShareQuestion ( text );
+        dataSource.close ();
         questions.add ( question );
     }
 }

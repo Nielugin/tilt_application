@@ -1,10 +1,7 @@
 package org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading;
 
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -25,28 +22,7 @@ import java.util.List;
 public class BibleReadingActivity  extends FragmentActivity {
 
 
-    /**
-     * The number of pages (wizard steps) to show in this demo.
-     */
-    private static final int NUM_PAGES = 2;
-
-    /**
-     * The pager widget, which handles animation and allows swiping horizontally to access previous
-     * and next wizard steps.
-     */
-    private ViewPager mPager;
-
-    /**
-     * The pager adapter, which provides the pages to the view pager widget.
-     */
-    private PagerAdapter mPagerAdapter;
-
-
     static final int ADD_READING_REQUEST = 1;  // The request code
-
-    private WeeklyReadingDataSource dataSource;
-    ReadingFragmentHistory readingHistory;
-    ReadingFragmentCurrent currentReading;
 
 
     @Override
@@ -54,10 +30,10 @@ public class BibleReadingActivity  extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bible_reading);
         // Instantiate a ViewPager and a PagerAdapter.
-        ImageView picture = (ImageView) findViewById(R.id.reading_image_1);
+        ImageView picture =  findViewById(R.id.reading_image_1);
         picture.setImageResource(R.drawable.book);
 
-        TextView addButtonAction = (TextView) findViewById(R.id.addReading);
+        TextView addButtonAction = findViewById(R.id.addReading);
         addButtonAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,16 +71,20 @@ public class BibleReadingActivity  extends FragmentActivity {
                 BibleBook book = BibleBook.fromString (data.getStringExtra("readBook_0"));
                 int chapterBegin = Integer.parseInt(data.getStringExtra("readChapterBegin_0"));
                 int chapterEnd = Integer.parseInt(data.getStringExtra("readChapterEnd_0"));
-                String readingDetails = book+","+chapterBegin+","+chapterEnd;
-                for (int i=1; i<totalReadingOfWeek; i++) {
+                StringBuilder readingDetailsBuilder = new StringBuilder ( book + "," + chapterBegin + "," + chapterEnd );
+                for (int i = 1; i<totalReadingOfWeek; i++) {
                     book = BibleBook.fromString (data.getStringExtra("readBook_"+i));
                     chapterBegin = Integer.parseInt(data.getStringExtra("readChapterBegin_"+i));
                     chapterEnd = Integer.parseInt(data.getStringExtra("readChapterEnd_"+i));
-                    readingDetails += ";"+book+","+chapterBegin+","+chapterEnd;
+                    readingDetailsBuilder.append ( ";" ).append ( book ).append ( "," ).append ( chapterBegin ).append ( "," ).append ( chapterEnd );
                 }
+                String readingDetails = readingDetailsBuilder.toString ( );
 
                 // Ajout de la lecture de la semaine en SQLite
-                dataSource = new WeeklyReadingDataSource(BibleReadingActivity.this.getApplicationContext());
+                /*
+      The data source for readings
+     */
+                WeeklyReadingDataSource dataSource = new WeeklyReadingDataSource ( BibleReadingActivity.this.getApplicationContext ( ) );
                 dataSource.open();
 
                 List<WeeklyReading> readings = dataSource.getAllWeeklyReading();
@@ -117,10 +97,16 @@ public class BibleReadingActivity  extends FragmentActivity {
 
                 System.out.println("************ \n Du "+dateBegin+" au "+dateEnd+", la lecture est "+book+"."+chapterBegin+"-"+chapterEnd);
                 // Mise à jour de l'historique
-                readingHistory = (ReadingFragmentHistory) this.getSupportFragmentManager().findFragmentById(R.id.reading_history_fragment);
+                /*
+      The reading history fragment
+     */
+                ReadingFragmentHistory readingHistory = ( ReadingFragmentHistory ) this.getSupportFragmentManager ( ).findFragmentById ( R.id.reading_history_fragment );
                 readingHistory.populateHistory();
                 // Miste à jour de la lecture courante
-                currentReading = (ReadingFragmentCurrent) this.getSupportFragmentManager().findFragmentById(R.id.reading_current_fragment);
+                /*
+      The current reading fragment
+     */
+                ReadingFragmentCurrent currentReading = ( ReadingFragmentCurrent ) this.getSupportFragmentManager ( ).findFragmentById ( R.id.reading_current_fragment );
                 currentReading.populateCurrent();
 
             }
