@@ -28,7 +28,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="gdc.sud.ffja.advantiste.org.mygdcapplication.HelpActivity"
+            android:name=".subpages.HelpActivity"
             android:label="@string/title_activity_help"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
