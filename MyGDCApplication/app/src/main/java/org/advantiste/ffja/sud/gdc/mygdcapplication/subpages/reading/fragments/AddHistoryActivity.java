@@ -118,8 +118,12 @@ public class AddHistoryActivity extends AppCompatActivity {
                 bookRow.setInteractionInterface ( new BookRow.InteractionInterface ( ) {
                                                       @Override
                                                       public void removeAction () {
-                                                          readingList.removeView ( bookRow.getView () );
-                                                          bookRows.remove ( bookRow );
+                                                          System.out.println(readingList.getChildCount());
+                                                          if(readingList.getChildCount()>2){
+                                                              readingList.removeView ( bookRow.getView () );
+                                                              bookRows.remove ( bookRow );
+                                                          }
+
                                                       }
 
                                                   }
