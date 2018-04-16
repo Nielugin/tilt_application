@@ -1,9 +1,7 @@
 <resources>
     <string name="app_name">Mon GDC</string>
 
-    <string name="title_activity_prayer">PrayerActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_prayer">Prière</string>
     <string name="prayer_text">\"Priez les uns pour les autres\". Il est très encourageant d\'entendre une personne prier pour soi. Mais le GDC est également <b>ouvert aux autres</b>. Chaque rencontres se termine par un moment de prière pour trois personnes autour de moi qui ont besoin de la présence de Dieu. Ainsi, la prière change mon regard sur eux, me rends plus disponible, et <b>fait de moi un témoin de Jésus pour eux</b>.</string>
     <string name="prayer_title">Prier l\'un pour l\'autre</string>
     <string name="praying_list_title">Sujets de prière</string>
@@ -15,11 +13,8 @@
     <string name="share_title">Partager</string>
     <string name="pray_title">Prier</string>
     <string name="read_title">Lire</string>
-    <string name="man_who_prays">A man who prays</string>
-    <string name="women_chatting">Womens chatting</string>
-    <string name="gdc">GDC</string>
-    <string name="open_bible">An opened bible</string>
-    <string name="gdc_long">Le Groupe De Croissance</string>
+    <string name="gdc" translatable="false">GDC</string>
+    <string name="gdc_long" translatable="false">Le Groupe De Croissance</string>
     <string name="custom_questions">Mes questions</string>
     <string name="sharing_questions">Exemples de questions</string>
     <string name="sharing_question_1">- Comment Dieu s\'est-il manifesté dans ta vie cette semaine ?</string>
@@ -33,19 +28,14 @@
     <string name="sharing_question_9">- Qu\'as-tu pensé de ce que tu as lu cette semaine ?</string>
     <string name="title_activity_add_history">Ajouter une lecture</string>
 
-    <string name="action_settings">Settings</string>
     <string name="notes_hint">Notes</string>
-    <string name="notes_text">Write your notes here</string>
     <string name="end_date_text">Date de fin de lecture</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="plus_button">plus button</string>
-    <string name="wood_pantin_reading">Wood pantin reading</string>
     <string name="historique">Historique</string>
     <string name="ajouter"><b><u>Ajouter</u></b></string>
     <string name="ajouter_livre"><b><u>Ajouter livre</u></b></string>
-    <string name="title_activity_help">HelpActivity</string>
+    <string name="title_activity_help">Aide</string>
     <string name="reponse_trouver_partenaire">Exemple : Seigneur, avec qui pourrais-je grandir dans ma foi ? Avec qui est-ce que je me sens <b>en confiance</b> pour être authentique et désireux d\'aller plus loin avec toi ? Merci parce que tu me montres la voix, tu m\'inspires <b>dans le temps qui est le tiens.</b></string>
     <string name="prier_pour_partenaire_title">Prier pour que Dieu m\'inspire un partenaire spirituel.</string>
     <string name="pour_commencer">Pour commencer ?</string>
@@ -55,4 +45,11 @@
     <string name="lecture_approfondie_de_la_bible"><b>Lecture approfondie de la Bible</b></string>
     <string name="vecu">Son but : <b>un vécu authentique de disciples contagieux !</b></string>
     <string name="annuler">Annuler</string>
+    <string name="man_who_prays">Un homme qui prie</string>
+    <string name="women_chatting">Des femmes qui discutent</string>
+    <string name="open_bible">Une bible ouverte</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="notes_text">Saisir tes notes ici</string>
+    <string name="wood_pantin_reading">Un pantin de bois qui lit</string>
+    <string name="plus_button">Bouton plus</string>
 </resources>
