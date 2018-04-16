@@ -1,4 +1,4 @@
-package gdc.sud.ffja.advantiste.org.mygdcapplication;
+package org.advantiste.ffja.sud.gdc.mygdcapplication.subpages;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

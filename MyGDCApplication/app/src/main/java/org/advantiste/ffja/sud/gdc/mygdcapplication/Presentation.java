@@ -8,13 +8,11 @@ import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.HelpActivity;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.praying.PrayingActivity;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading.BibleReadingActivity;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.sharing.SharingActivity;
 
-import org.advantiste.ffja.sud.gdc.mygdcapplication.R;
-
-import gdc.sud.ffja.advantiste.org.mygdcapplication.HelpActivity;
 
 public class Presentation extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package gdc.sud.ffja.advantiste.org.mygdcapplication;
+package org.advantiste.ffja.sud.gdc.mygdcapplication.controller;
 
 import android.content.Context;
 import android.content.res.TypedArray;

@@ -22,7 +22,8 @@
             android:text="@string/praying_list_title"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginStart="8dp" />
 
         <TextView
             android:id="@+id/addPrayerButton"
@@ -30,7 +31,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:text="@string/ajouter"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/colorPrimary"
+            android:layout_marginStart="8dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -50,7 +52,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
 

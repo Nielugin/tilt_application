@@ -1,49 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context=".subpages.reading.fragments.AddHistoryActivity">
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar"
+
+    <ImageView
+        android:id="@+id/wood_read_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        android:theme="@style/AppBarOverlay">
-
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:toolbarId="@+id/toolbar">
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_collapseMode="pin"
-
-                app:popupTheme="@style/PopupOverlay">
-
-            </android.support.v7.widget.Toolbar>
-
-            <ImageView
-                android:id="@+id/wood_read_id"
-                android:layout_width="match_parent"
-                android:contentDescription="@string/wood_pantin_reading"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                app:srcCompat="@drawable/wood_read" />
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/wood_pantin_reading"
+        app:srcCompat="@drawable/wood_read" />
 
     <include
         android:id="@+id/include"
         layout="@layout/content_add_history"
-        android:layout_width="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -55,4 +32,4 @@
         app:layout_anchorGravity="right|center"
         app:rippleColor="@color/colorPrimaryDark"
         app:srcCompat="@android:drawable/ic_menu_save" />
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

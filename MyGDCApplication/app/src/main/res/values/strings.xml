@@ -14,7 +14,7 @@
     <string name="pray_title">Prier</string>
     <string name="read_title">Lire</string>
     <string name="gdc" translatable="false">GDC</string>
-    <string name="gdc_long" translatable="false">Le Groupe De Croissance</string>
+    <string name="gdc_long">Le Groupe De Croissance</string>
     <string name="custom_questions">Mes questions</string>
     <string name="sharing_questions">Exemples de questions</string>
     <string name="sharing_question_1">- Comment Dieu s\'est-il manifesté dans ta vie cette semaine ?</string>
@@ -52,4 +52,10 @@
     <string name="notes_text">Saisir tes notes ici</string>
     <string name="wood_pantin_reading">Un pantin de bois qui lit</string>
     <string name="plus_button">Bouton plus</string>
+    <string name="book">Livre</string>
+    <string name="begin">Début</string>
+    <string name="end">Fin</string>
+    <string name="delete">Supprimer</string>
+    <string name="name">Nom</string>
+    <string name="history">Historique</string>
 </resources>

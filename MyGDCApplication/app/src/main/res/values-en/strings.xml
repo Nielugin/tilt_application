@@ -47,4 +47,11 @@
     <string name="bible_reading_text">"We have a habit of studying the Bible, reading commentaries or related books and that is important. But it's also good to learn <b> reading the Bible in simple reading </b>, letting the Spirit do the rest. This requires a steady and regular reading. Everyone has to adapt their rhythm. Some read up to 30 chapters a week! The important thing is to find out what rhythm allows me to <b> be rooted in my relationship with God </b>. "</string>
     <string name="sharing_text">" The questions revolve around three axes: <b> my relationship to God, to others, and to myself </b>. They are not there to condemn or judge, but to position oneself, to evoke struggles or sufferings, to become aware of victories and the road traveled, to see the action of God in his life, to imagine this action in the lives of others. These questions are a great way to learn <b> \"letting go\" </b>."</string>
     <string name="open_bible">An opened bible</string>
+    <string name="gdc_long">The Growing Group</string>
+    <string name="book">Livre</string>
+    <string name="begin">Begin</string>
+    <string name="end">End</string>
+    <string name="delete">Delete</string>
+    <string name="name">Name</string>
+    <string name="history">Historique</string>
 </resources>
