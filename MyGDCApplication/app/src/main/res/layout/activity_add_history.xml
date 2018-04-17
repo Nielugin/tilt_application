@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,29 +7,52 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context=".subpages.reading.fragments.AddHistoryActivity">
-
-    <ImageView
-        android:id="@+id/wood_read_id"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/wood_pantin_reading"
-        app:srcCompat="@drawable/wood_read" />
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/wood_read_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/wood_pantin_reading"
+            app:srcCompat="@drawable/wood_read" />
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/content_add_history"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <include
+            android:id="@+id/include"
+            layout="@layout/content_add_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:tint="@color/colorPrimary"
-        app:backgroundTint="@android:color/background_light"
-        app:layout_anchor="@+id/include"
-        app:layout_anchorGravity="right|center"
-        app:rippleColor="@color/colorPrimaryDark"
-        app:srcCompat="@android:drawable/ic_menu_save" />
-</LinearLayout>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="8"
+                />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/floatingActionButton"
+                android:layout_width="match_parent"
+android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+
+                android:layout_height="wrap_content"
+                android:tint="@color/colorPrimary"
+                app:backgroundTint="@android:color/background_light"
+                app:layout_anchor="@+id/include"
+                app:rippleColor="@color/colorPrimaryDark"
+                app:srcCompat="@android:drawable/ic_menu_save"
+                android:layout_marginRight="8dp" />
+        </LinearLayout>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+</ScrollView>

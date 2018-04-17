@@ -26,26 +26,28 @@ import java.util.ArrayList;
  */
 public class ReadingFragmentHistory extends Fragment {
 
-
-    private ImageButton add_reading;
-
+    /**
+     * Database source for data retrieval
+     */
     private WeeklyReadingDataSource dataSource;
 
+    /**
+     * The list view for reading history
+     */
     private ExpandableListView historyListView;
-    private ArrayList<WeeklyReading> readings;
 
-
+    /**
+     *
+     */
     public void populateHistory() {
         // Supprimer toutes les données du tableau afin de recréer tout proprement
-
         dataSource = new WeeklyReadingDataSource(this.getContext());
         dataSource.open();
-        //dataSource.deleteAllWeeklyReading();
 
+        //The reading list.
+        ArrayList<WeeklyReading> readings = new ArrayList<>(dataSource.getAllWeeklyReading());
 
-        readings = new ArrayList<> ( dataSource.getAllWeeklyReading());
-
-        historyListView.setAdapter ( new ExpandableReadingListViewAdapter ( getContext (),readings ) );
+        historyListView.setAdapter ( new ExpandableReadingListViewAdapter ( getContext (), readings) );
         historyListView.setMinimumHeight ( readings.size ()*30 );
 
     }
@@ -53,16 +55,16 @@ public class ReadingFragmentHistory extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-       final  ViewGroup rootView = (ViewGroup) inflater.inflate(
+        final  ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_reading_history, container, false);
 
         rootView.post(new Runnable() {
-                      @Override
-                      public void run() {
-                          int height=rootView.getMeasuredHeight(); // for instance
-                            System.out.println (height);
-                      }
-                  });
+            @Override
+            public void run() {
+                int height=rootView.getMeasuredHeight(); // for instance
+                System.out.println (height);
+            }
+        });
 
 
 

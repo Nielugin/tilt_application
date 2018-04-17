@@ -36,7 +36,7 @@ public class AddHistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_history);
 
-        FloatingActionButton saveButton= (FloatingActionButton ) findViewById(R.id.floatingActionButton);
+        FloatingActionButton saveButton= findViewById(R.id.floatingActionButton);
         saveButton.setOnClickListener ( new View.OnClickListener ( ) {
 
             @Override
@@ -55,7 +55,7 @@ public class AddHistoryActivity extends AppCompatActivity {
         * http://abhiandroid.com/ui/datepicker
         * */
 
-        dateEnd = (EditText) findViewById(R.id.endDate);
+        dateEnd =  findViewById(R.id.endDate);
 
         // perform click event on edit text
         dateEnd.setOnClickListener(new View.OnClickListener() {
@@ -108,8 +108,7 @@ public class AddHistoryActivity extends AppCompatActivity {
         addReadingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(v, "Lecture ajoutée", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
 
 
                 FragmentTransaction fragmentTransaction = getFragmentManager ( ).beginTransaction ( );
