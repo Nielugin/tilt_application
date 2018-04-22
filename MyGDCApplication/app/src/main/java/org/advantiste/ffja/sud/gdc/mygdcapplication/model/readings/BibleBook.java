@@ -1,6 +1,5 @@
 package org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings;
 
-import java.util.EnumMap;
 
 /**
  * Created by jean- on 19/11/2017.

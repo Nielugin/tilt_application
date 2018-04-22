@@ -72,8 +72,8 @@ public class AddHistoryActivity extends AppCompatActivity {
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
                                 // set day of month , month and year value in the edit text
-                                dateEnd.setText(dayOfMonth + "/"
-                                        + (monthOfYear + 1) + "/" + year);
+                                dateEnd.setText(String.format("%02d", dayOfMonth )+ "/"
+                                        + String.format("%02d", (monthOfYear + 1) )+ "/" + String.format("%04d", year));
 
 
                             }

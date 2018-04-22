@@ -27,7 +27,7 @@ public class ReadingFragmentPresentation extends Fragment {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 fragment_reading_presentation, container, false);
 
-        TextView textViewPresentation = (TextView) rootView.findViewById(R.id.reading_text);
+        TextView textViewPresentation = rootView.findViewById(R.id.reading_text);
         textViewPresentation.setText(R.string.bible_reading_text);
 
 
