@@ -1,6 +1,8 @@
 package org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading;
 
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -42,8 +44,30 @@ public class BibleReadingActivity  extends FragmentActivity {
             }
 
         });
-    }
 
+
+       // launchBibleApp();
+
+
+    }
+/*
+    private void launchBibleApp() {
+        List<ApplicationInfo> installedApplications = getPackageManager().getInstalledApplications(PackageManager.GET_META_DATA);
+        for (ApplicationInfo appli: installedApplications
+                ) {
+            String appName = appli.loadLabel(getPackageManager()).toString();
+            if(appName!=null && appName.equals("Bible")){
+                System.out.println(appName);
+                System.out.println(appli.packageName);
+                Intent launchIntent = getPackageManager().getLaunchIntentForPackage(appli.packageName);
+                if (launchIntent != null) {
+                    startActivity(launchIntent);//null pointer check in case package name was not found
+                }
+
+            }
+        }
+    }
+*/
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

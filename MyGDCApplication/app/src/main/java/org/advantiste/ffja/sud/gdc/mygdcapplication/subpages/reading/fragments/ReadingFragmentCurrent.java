@@ -1,10 +1,14 @@
 package org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.advantiste.ffja.sud.gdc.mygdcapplication.R;
@@ -25,10 +29,10 @@ import java.util.Map;
 public class ReadingFragmentCurrent extends Fragment {
 
     private WeeklyReadingDataSource dataSource;
-    private TextView textViewPresentation;
+    private LinearLayout currentReadings;
 
     public void populateCurrent() {
-
+        currentReadings.removeAllViews();
         dataSource = new WeeklyReadingDataSource(this.getContext());
         dataSource.open();
         String txtCurrentReading="";
@@ -36,26 +40,36 @@ public class ReadingFragmentCurrent extends Fragment {
         if (currReading != null) {
             Map<BibleBook, List<Integer>> reading = currReading.getReadingDetails();
             Iterator<BibleBook> itBook = reading.keySet().iterator();
-            BibleBook book = itBook.next();
-            List<Integer> chapters = reading.get(book);
-            if(book!=null && chapters!=null){
+            while (itBook.hasNext()) {
+                BibleBook book = itBook.next();
+                List<Integer> chapters = reading.get(book);
+                LayoutInflater     inflater = getLayoutInflater();
+                LinearLayout currentReadingItem = (LinearLayout) inflater.inflate(R.layout.reading_list_item, null);
+                TextView bookReference = currentReadingItem.findViewById(R.id.item_book_reference);
+                if(book!=null && chapters!=null){
 
-                String separator="";
-                txtCurrentReading = book.getLongName ()+" du chapitre "+String.valueOf(chapters.get(0)) + " à  "
-                        + String.valueOf(chapters.get(1));
-                while (itBook.hasNext()) {
-                    separator = "\n\n";
-                    book = itBook.next();
-                    chapters = reading.get(book);
-                    txtCurrentReading += separator+book.getLongName ()+" du chapitre "+String.valueOf(chapters.get(0)) + " à  "
+                    txtCurrentReading = book.getLongName ()+" du chapitre "+String.valueOf(chapters.get(0)) + " à  "
                             + String.valueOf(chapters.get(1));
-                }
 
+                    TextView readingLink = currentReadingItem.findViewById(R.id.item_read_button);
+
+
+                    String link = " <a  href=\"https://www.bible.com/bible/133/"+book.getBibleAppId()+"."+chapters.get(0)+".pdv2017\">lire</a>";
+                    readingLink.setText(Html.fromHtml(link));
+                    readingLink.setMovementMethod(LinkMovementMethod.getInstance());
+
+
+                } else {
+                    txtCurrentReading = "Aucune lecture";
+                }
+                if(bookReference!=null){
+
+                bookReference.setText(txtCurrentReading);
+                }
+                currentReadings.addView(currentReadingItem);
             }
-        } else {
-            txtCurrentReading = "Aucune lecture";
         }
-        textViewPresentation.setText(txtCurrentReading);
+
 
         dataSource.close();
     }
@@ -66,7 +80,7 @@ public class ReadingFragmentCurrent extends Fragment {
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 fragment_reading_current, container, false);
-        textViewPresentation = (TextView) rootView.findViewById(R.id.reading_current_book);
+        currentReadings =  rootView.findViewById(R.id.current_readings);
 
         populateCurrent();
 

@@ -14,6 +14,11 @@ import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading.BibleReadin
 import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.sharing.SharingActivity;
 
 
+/**
+ * The {@link Presentation} class is the controller of the main page of the application
+ * It is composed by three circle prividng access to other features (reading, praying and sharing).
+ * It also provide a way to access help page.
+ */
 public class Presentation extends AppCompatActivity {
 
     @Override
@@ -30,7 +35,7 @@ public class Presentation extends AppCompatActivity {
         this.setContentView(R.layout.activity_presentation);
 
         // on va chercher l'image qui porte l'id prayer image
-        ImageView prayImage = (ImageView) findViewById(R.id.prayImage);
+        ImageView prayImage = findViewById(R.id.prayImage);
 
 
 
@@ -39,6 +44,7 @@ public class Presentation extends AppCompatActivity {
         prayImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
                 // on declare l'intent d'accès à la vue praying
                 Intent intent = new Intent(Presentation.this.getApplicationContext(), PrayingActivity.class);
@@ -49,7 +55,7 @@ public class Presentation extends AppCompatActivity {
             }
         });
 
-        ImageButton helpButton = (ImageButton) findViewById ( R.id.helpButton );
+        ImageButton helpButton =  findViewById ( R.id.helpButton );
         // on definit ce qui se passe quand on clique dessus
         helpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,22 +72,20 @@ public class Presentation extends AppCompatActivity {
 
 
 
-        ImageView sharingActivity = (ImageView) findViewById(R.id.sharingImage);
+        ImageView sharingActivity = findViewById(R.id.sharingImage);
         sharingActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Presentation.this.getApplicationContext(), SharingActivity.class);
                 startActivity(intent);
-
             }
         });
-        ImageView bibleReadingActivity = (ImageView) findViewById(R.id.readingBibleImage);
+        ImageView bibleReadingActivity = findViewById(R.id.readingBibleImage);
         bibleReadingActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Presentation.this.getApplicationContext(), BibleReadingActivity.class);
                 startActivity(intent);
-
             }
         });
     }

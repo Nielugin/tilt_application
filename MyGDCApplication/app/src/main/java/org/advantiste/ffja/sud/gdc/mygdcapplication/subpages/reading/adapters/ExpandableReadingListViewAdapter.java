@@ -78,6 +78,8 @@ public class ExpandableReadingListViewAdapter extends BaseExpandableListAdapter{
 
     @Override
     public int getChildrenCount ( int groupPosition ) {
+        // to add the delete button de un comment this line
+        //return weeklyReadings.get ( groupPosition ).getReadingDetails ().size ()+1;
         return weeklyReadings.get ( groupPosition ).getReadingDetails ().size ();
     }
 
@@ -124,16 +126,28 @@ public class ExpandableReadingListViewAdapter extends BaseExpandableListAdapter{
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService ( Context.LAYOUT_INFLATER_SERVICE );
             convertView=layoutInflater.inflate ( R.layout.list_group ,null);
         }
-        TextView readingHeader =(TextView) convertView.findViewById ( R.id.labelReadingHeader );
+        TextView readingHeader = convertView.findViewById ( R.id.labelReadingHeader );
         readingHeader.setText ( groupTitle );
         return convertView;
     }
 
     @Override
     public View getChildView ( int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent ) {
+        // For delete button display, uncomment the following lines
+        /*        if(childPosition==getChildrenCount(groupPosition)-1){
+
+            if (convertView==null){
+                LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService ( Context.LAYOUT_INFLATER_SERVICE );
+                convertView=layoutInflater.inflate ( R.layout.reading_list_item_delete,null);
+
+            }
+
+        }else{
+        */
+
         if (convertView==null){
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService ( Context.LAYOUT_INFLATER_SERVICE );
-            convertView=layoutInflater.inflate ( R.layout.reading_list_item,null);
+            convertView=layoutInflater.inflate ( R.layout.reading_history_list_item,null);
         }
         ReadingDetail child = getChild ( groupPosition, childPosition );
         if(child!=null){
@@ -153,7 +167,7 @@ public class ExpandableReadingListViewAdapter extends BaseExpandableListAdapter{
 
 
         }
-
+        //      }
         return convertView;
     }
 

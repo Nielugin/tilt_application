@@ -6,9 +6,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -77,6 +75,7 @@ public class AddHistoryActivity extends AppCompatActivity {
                                 dateEnd.setText(dayOfMonth + "/"
                                         + (monthOfYear + 1) + "/" + year);
 
+
                             }
                         }, mYear, mMonth, mDay);
 
@@ -85,8 +84,10 @@ public class AddHistoryActivity extends AppCompatActivity {
 
                 datePickerDialog.show();
 
+
             }
         });
+        dateEnd.setActivated(false);
 
         dateEnd.setOnEditorActionListener ( new TextView.OnEditorActionListener ( ) {
             @Override
@@ -146,7 +147,7 @@ public class AddHistoryActivity extends AppCompatActivity {
 
         String dateEndText = dateEnd.getText ().toString ();
 
-        if(dateEndText!=null && !dateEndText.isEmpty ()){
+        if(dateEndText!=null && !dateEndText.isEmpty () && checkEndDate(dateEndText)){
 
 
 
@@ -162,6 +163,7 @@ public class AddHistoryActivity extends AppCompatActivity {
             Intent data = new Intent();
 
             data.putExtra("readBeginDate", mDay+"/"+(mMonth+1)+"/"+mYear);
+
             data.putExtra("readEndDate", dateEndText);
 
             formatReadings ( bookRows, data );
@@ -171,9 +173,14 @@ public class AddHistoryActivity extends AppCompatActivity {
             finish ();
         }
         else{
-            dateEnd.setError ( "Vous devez remplir la date ! " );
+            dateEnd.setError ( "La date doit être remplie au format dd/mm/YYYY! " );
         }
     }
+
+    private boolean checkEndDate(String dateEndText) {
+        return dateEndText.matches("^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[1,3-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$");
+    }
+
     private void formatReadings(List<BookRow> bookRows, Intent intent){
         intent.putExtra("totalReadingCount", bookRows.size () );
 

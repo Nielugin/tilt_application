@@ -18,12 +18,23 @@
                                 <PersistentState>
                                   <option name="children">
                                     <map>
+                                      <entry key="backgroundImage">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="scalingPercent" value="31" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                       <entry key="foregroundImage">
                                         <value>
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="109" />
+                                                <entry key="scalingPercent" value="98" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -33,9 +44,9 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="backgroundAssetType" value="COLOR" />
-                                      <entry key="foregroundImage" value="C:\Users\jean-\Developpement\git\tilt_application\documents\bible.png" />
-                                      <entry key="outputName" value="ic_bible" />
+                                      <entry key="backgroundImage" value="C:\Users\jean-\Developpement\git\tilt_application\documents\transparent.png" />
+                                      <entry key="foregroundImage" value="C:\Users\jean-\Developpement\git\tilt_application\documents\pray.png" />
+                                      <entry key="outputName" value="ic_prayer" />
                                     </map>
                                   </option>
                                 </PersistentState>
