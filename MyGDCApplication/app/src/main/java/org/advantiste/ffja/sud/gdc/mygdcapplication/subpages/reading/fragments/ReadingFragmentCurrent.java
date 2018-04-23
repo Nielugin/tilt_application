@@ -11,9 +11,14 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
+
 import org.advantiste.ffja.sud.gdc.mygdcapplication.R;
 import static org.advantiste.ffja.sud.gdc.mygdcapplication.R.layout.fragment_reading_current;
 
+import org.advantiste.ffja.sud.gdc.mygdcapplication.controller.EventManager;
+import org.advantiste.ffja.sud.gdc.mygdcapplication.model.events.ReadingDeleteEvent;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.BibleBook;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.WeeklyReading;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.WeeklyReadingDataSource;
@@ -30,6 +35,13 @@ public class ReadingFragmentCurrent extends Fragment {
 
     private WeeklyReadingDataSource dataSource;
     private LinearLayout currentReadings;
+    private EventBus eventBus;
+
+    @Subscribe
+    public void onReadingListInvalidated(ReadingDeleteEvent readingDeleteEvent){
+        populateCurrent();
+    }
+
 
     public void populateCurrent() {
         currentReadings.removeAllViews();
@@ -87,4 +99,19 @@ public class ReadingFragmentCurrent extends Fragment {
         return rootView;
     }
 
+
+    @Override
+    public void onPause() {
+        this.eventBus.unregister(this);
+
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        this.eventBus = EventManager.getInstance().getEventBus();
+        this.eventBus.register(this);
+
+        super.onResume();
+    }
 }

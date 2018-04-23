@@ -2,15 +2,23 @@ package org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.common.eventbus.EventBus;
+
 import org.advantiste.ffja.sud.gdc.mygdcapplication.R;
+import org.advantiste.ffja.sud.gdc.mygdcapplication.controller.EventManager;
+import org.advantiste.ffja.sud.gdc.mygdcapplication.model.events.ReadingDeleteEvent;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.BibleBook;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.WeeklyReading;
+import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.WeeklyReadingDataSource;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +28,7 @@ import java.util.Map;
 
 public class ExpandableReadingListViewAdapter extends BaseExpandableListAdapter{
 
+    private final EventBus eventBus;
     // application context
     private Context context;
 
@@ -27,9 +36,10 @@ public class ExpandableReadingListViewAdapter extends BaseExpandableListAdapter{
     private List<WeeklyReading> weeklyReadings;
 
 
-    public ExpandableReadingListViewAdapter ( Context context, List<WeeklyReading> weeklyReadings){
+    public ExpandableReadingListViewAdapter (Context context, List<WeeklyReading> weeklyReadings){
         this.context= context;
         this.weeklyReadings = weeklyReadings;
+        this.eventBus = EventManager.getInstance().getEventBus();
 
     }
 
@@ -79,8 +89,8 @@ public class ExpandableReadingListViewAdapter extends BaseExpandableListAdapter{
     @Override
     public int getChildrenCount ( int groupPosition ) {
         // to add the delete button de un comment this line
-        //return weeklyReadings.get ( groupPosition ).getReadingDetails ().size ()+1;
-        return weeklyReadings.get ( groupPosition ).getReadingDetails ().size ();
+        return weeklyReadings.get ( groupPosition ).getReadingDetails ().size ()+1;
+        //return weeklyReadings.get ( groupPosition ).getReadingDetails ().size ();
     }
 
     @Override
@@ -121,7 +131,11 @@ public class ExpandableReadingListViewAdapter extends BaseExpandableListAdapter{
 
     @Override
     public View getGroupView ( int groupPosition, boolean isExpanded, View convertView, ViewGroup parent ) {
-        String groupTitle = "Semaine "+getGroup ( groupPosition ).getWeekNumber ();
+
+        long endDate = getGroup(groupPosition).getEndDate();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(endDate);
+        String groupTitle = "Lecture pour le  "+ String.format("%02d/%02d/%04d",calendar.get(Calendar.DAY_OF_MONTH),calendar.get(Calendar.MONTH),calendar.get(Calendar.YEAR));
         if (convertView==null){
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService ( Context.LAYOUT_INFLATER_SERVICE );
             convertView=layoutInflater.inflate ( R.layout.list_group ,null);
@@ -132,18 +146,30 @@ public class ExpandableReadingListViewAdapter extends BaseExpandableListAdapter{
     }
 
     @Override
-    public View getChildView ( int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent ) {
+    public View getChildView (final int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent ) {
         // For delete button display, uncomment the following lines
-        /*        if(childPosition==getChildrenCount(groupPosition)-1){
+                if(childPosition==getChildrenCount(groupPosition)-1){
 
             if (convertView==null){
                 LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService ( Context.LAYOUT_INFLATER_SERVICE );
                 convertView=layoutInflater.inflate ( R.layout.reading_list_item_delete,null);
+                ImageButton deleteReading = convertView.findViewById(R.id.delete_reading);
+                deleteReading.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        WeeklyReading weeklyReading = getGroup(groupPosition);
+                        WeeklyReadingDataSource weeklyReadingDataSource = new WeeklyReadingDataSource(context);
+                        weeklyReadingDataSource.open();
+                        weeklyReadingDataSource.deleteWeeklyReading(weeklyReading);
+                        weeklyReadingDataSource.close();
+                        eventBus.post(new ReadingDeleteEvent(weeklyReading));
+                    }
+                });
 
             }
 
         }else{
-        */
+
 
         if (convertView==null){
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService ( Context.LAYOUT_INFLATER_SERVICE );
@@ -167,7 +193,7 @@ public class ExpandableReadingListViewAdapter extends BaseExpandableListAdapter{
 
 
         }
-        //      }
+           }
         return convertView;
     }
 

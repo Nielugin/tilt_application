@@ -4,19 +4,23 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
+import android.util.EventLog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
+
 import org.advantiste.ffja.sud.gdc.mygdcapplication.R;
+import org.advantiste.ffja.sud.gdc.mygdcapplication.controller.EventManager;
+import org.advantiste.ffja.sud.gdc.mygdcapplication.model.events.PrayerDeleteEvent;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.prayers.Prayer;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.prayers.PrayerDataSource;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.praying.adapter.ExpandableListViewPrayerAdapter;
@@ -24,10 +28,6 @@ import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.praying.fragments.m
 
 import java.util.Calendar;
 import java.util.List;
-
-import static android.text.InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE;
-import static android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE;
-import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 /**
  * Created by erc on 23/02/18.
@@ -40,22 +40,27 @@ public class PrayingFragmentList extends Fragment {
     private ExpandableListView listView;
     private TableLayout tableLayout;
     private boolean isOpened=false;
+    private EventBus eventBus;
 
 
     public void populateListPrayer() {
         dataSource = new PrayerDataSource(this.getContext());
         dataSource.open();
         List<Prayer> prayers = dataSource.getAllPrayers();
-        ExpandableListViewPrayerAdapter expandableListViewPrayerAdapter = new ExpandableListViewPrayerAdapter ( this.getContext ( ), prayers, new ExpandableListViewPrayerAdapter.InvalidationListener ( ) {
-            @Override
-            public void onInvalidation () {
-                populateListPrayer ();
-            }
-        } );
+        ExpandableListViewPrayerAdapter expandableListViewPrayerAdapter = new ExpandableListViewPrayerAdapter ( this.getContext ( ), prayers );
         listView.setAdapter ( expandableListViewPrayerAdapter );
 
 
     }
+
+    @Subscribe
+    public void invalidatePrayerList(PrayerDeleteEvent prayerDeleteEvent){
+    populateListPrayer();
+    }
+
+
+
+
 
     @Override
     public View onCreateView( final LayoutInflater inflater, final ViewGroup container,
@@ -214,13 +219,19 @@ public class PrayingFragmentList extends Fragment {
     @Override
     public void onResume() {
         dataSource.open();
+        EventManager eventManager = EventManager.getInstance();
+        this.eventBus = eventManager.getEventBus();
+        this.eventBus.register(this);
         super.onResume();
     }
 
     @Override
     public void onPause() {
         dataSource.close();
+        this.eventBus.unregister(this);
         super.onPause();
     }
+
+
 
 }

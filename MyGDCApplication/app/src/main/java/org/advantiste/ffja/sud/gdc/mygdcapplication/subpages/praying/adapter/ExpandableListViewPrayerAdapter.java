@@ -1,7 +1,6 @@
 package org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.praying.adapter;
 
 import android.content.Context;
-import android.graphics.drawable.Icon;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,11 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.common.eventbus.EventBus;
+
 import org.advantiste.ffja.sud.gdc.mygdcapplication.R;
+import org.advantiste.ffja.sud.gdc.mygdcapplication.controller.EventManager;
+import org.advantiste.ffja.sud.gdc.mygdcapplication.model.events.PrayerDeleteEvent;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.prayers.Prayer;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.prayers.PrayerDataSource;
 
@@ -22,18 +25,17 @@ import java.util.List;
 public class ExpandableListViewPrayerAdapter extends BaseExpandableListAdapter {
 
 
-    private final InvalidationListener invalidator;
+    private final EventBus eventBus;
     // application context
     private Context context;
 
     //weekly reading list
     private List<Prayer> listOfPray;
 
-    public ExpandableListViewPrayerAdapter(Context context, List<Prayer> listOfPray, InvalidationListener invalidationListener){
+    public ExpandableListViewPrayerAdapter(Context context, List<Prayer> listOfPray){
         this.context= context;
         this.listOfPray = listOfPray;
-        this.invalidator = invalidationListener;
-
+        this.eventBus = EventManager.getInstance().getEventBus();
     }
 
     class PrayingDetail {
@@ -141,7 +143,7 @@ public class ExpandableListViewPrayerAdapter extends BaseExpandableListAdapter {
                     source.open ();
                     source.deletePrayerById ( child.getId () );
                     source.close ();
-                    invalidator.onInvalidation ();
+                    ExpandableListViewPrayerAdapter.this.eventBus.post(new PrayerDeleteEvent(child.getId()));
                 }
             } );
 
@@ -162,9 +164,5 @@ public class ExpandableListViewPrayerAdapter extends BaseExpandableListAdapter {
         return false;
     }
 
-    public interface InvalidationListener {
 
-        void onInvalidation();
-
-    }
 }
