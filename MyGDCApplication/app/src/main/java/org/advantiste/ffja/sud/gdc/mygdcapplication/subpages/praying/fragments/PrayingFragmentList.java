@@ -38,7 +38,6 @@ public class PrayingFragmentList extends Fragment {
 
     private PrayerDataSource dataSource;
     private ExpandableListView listView;
-    private TableLayout tableLayout;
     private boolean isOpened=false;
     private EventBus eventBus;
 
@@ -55,7 +54,7 @@ public class PrayingFragmentList extends Fragment {
 
     @Subscribe
     public void invalidatePrayerList(PrayerDeleteEvent prayerDeleteEvent){
-    populateListPrayer();
+        populateListPrayer();
     }
 
 
@@ -68,7 +67,7 @@ public class PrayingFragmentList extends Fragment {
         final ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_praying_list, container, false);
         listView =  rootView.findViewById(R.id.praying_list);
-        tableLayout =  rootView.findViewById(R.id.praying_list_topics);
+        TableLayout tableLayout = rootView.findViewById(R.id.praying_list_topics);
 
 
 
@@ -81,133 +80,98 @@ public class PrayingFragmentList extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if(!isOpened){
-                    LinearLayout ajouterPriereBlock = (LinearLayout ) inflater.inflate ( R.layout.add_prayer_view, container, false );
-
-
-                    // on crée une nouveau champ éditable
-                    final EditText editTopic = (EditText)ajouterPriereBlock.findViewById ( R.id.prayer_topic );
-                    editTopic .setHint("Sujet");
-
-                    final EditText editComment = (EditText)ajouterPriereBlock.findViewById ( R.id.prayer_description);
-
-                    editComment.setHint("Description");
-
-
-
-
-                    ImageButton addTopic = (ImageButton)ajouterPriereBlock.findViewById ( R.id.add_prayer_button);
-                    addTopic.getBackground ().setAlpha ( 0 );
-                    Drawable drawable = getResources ( ).getDrawable ( R.drawable.ic_add_circle_black_24dp);
-                    addTopic.setImageDrawable(drawable);
-
-                    addTopic.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-
-                            Editable textTopic = editTopic.getText ( );
-                            Editable textTopicComment = editComment.getText ( );
-
-                            if(textTopic!=null && !textTopic.toString ().isEmpty () && textTopicComment!=null && !textTopicComment.toString ().isEmpty ()){
-                                Calendar calendar = Calendar.getInstance();
-
-                                // récupération de la date d'aujourd'hui à 00h00
-                                calendar.setTimeInMillis(System.currentTimeMillis());
-                                calendar.set(Calendar.HOUR,0);
-                                calendar.set(Calendar.MINUTE,0);
-                                calendar.set(Calendar.SECOND,0);
-                                calendar.set(Calendar.MILLISECOND,0);
-
-                                // récupération des données depuis la base de données
-                                PrayerDataSource dataSource = new PrayerDataSource(getContext ());
-                                dataSource.open();
-                                //TODO : vérifier les paramètres !!
-                                dataSource.createPrayer(calendar.getTimeInMillis(),-1,editTopic.getText().toString(),editComment.getText().toString());
-                                dataSource.close();
-
-                                System.out.println(" ############## AJOUTé TO SQLite");
-                                // Mise à jour de l'historique
-                                ListRowItem.ListRowListener lrl = new ListRowItem.ListRowListener() {
-                                    @Override
-                                    public void updateList() {
-                                        //TODO : Doit mettre à jour la liste de sujet :(
-                                        populateListPrayer();
-                                        System.out.println(" ############## Doit mettre a jour !");
-                                    }
-                                };
-                                lrl.updateList();
-
-                                isOpened = false;
-                                addPrayerHolder.removeAllViews ();
-                                addButtonAction.setText ( R.string.ajouter );
-                                isOpened =!isOpened;
-
-                            }
-                            else{
-                                if(!(textTopic!=null && !textTopic.toString ().isEmpty ()) ){
-                                    editTopic.setError ( "Le sujet ne peut  être vide." );
-                                }
-                                if(!(textTopicComment!=null && !textTopicComment.toString ().isEmpty ())){
-                                    editComment.setError ( "Le commentaire ne peut  être vide." );
-
-                                }
-                            }
-
-
-
-
-                        }
-                    });
-
-
-
-                    addPrayerHolder.addView ( ajouterPriereBlock );
-                    isOpened =!isOpened;
-
-                    addButtonAction.setText ( R.string.annuler );
-
-                }
-                else{
-                    finishEdit ( addPrayerHolder, addButtonAction );
-                }
+                onAddButton(inflater, container, addPrayerHolder, addButtonAction);
             }
 
         });
 
-
-
-
-        /* Remove all prayers
-        dataSource = new PrayerDataSource(this.getContext());
-        dataSource.open();
-        dataSource.deleteAllPrayers();
-        dataSource.close();
-        /* */
-
-        //TODO : ajouter le bouton qui va avec
-
-        /*
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR,0);
-        calendar.set(Calendar.MINUTE,0);
-        calendar.set(Calendar.SECOND,0);
-        calendar.set(Calendar.MILLISECOND,0);
-        long beginDate = calendar.getTimeInMillis()-3*604800000;
-        calendar.setTimeInMillis(beginDate+604800000); //oneWeek);
-        long endDate =  calendar.getTimeInMillis();
-        dataSource.createPrayer(beginDate, -1, "Mega TILT",null);
-        dataSource.createPrayer(beginDate, endDate, "Julie", "boulot");
-        beginDate = endDate;
-        endDate += 604800000;
-        dataSource.createPrayer(beginDate, endDate, "Bob", "études");
-        beginDate = endDate;
-        dataSource.createPrayer(beginDate, -1, "Assemblée en ARLES",null);
-        */
-
         populateListPrayer();
         return rootView;
+    }
+
+    private void onAddButton(LayoutInflater inflater, ViewGroup container, final LinearLayout addPrayerHolder, final TextView addButtonAction) {
+        if(!isOpened){
+            LinearLayout ajouterPriereBlock = (LinearLayout ) inflater.inflate ( R.layout.add_prayer_view, container, false );
+
+            // on crée une nouveau champ éditable
+            final EditText editTopic = ajouterPriereBlock.findViewById ( R.id.prayer_topic );
+            editTopic .setHint(R.string.subject);
+
+            final EditText editComment = ajouterPriereBlock.findViewById ( R.id.prayer_description);
+            editComment.setHint(R.string.description);
+
+
+            ImageButton addTopic = ajouterPriereBlock.findViewById ( R.id.add_prayer_button);
+            addTopic.getBackground ().setAlpha ( 0 );
+            Drawable drawable = getResources ( ).getDrawable ( R.drawable.ic_add_circle_black_24dp);
+            addTopic.setImageDrawable(drawable);
+
+            addTopic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    addTopicAction(editTopic, editComment, addPrayerHolder, addButtonAction);
+                }
+            });
+
+            addPrayerHolder.addView ( ajouterPriereBlock );
+            isOpened =!isOpened;
+
+            addButtonAction.setText ( R.string.annuler );
+
+        }
+        else{
+            finishEdit ( addPrayerHolder, addButtonAction );
+        }
+    }
+
+    private void addTopicAction(EditText editTopic, EditText editComment, LinearLayout addPrayerHolder, TextView addButtonAction) {
+        Editable textTopic = editTopic.getText ( );
+        Editable textTopicComment = editComment.getText ( );
+
+        if(textTopic!=null && !textTopic.toString ().isEmpty () && textTopicComment!=null && !textTopicComment.toString ().isEmpty ()){
+            Calendar calendar = Calendar.getInstance();
+
+            // récupération de la date d'aujourd'hui à 00h00
+            calendar.setTimeInMillis(System.currentTimeMillis());
+            calendar.set(Calendar.HOUR,0);
+            calendar.set(Calendar.MINUTE,0);
+            calendar.set(Calendar.SECOND,0);
+            calendar.set(Calendar.MILLISECOND,0);
+
+            // récupération des données depuis la base de données
+            PrayerDataSource dataSource = new PrayerDataSource(getContext ());
+            dataSource.open();
+            //TODO : vérifier les paramètres !!
+            dataSource.createPrayer(calendar.getTimeInMillis(),-1,editTopic.getText().toString(),editComment.getText().toString());
+            dataSource.close();
+
+            System.out.println(" ############## AJOUTé TO SQLite");
+            // Mise à jour de l'historique
+            ListRowItem.ListRowListener lrl = new ListRowItem.ListRowListener() {
+                @Override
+                public void updateList() {
+                    //TODO : Doit mettre à jour la liste de sujet :(
+                    populateListPrayer();
+                    System.out.println(" ############## Doit mettre a jour !");
+                }
+            };
+            lrl.updateList();
+
+            isOpened = false;
+            addPrayerHolder.removeAllViews ();
+            addButtonAction.setText ( R.string.ajouter );
+            isOpened =!isOpened;
+
+        }
+        else{
+            if(!(textTopic!=null && !textTopic.toString ().isEmpty ()) ){
+                editTopic.setError ( "Le sujet ne peut  être vide." );
+            }
+            if(!(textTopicComment!=null && !textTopicComment.toString ().isEmpty ())){
+                editComment.setError ( "Le commentaire ne peut  être vide." );
+
+            }
+        }
     }
 
     private void finishEdit ( LinearLayout addPrayerHolder, TextView addButtonAction ) {

@@ -182,7 +182,7 @@ public class ExpandableReadingListViewAdapter extends BaseExpandableListAdapter{
             TextView readingBookReference =convertView.findViewById ( R.id.item_book_reference );
             int begin = child.getBegin ( );
             int end = child.getEnd ( );
-            if(  child.getBibleBook ()!=null){
+            if(  readingBook!=null && child.getBibleBook ()!=null){
                 String longName = child.getBibleBook ( ).getLongName ( );
                 readingBook.setText ( longName );
 

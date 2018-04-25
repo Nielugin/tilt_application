@@ -16,8 +16,6 @@ import org.advantiste.ffja.sud.gdc.mygdcapplication.R;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.BibleBook;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.BibleBookChapterAssociation;
 
-import java.util.HashMap;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,10 +41,6 @@ public class BookRow extends Fragment {
 
         void removeAction();
     }
-
-
-
-
 
     public BookRow () {
         // Required empty public constructor
@@ -82,7 +76,7 @@ public class BookRow extends Fragment {
 
         context=view.getContext ();
 
-            /* ************** Gestion des Spinner */
+        /* ************** Gestion des Spinner */
         bookSpinner = view.findViewById( R.id.bookSpinner);
         String[] mBookArray = getResources().getStringArray(R.array.book_values);
         ////////////////////////////////////////////////////////////////
@@ -115,6 +109,12 @@ public class BookRow extends Fragment {
         BibleBookChapterAssociation bbca = new BibleBookChapterAssociation();
         maxChapter = bbca.getBibleIntegerEnumMap().get(book);
 
+        initBeginEndBook(view);
+
+        initCloseButton(view);
+    }
+
+    private void initBeginEndBook(View view) {
         bookBegin =  view.findViewById(R.id.bookBegin);
         bookEnd = view.findViewById(R.id.bookEnd);
 
@@ -150,7 +150,9 @@ public class BookRow extends Fragment {
             }
 
         });
+    }
 
+    private void initCloseButton(View view) {
         ImageButton closeButton = view.findViewById(R.id.deleteReadingButton);
 
         closeButton.setOnClickListener (new View.OnClickListener ( ) {
