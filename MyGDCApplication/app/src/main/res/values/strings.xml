@@ -58,4 +58,6 @@
     <string name="delete">Supprimer</string>
     <string name="name">Nom</string>
     <string name="history">Historique</string>
+    <string name="introduction_text">L’application vous permet de suivre le déroulement d’un GDC et de noter certaines informations.</string>
+    <string name="introduction_title">A quoi ça sert ?</string>
 </resources>

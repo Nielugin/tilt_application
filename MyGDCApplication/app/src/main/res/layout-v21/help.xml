@@ -33,28 +33,16 @@
             android:text="@string/introduction_text"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
-
         <TextView
-            android:id="@+id/textView13"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/qu_est_ce_qu_un_gdc"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:paddingStart="8dp"
             android:paddingTop="8dp"
-            android:text="@string/qu_est_ce_qu_un_gdc"
             android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-        <TextView
-            android:id="@+id/textView14"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:paddingStart="8dp"
-            android:paddingTop="8dp"
-            android:text="@string/gdc_c_quoi"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         <TextView
             android:layout_width="match_parent"
@@ -87,7 +75,7 @@
             android:paddingStart="8dp"
             android:paddingTop="8dp"
             android:text="@string/lecture_approfondie_de_la_bible"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            android:textAppearance="@android:style/TextAppearance.Material.Body1" />
 
 
         <TextView
@@ -98,7 +86,8 @@
             android:paddingStart="8dp"
             android:paddingTop="8dp"
             android:text="@string/vecu"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            android:textAppearance="@android:style/TextAppearance.Material.Body1" />
+
 
 
         <TextView
@@ -121,7 +110,7 @@
             android:paddingStart="8dp"
             android:paddingTop="8dp"
             android:text="La rubrique “Lire” vous permet de noter semaine par semaine les passages que vous avez lu en appuyant sur “Ajouter”. En appuyant sur “lire” en face de la lecture de la semaine, vous basculerez sur le début du texte correspondant dans l’application Bible YouVersion. "
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            android:textAppearance="@android:style/TextAppearance.Material.Body1" />
 
         <TextView
             android:id="@+id/textView16"
@@ -143,7 +132,7 @@
             android:paddingStart="8dp"
             android:paddingTop="8dp"
             android:text="La rubrique “Partager” explique le déroulement d’une rencontre et permet d’orienter la conversation avec des suggestions de questions sur lesquelles échanger. En appuyant sur “Ajouter”, vous pourrez personnaliser ce guide par les questions que vous voulez. "
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            android:textAppearance="@android:style/TextAppearance.Material.Body1" />
 
         <TextView
             android:layout_width="match_parent"
@@ -164,7 +153,8 @@
             android:paddingStart="8dp"
             android:paddingTop="8dp"
             android:text="La rubrique “Prier” vous permet d’ajouter les sujets de prière que vous partagez avec votre partenaire. "
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            android:textAppearance="@android:style/TextAppearance.Material.Body1" />
+
 
         <TextView
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
@@ -181,7 +171,7 @@
             android:paddingRight="8dp"
             android:paddingTop="8dp"
             android:text="@string/prier_pour_partenaire_title"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            android:textAppearance="@android:style/TextAppearance.Material.Body1" />
 
         <TextView
             android:layout_width="match_parent"
@@ -190,7 +180,8 @@
             android:paddingRight="8dp"
             android:paddingTop="8dp"
             android:text="@string/reponse_trouver_partenaire"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            android:textAppearance="@android:style/TextAppearance.Material.Body1" />
+
 
     </LinearLayout>
 
