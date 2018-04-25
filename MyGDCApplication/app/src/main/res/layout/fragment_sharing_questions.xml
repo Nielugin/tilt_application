@@ -96,6 +96,8 @@
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+
             android:text="@string/sharing_question_1" />
 
         <TextView
@@ -104,6 +106,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="@string/sharing_question_2" />
 
         <TextView
@@ -112,6 +115,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="@string/sharing_question_3" />
 
         <TextView
@@ -120,6 +124,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="@string/sharing_question_4" />
 
         <TextView
@@ -128,6 +133,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="@string/sharing_question_5" />
 
         <TextView
@@ -136,6 +142,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="@string/sharing_question_6" />
 
         <TextView
@@ -144,6 +151,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="@string/sharing_question_7" />
 
         <TextView
@@ -152,6 +160,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="@string/sharing_question_8" />
 
         <TextView
@@ -160,6 +169,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="@string/sharing_question_9" />
 
 
