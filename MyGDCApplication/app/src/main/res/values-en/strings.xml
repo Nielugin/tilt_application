@@ -54,4 +54,9 @@
     <string name="delete">Delete</string>
     <string name="name">Name</string>
     <string name="history">Historique</string>
+    <string name="introduction_text">The application allows you to follow the progress of a GDC and to note certain information.</string>
+    <string name="introduction_title">What\'s the point ?</string>
+    <string name="hepl_pray_text">" The \"Praying\" section allows you to add prayer topics that you share with your partner."</string>
+    <string name="help_share_text">The \"Share\" section explains the course of a meeting and helps to guide the conversation with suggestions for questions to exchange. By pressing \"Add\", you can customize this guide by the questions you want.</string>
+    <string name="help_read_text">" The section \"Read\" allows you to note week by week the passages you have read by pressing \"Add\". By pressing \"read\" in front of the reading of the week, you will switch to the beginning of the corresponding text in the Bible YouVersion application."</string>
 </resources>

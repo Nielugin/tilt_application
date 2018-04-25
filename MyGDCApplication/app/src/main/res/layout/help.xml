@@ -120,7 +120,7 @@
             android:paddingRight="8dp"
             android:paddingStart="8dp"
             android:paddingTop="8dp"
-            android:text="La rubrique “Lire” vous permet de noter semaine par semaine les passages que vous avez lu en appuyant sur “Ajouter”. En appuyant sur “lire” en face de la lecture de la semaine, vous basculerez sur le début du texte correspondant dans l’application Bible YouVersion. "
+            android:text="@string/help_read_text"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         <TextView
@@ -142,7 +142,7 @@
             android:paddingRight="8dp"
             android:paddingStart="8dp"
             android:paddingTop="8dp"
-            android:text="La rubrique “Partager” explique le déroulement d’une rencontre et permet d’orienter la conversation avec des suggestions de questions sur lesquelles échanger. En appuyant sur “Ajouter”, vous pourrez personnaliser ce guide par les questions que vous voulez. "
+            android:text="@string/help_share_text"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         <TextView
@@ -163,7 +163,7 @@
             android:paddingRight="8dp"
             android:paddingStart="8dp"
             android:paddingTop="8dp"
-            android:text="La rubrique “Prier” vous permet d’ajouter les sujets de prière que vous partagez avec votre partenaire. "
+            android:text="@string/hepl_pray_text"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         <TextView
