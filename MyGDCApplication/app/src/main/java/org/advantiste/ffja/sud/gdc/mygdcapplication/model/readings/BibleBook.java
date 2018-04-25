@@ -32,7 +32,7 @@ public enum BibleBook {
     ISAIAH("Es","Esaïe","ISA"),
     JEREMIAH("Jé","Jérémie","JER"),
     LAMENTATIONS("La","Lamentations","LAM"),
-    EZEKIEL("Ez","Ezekiel","ESK"),
+    EZEKIEL("Ez","Ezekiel","EZK"),
     DANIEL("Da","Daniel","DAN"),
     HOSEA("Os","Osée","HOS"),
     JOEL("Joë","Joel","JOL"),
