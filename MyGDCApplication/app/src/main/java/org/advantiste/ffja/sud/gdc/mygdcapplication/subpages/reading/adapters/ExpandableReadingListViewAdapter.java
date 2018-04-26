@@ -1,6 +1,8 @@
 package org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.reading.adapters;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,6 +19,7 @@ import org.advantiste.ffja.sud.gdc.mygdcapplication.model.events.ReadingDeleteEv
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.BibleBook;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.WeeklyReading;
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings.WeeklyReadingDataSource;
+import org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.praying.adapter.ExpandableListViewPrayerAdapter;
 
 import java.util.Calendar;
 import java.util.List;
@@ -48,7 +51,7 @@ public class ExpandableReadingListViewAdapter extends BaseExpandableListAdapter{
         private BibleBook bibleBook;
         private int begin;
         private int end;
-        public ReadingDetail(BibleBook bibleBook, int begin, int end){
+        ReadingDetail(BibleBook bibleBook, int begin, int end){
             this.bibleBook = bibleBook;
             this.begin=  begin;
             this.end = end;
@@ -56,12 +59,8 @@ public class ExpandableReadingListViewAdapter extends BaseExpandableListAdapter{
         }
 
 
-        public BibleBook getBibleBook () {
+        BibleBook getBibleBook() {
             return bibleBook;
-        }
-
-        public void setBibleBook ( BibleBook bibleBook ) {
-            this.bibleBook = bibleBook;
         }
 
         public int getBegin () {
@@ -135,46 +134,65 @@ public class ExpandableReadingListViewAdapter extends BaseExpandableListAdapter{
         long endDate = getGroup(groupPosition).getEndDate();
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(endDate);
-        String groupTitle = "Lecture pour le  "+ String.format("%02d/%02d/%04d",calendar.get(Calendar.DAY_OF_MONTH),calendar.get(Calendar.MONTH),calendar.get(Calendar.YEAR));
-        if (convertView==null){
-            LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService ( Context.LAYOUT_INFLATER_SERVICE );
+        String groupTitle = "Lecture pour le  " +
+                String.format(context.getString(R.string.two_digit_format), calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH), calendar.get(Calendar.YEAR));
+        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService ( Context.LAYOUT_INFLATER_SERVICE );
+        if (convertView==null && layoutInflater!=null){
             convertView=layoutInflater.inflate ( R.layout.list_group ,null);
         }
-        TextView readingHeader = convertView.findViewById ( R.id.labelReadingHeader );
-        readingHeader.setText ( groupTitle );
+        if (convertView!=null){
+            TextView readingHeader = convertView.findViewById ( R.id.labelReadingHeader );
+            readingHeader.setText ( groupTitle );
+        }
         return convertView;
     }
 
     @Override
     public View getChildView (final int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent ) {
+        System.out.println(groupPosition +"=>"+getChildrenCount(groupPosition)+" => "+ childPosition + " "+getChild(groupPosition,childPosition)+" "+ isLastChild);
         // For delete button display, uncomment the following lines
-                if(childPosition==getChildrenCount(groupPosition)-1){
-
-            if (convertView==null){
-                LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService ( Context.LAYOUT_INFLATER_SERVICE );
-                convertView=layoutInflater.inflate ( R.layout.reading_list_item_delete,null);
-                ImageButton deleteReading = convertView.findViewById(R.id.delete_reading);
-                deleteReading.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        WeeklyReading weeklyReading = getGroup(groupPosition);
-                        WeeklyReadingDataSource weeklyReadingDataSource = new WeeklyReadingDataSource(context);
-                        weeklyReadingDataSource.open();
-                        weeklyReadingDataSource.deleteWeeklyReading(weeklyReading);
-                        weeklyReadingDataSource.close();
-                        eventBus.post(new ReadingDeleteEvent(weeklyReading));
-                    }
-                });
-
-            }
+        if(childPosition==getChildrenCount(groupPosition)-1){
+            convertView = loadDeleteItem(groupPosition, convertView);
 
         }else{
-
-
-        if (convertView==null){
-            LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService ( Context.LAYOUT_INFLATER_SERVICE );
-            convertView=layoutInflater.inflate ( R.layout.reading_history_list_item,null);
+            convertView = loadReadingItem(groupPosition, childPosition, convertView);
         }
+        return convertView;
+    }
+
+    /**
+     * Loads a delete item
+     * @param groupPosition The given group position
+     * @param convertView The old (and reusable) view
+     * @return The updated reading list item view
+     */
+    private View loadDeleteItem(final int groupPosition, View convertView) {
+        convertView = checkAndLoadDeleteItem(convertView);
+        ImageButton deleteReading = convertView.findViewById(R.id.delete_reading);
+        deleteReading.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WeeklyReading weeklyReading = getGroup(groupPosition);
+                WeeklyReadingDataSource weeklyReadingDataSource = new WeeklyReadingDataSource(context);
+                weeklyReadingDataSource.open();
+                weeklyReadingDataSource.deleteWeeklyReading(weeklyReading);
+                weeklyReadingDataSource.close();
+                eventBus.post(new ReadingDeleteEvent(weeklyReading));
+            }
+        });
+        return convertView;
+    }
+
+    /**
+     * Loads a reading item
+     * @param groupPosition The given group position
+     * @param childPosition The given child position within the group
+     * @param convertView The old (and reusable) view
+     * @return The updated reading list item view
+     */
+    private View loadReadingItem(int groupPosition, int childPosition, View convertView) {
+        convertView = checkAndLoadReadingItem(convertView);
+
         ReadingDetail child = getChild ( groupPosition, childPosition );
         if(child!=null){
 
@@ -190,10 +208,53 @@ public class ExpandableReadingListViewAdapter extends BaseExpandableListAdapter{
                 references += " à "+String.valueOf ( end );
                 readingBookReference.setText ( references  );
             }
-
-
         }
-           }
+        return convertView;
+    }
+
+    /**
+     * Checks if the current convert view is already the write one otherwise, it loads a delete item view.
+     * @param convertView The old convert view
+     * @return The given view if the check is ok, a new delete item view otherwise.
+     */
+    private View checkAndLoadDeleteItem(View convertView) {
+        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        if (convertView==null &&layoutInflater!=null) {
+            convertView = layoutInflater.inflate(R.layout.reading_list_item_delete, null);
+        }
+        if(convertView!=null){
+
+            ImageButton deleteReading = convertView.findViewById(R.id.delete_reading);
+            if(deleteReading==null &&layoutInflater!=null) {
+                convertView = layoutInflater.inflate(R.layout.reading_list_item_delete, null);
+            }
+        }else{
+            Log.e(ExpandableListViewPrayerAdapter.class.getSimpleName(),"Convert view shall not be null here");
+        }
+        return convertView;
+    }
+
+
+    /**
+     * Checks if the current convert view is already the write one otherwise, it loads a reading item view.
+     * @param convertView The old convert view
+     * @return The given view if the check is ok, a new reading item view otherwise.
+     */
+    private View checkAndLoadReadingItem(View convertView) {
+        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService ( Context.LAYOUT_INFLATER_SERVICE );
+        if (convertView==null && layoutInflater!=null){
+            convertView=layoutInflater.inflate ( R.layout.reading_history_list_item,null);
+        }
+        if(convertView!=null){
+
+            TextView readingBook =convertView.findViewById ( R.id.item_book_name);
+            if (readingBook==null&& layoutInflater!=null){
+                convertView=layoutInflater.inflate ( R.layout.reading_history_list_item,null);
+            }
+        }
+        else{
+            Log.e(ExpandableListViewPrayerAdapter.class.getSimpleName(),"Convert view shall not be null here");
+        }
         return convertView;
     }
 

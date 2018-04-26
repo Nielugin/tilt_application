@@ -65,4 +65,5 @@
     <string name="help_read_text">La rubrique “Lire” vous permet de noter semaine par semaine les passages que vous avez lu en appuyant sur “Ajouter”. En appuyant sur “lire” en face de la lecture de la semaine, vous basculerez sur le début du texte correspondant dans l’application Bible YouVersion.</string>
     <string name="subject">Sujet</string>
     <string name="description">Description</string>
+    <string name="two_digit_format">%02d/%02d/%04d</string>
 </resources>
