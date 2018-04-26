@@ -33,28 +33,46 @@ public class Presentation extends AppCompatActivity {
 
         // Ca c'est la vue qu'on va chercher
         this.setContentView(R.layout.activity_presentation);
+        initPrayingButton();
 
-        // on va chercher l'image qui porte l'id prayer image
-        ImageView prayImage = findViewById(R.id.prayImage);
+        initHelpButton();
+        initReadingButton();
+        initSharingButton();
+    }
 
-
-
-
-        // on definit ce qui se passe quand on clique dessus
-        prayImage.setOnClickListener(new View.OnClickListener() {
+    /**
+     * Inits the sharing action on button click
+     */
+    private void initSharingButton() {
+        ImageView sharingActivity = findViewById(R.id.sharingImage);
+        sharingActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                // on declare l'intent d'accès à la vue praying
-                Intent intent = new Intent(Presentation.this.getApplicationContext(), PrayingActivity.class);
-
-               // on bascule sur l'autre activité
+                Intent intent = new Intent(Presentation.this.getApplicationContext(), SharingActivity.class);
                 startActivity(intent);
-
             }
         });
+    }
 
+    /**
+          * Inits the reading action on button click
+
+     */
+    private void initReadingButton() {
+        ImageView bibleReadingActivity = findViewById(R.id.readingBibleImage);
+        bibleReadingActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Presentation.this.getApplicationContext(), BibleReadingActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    /**
+     * Inits the help action on button click
+     */
+    private void initHelpButton() {
         ImageButton helpButton =  findViewById ( R.id.helpButton );
         // on definit ce qui se passe quand on clique dessus
         helpButton.setOnClickListener(new View.OnClickListener() {
@@ -69,23 +87,27 @@ public class Presentation extends AppCompatActivity {
 
             }
         });
+    }
 
+    /**
+     * Inits the praying action on button click
+     */
+    private void initPrayingButton() {
+        // on va chercher l'image qui porte l'id prayer image
+        ImageView prayImage = findViewById(R.id.prayImage);
 
-
-        ImageView sharingActivity = findViewById(R.id.sharingImage);
-        sharingActivity.setOnClickListener(new View.OnClickListener() {
+        // on definit ce qui se passe quand on clique dessus
+        prayImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Presentation.this.getApplicationContext(), SharingActivity.class);
+
+
+                // on declare l'intent d'accès à la vue praying
+                Intent intent = new Intent(Presentation.this.getApplicationContext(), PrayingActivity.class);
+
+               // on bascule sur l'autre activité
                 startActivity(intent);
-            }
-        });
-        ImageView bibleReadingActivity = findViewById(R.id.readingBibleImage);
-        bibleReadingActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Presentation.this.getApplicationContext(), BibleReadingActivity.class);
-                startActivity(intent);
+
             }
         });
     }
