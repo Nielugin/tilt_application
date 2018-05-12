@@ -16,7 +16,6 @@
         android:layout_weight="6"
         android:paddingLeft="8dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:lineSpacingMultiplier="3"
         android:paddingRight="8dp"
         android:inputType="textMultiLine" />
 

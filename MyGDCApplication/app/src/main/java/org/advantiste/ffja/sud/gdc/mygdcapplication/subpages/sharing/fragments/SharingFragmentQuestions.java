@@ -126,7 +126,7 @@ public class SharingFragmentQuestions extends Fragment {
 
                 }
             } );
-            questionText.setText ( new StringBuilder ( ).append ( "- " ).append ( question.getQuestion ( ) ).toString ( ) );
+            questionText.setText ("- " + question.getQuestion());
             parentView.addView ( inflate );
         }
         manageCustomBlockVisibility ( custom_question_block );
