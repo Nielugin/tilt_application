@@ -101,7 +101,7 @@ public class WeeklyReadingDataSource {
     }
 
     public List<WeeklyReading> getAllWeeklyReading() {
-        List<WeeklyReading> weeklyReadings = new ArrayList<WeeklyReading>();
+        List<WeeklyReading> weeklyReadings = new ArrayList<>();
 
         Cursor cursor = database.query(SQLiteWeeklyReading.TABLE_WEEKLY_READING,
                 allColumns, null, null, null, null, SQLiteWeeklyReading.COLUMN_WEEK_NUMBER+" DESC");
@@ -119,13 +119,13 @@ public class WeeklyReadingDataSource {
 
     private WeeklyReading cursorToWeeklyReading(Cursor cursor) {
         String readings = cursor.getString(5);
-        Map<BibleBook,List<Integer>> readingDetails = new HashMap<BibleBook, List<Integer>>();
+        Map<BibleBook,List<Integer>> readingDetails = new HashMap<>();
 
         String[] bookAndChapters = readings.split(";");
         for (String bc : bookAndChapters) {
             String[] chapters = bc.split(",");
             BibleBook book = BibleBook.fromString (chapters[0]);
-            List<Integer> listChapters = new ArrayList<Integer>();
+            List<Integer> listChapters = new ArrayList<>();
             listChapters.add(Integer.parseInt(chapters[1]));
             listChapters.add(Integer.parseInt(chapters[2]));
 //            for (int i = 1; i < chapters.length; i++) {

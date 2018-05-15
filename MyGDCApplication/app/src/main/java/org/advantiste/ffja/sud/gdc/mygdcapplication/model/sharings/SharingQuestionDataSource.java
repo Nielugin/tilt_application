@@ -60,7 +60,7 @@ public class SharingQuestionDataSource {
     }
 
     public List<SharingQuestion> getAllQuestions() {
-        List<SharingQuestion> allQuestions = new ArrayList<SharingQuestion> ();
+        List<SharingQuestion> allQuestions = new ArrayList<>();
 
         Cursor cursor = database.query( SQLiteSharingQuestion.TABLE_SHARE,
                 allColumns, null, null, null, null, SQLiteSharingQuestion.COLUMN_ID+" DESC");

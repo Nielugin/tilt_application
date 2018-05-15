@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import org.advantiste.ffja.sud.gdc.mygdcapplication.R;
@@ -59,7 +60,12 @@ public class ExpandableReadingView extends View {
         if (a.hasValue ( R.styleable.ExpandableReadingView_exampleDrawable )) {
             mExampleDrawable = a.getDrawable (
                     R.styleable.ExpandableReadingView_exampleDrawable );
-            mExampleDrawable.setCallback ( this );
+            if(mExampleDrawable!=null){
+                mExampleDrawable.setCallback ( this );
+            }
+            else{
+                Log.e(this.getClass().getSimpleName(),"Unexpected null pointer");
+            }
         }
 
         a.recycle ( );

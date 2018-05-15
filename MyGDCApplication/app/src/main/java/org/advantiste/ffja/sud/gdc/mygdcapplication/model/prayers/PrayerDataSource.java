@@ -67,7 +67,7 @@ public class PrayerDataSource {
     }
 
     public List<Prayer> getAllPrayers() {
-        List<Prayer> allPrayers = new ArrayList<Prayer>();
+        List<Prayer> allPrayers = new ArrayList<>();
 
         Cursor cursor = database.query(SQLitePrayer.TABLE_PRAYER,
                 allColumns, null, null, null, null, SQLitePrayer.COLUMN_ID+" DESC");

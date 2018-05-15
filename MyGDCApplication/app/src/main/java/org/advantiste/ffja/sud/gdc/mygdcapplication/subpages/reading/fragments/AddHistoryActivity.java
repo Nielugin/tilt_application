@@ -89,18 +89,7 @@ public class AddHistoryActivity extends AppCompatActivity {
         });
         dateEnd.setActivated(false);
 
-        dateEnd.setOnEditorActionListener ( new TextView.OnEditorActionListener ( ) {
-            @Override
-            public boolean onEditorAction ( TextView v, int actionId, KeyEvent event ) {
-                System.out.println (actionId);
-                if(actionId == EditorInfo.IME_ACTION_DONE){
 
-                    addReadingButton.requestFocus ();
-                }
-
-                return false;
-            }
-        } );
 
 
 
@@ -147,7 +136,7 @@ public class AddHistoryActivity extends AppCompatActivity {
 
         String dateEndText = dateEnd.getText ().toString ();
 
-        if(dateEndText!=null && !dateEndText.isEmpty () && checkEndDate(dateEndText)){
+        if( !dateEndText.isEmpty () && checkEndDate(dateEndText)){
 
 
 
@@ -194,9 +183,4 @@ public class AddHistoryActivity extends AppCompatActivity {
 
 
 
-    @Override
-    public void finish() {
-
-        super.finish();
-    }
 }

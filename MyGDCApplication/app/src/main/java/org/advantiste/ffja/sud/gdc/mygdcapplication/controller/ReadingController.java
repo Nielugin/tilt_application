@@ -48,7 +48,7 @@ public class ReadingController {
         for (int i = 0; i < 10; i++) {
             BibleBookChapterAssociation bibleBookChapterAssociation = new BibleBookChapterAssociation();
             Integer actCount = bibleBookChapterAssociation.getBibleIntegerEnumMap().get(values[i]);
-            Map<BibleBook, List<Integer>> weekRead = new HashMap<BibleBook, List<Integer>>();
+            Map<BibleBook, List<Integer>> weekRead = new HashMap<>();
             BibleBook book = values[(int) (Math.round(Math.random()*values.length))];
             List<Integer> listChapters = new ArrayList<>();
             for (int j = 1; j <= bookChapterNumber.get(book); ++j)

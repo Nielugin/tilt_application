@@ -1,8 +1,5 @@
 package org.advantiste.ffja.sud.gdc.mygdcapplication.model.readings;
 
-/**
- * Created by jean- on 07/11/2017.
- */
 
 import org.advantiste.ffja.sud.gdc.mygdcapplication.model.GDCModelElement;
 

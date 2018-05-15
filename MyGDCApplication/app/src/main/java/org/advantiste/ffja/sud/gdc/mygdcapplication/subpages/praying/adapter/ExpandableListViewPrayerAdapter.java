@@ -1,6 +1,7 @@
 package org.advantiste.ffja.sud.gdc.mygdcapplication.subpages.praying.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -113,7 +114,12 @@ public class ExpandableListViewPrayerAdapter extends BaseExpandableListAdapter {
         String groupTitle = getGroup ( groupPosition ).getTopic ();
         if (convertView==null){
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService ( Context.LAYOUT_INFLATER_SERVICE );
-            convertView=layoutInflater.inflate ( R.layout.list_group,null);
+            if(layoutInflater!=null){
+                convertView=layoutInflater.inflate ( R.layout.list_group,null);
+            }
+            else{
+                Log.e(this.getClass().getSimpleName(),"Unexpected null pointer");
+            }
         }
         TextView prayerHeader = convertView.findViewById ( R.id.labelReadingHeader );
         prayerHeader.setText ( groupTitle );
@@ -124,38 +130,48 @@ public class ExpandableListViewPrayerAdapter extends BaseExpandableListAdapter {
     public View getChildView ( int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent ) {
         if (convertView==null){
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService ( Context.LAYOUT_INFLATER_SERVICE );
-            convertView=layoutInflater.inflate ( R.layout.prayer_list_item,null);
+            if(layoutInflater!=null){
+                convertView=layoutInflater.inflate ( R.layout.prayer_list_item,null);
+            }
+            else{
+                Log.e(this.getClass().getSimpleName(),"Unexpected null pointer");
+            }
         }
         final PrayingDetail child = getChild ( groupPosition, childPosition );
+        if(convertView!=null){
 
-        TextView prayerComments =convertView.findViewById ( R.id.item_description );
-        ImageButton imageButton = convertView.findViewById ( R.id.delete_prayer );
 
-        if(isLastChild) {
-            imageButton.setVisibility (  View.VISIBLE);
-            imageButton.setImageResource ( R.drawable.ic_delete_black_24dp );
-            imageButton.setBackgroundColor (  convertView.getResources ().getColor ( R.color.transparent ));
-            imageButton.setMinimumHeight ( 30 );
-            imageButton.setOnClickListener ( new View.OnClickListener ( ) {
-                @Override
-                public void onClick ( View v ) {
-                    PrayerDataSource source = new PrayerDataSource ( context );
-                    source.open ();
-                    source.deletePrayerById ( child.getId () );
-                    source.close ();
-                    ExpandableListViewPrayerAdapter.this.eventBus.post(new PrayerDeleteEvent(child.getId()));
-                }
-            } );
+            TextView prayerComments =convertView.findViewById ( R.id.item_description );
+            ImageButton imageButton = convertView.findViewById ( R.id.delete_prayer );
 
-        }
-        else {
-            imageButton.setVisibility (  View.INVISIBLE);
+            if(isLastChild) {
+                imageButton.setVisibility (  View.VISIBLE);
+                imageButton.setImageResource ( R.drawable.ic_delete_black_24dp );
+                imageButton.setBackgroundColor (  convertView.getResources ().getColor ( R.color.transparent ));
+                imageButton.setMinimumHeight ( 30 );
+                imageButton.setOnClickListener ( new View.OnClickListener ( ) {
+                    @Override
+                    public void onClick ( View v ) {
+                        PrayerDataSource source = new PrayerDataSource ( context );
+                        source.open ();
+                        source.deletePrayerById ( child.getId () );
+                        source.close ();
+                        ExpandableListViewPrayerAdapter.this.eventBus.post(new PrayerDeleteEvent(child.getId()));
+                    }
+                } );
 
-        }
+            }
+            else {
+                imageButton.setVisibility (  View.INVISIBLE);
+
+            }
 
             if( child!=null && child.getComments ()!=null){
                 prayerComments.setText ( child.getComments () );
             }
+        } else{
+            Log.e(this.getClass().getSimpleName(),"Unexpected null pointer");
+        }
         return convertView;
     }
 
